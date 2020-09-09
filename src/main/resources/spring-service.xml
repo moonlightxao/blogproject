@@ -12,6 +12,9 @@
     <context:component-scan base-package="com.blog.service"></context:component-scan>
 
     <!--注入所有业务类到Spring-->
+    <bean id="blogService" class="com.blog.service.BlogService">
+        <property name="blogDao" ref="blogDao"></property>
+    </bean>
 
     <!--声明式事务配置-->
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blog.dao.BloggerDao">
+    <resultMap id="userMap" type="blogger">
+        <id property="userId" column="id"></id>
+        <result property="username" column="username"></result>
+        <result property="password" column="password"></result>
+        <result property="nickname" column="nickname"></result>
+        <result property="realName" column="realname"></result>
+        <result property="phone" column="phone"></result>
+        <result property="birthday" column="birthday"></result>
+        <result property="sign" column="sign"></result>
+        <result property="imageLink" column="imagelink"></result>
+    </resultMap>
+
+    <select id="findAllBlogger" resultMap="userMap">
+        select * from blogger
+    </select>
+
+    <select id="findBloggerById" resultMap="userMap">
+        select * from blogger where id=#{id}
+    </select>
+
+    <select id="findBloggerByUsrName" resultMap="userMap">
+        select * from blogger where username=#{username}
+    </select>
+
+    <select id="findBloggerByNickname" resultMap="userMap">
+        select * from blogger where nickname=#{nickname}
+    </select>
+
+    <insert id="addBlogger" parameterType="blogger">
+        insert into blogger(username, password, realname, phone, birthday, nickname, sign, imagelink) VALUES
+        (#{username},#{password},#{realName},#{phone},#{birthday},#{nickname},#{sign},#{imageLink})
+    </insert>
+
+    <update id="updateBlogger" parameterType="blogger">
+        update blogger set username=#{username},password=#{password},realname=#{realName},
+        phone=#{phone},birthday=#{birthday},nickname=#{nickname},sign=#{sign},imagelink=#{imageLink}
+        where id=#{userId}
+    </update>
+
+    <delete id="deleteBloggerById">
+        delete from blogger where id=#{id}
+    </delete>
+
+    <select id="findAllBloggerByName" resultMap="userMap">
+        select * from blogger where username like "%"#{name}"%"
+    </select>
+
+    <select id="findAllBloggerByNickname" resultMap="userMap">
+        select * from blogger where nickname like "%"#{nickname}"%"
+    </select>
+
+</mapper>
