@@ -7,11 +7,46 @@
   这个页面用来登录
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
 <html>
 <head>
-    <title>Title</title>
+    <meta charset="UTF-8">
+    <title>login</title>
+    <link rel="stylesheet" type="text/css" href="../../jquery-easyui-1.8.6/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="../../jquery-easyui-1.8.6/themes/icon.css">
+    <link rel="stylesheet" type="text/css" href="../../jquery-easyui-1.8.6/demo/demo.css">
+    <script type="text/javascript" src="../../jquery-easyui-1.8.6/jquery.min.js"></script>
+    <script type="text/javascript" src="../../jquery-easyui-1.8.6/jquery.easyui.min.js"></script>
+    <script type="text/javascript" >
+        function validateForm(){
+            var uname =document.forms["login"]["username"].value;
+            var pwd =document.forms["login"]["password"].value;
+            if (uname ==null || uname =="")
+            {
+                alert("用户名必须填写！");
+                return false;
+            }else if (pwd ==null || pwd =="")
+            {
+                alert("密码不能为空！");
+                return false;
+            }
+        }
+    </script>
 </head>
 <body>
-
+<form  name="login" class="easyui-panel " title="登录" style="width:100%;max-width:400px;padding:30px 60px;" onsubmit="return validateForm()" method = "get">
+    <tr style="margin-bottom:20px">
+        <td> <input name="username" class="easyui-textbox" label="用户名:" labelPosition="top" data-options="prompt:''" style="width:100%;"> </td>
+    </tr>
+    <br style="margin-bottom:20px">
+    <td > <input name="password" class="easyui-textbox" label="密码:" labelPosition="top" style="width:100%;"type="password"></td>
+    </tr>
+    <tr>
+        <td> <input value="登录"  class="easyui-linkbutton"  style="width:25%;height:32px" type="submit" ></td>
+        <td> <a href="createAccount.jsp" class="easyui-linkbutton" iconCls="icon-man" style="width:25%;height:32px" >注册</a></td>
+        <td> <a href="verifyAccount.jsp" class="easyui-linkbutton" iconCls="icon-help" style="width:40%;height:32px" >忘记密码</a></td>
+    </tr>
+</form>
+</div>
 </body>
 </html>

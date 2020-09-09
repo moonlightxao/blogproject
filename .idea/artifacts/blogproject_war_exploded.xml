@@ -2,10 +2,10 @@
   <artifact type="exploded-war" name="blogproject:war exploded">
     <output-path>$PROJECT_DIR$/out/artifacts/blogproject_war_exploded</output-path>
     <root id="root">
-      <element id="javaee-facet-resources" facet="blogproject/web/Web" />
       <element id="directory" name="WEB-INF">
         <element id="directory" name="classes">
           <element id="module-output" name="blogproject" />
+          <element id="module-output" name="com.blog" />
         </element>
         <element id="directory" name="lib">
           <element id="library" level="project" name="Maven: com.mchange:c3p0:0.9.5.2" />
@@ -38,6 +38,7 @@
           <element id="library" level="project" name="Maven: org.springframework:spring-test:5.1.9.RELEASE" />
         </element>
       </element>
+      <element id="javaee-facet-resources" facet="com.blog/web/Web" />
     </root>
   </artifact>
 </component>
