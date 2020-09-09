@@ -54,4 +54,7 @@
         select * from blogger where nickname like "%"#{nickname}"%"
     </select>
 
+    <select id="findHomepageStyleById" resultType="java.lang.Integer">
+        select pageid from use_style where usrid=#{id}
+    </select>
 </mapper>

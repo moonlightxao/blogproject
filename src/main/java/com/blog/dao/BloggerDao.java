@@ -34,5 +34,5 @@ public interface BloggerDao {
     List<Blogger> findAllBloggerByNickname(String nickname);
 
     /*查找博主的个人主页编号*/
-    Homepage findHomepageStyleById(int id);
+    int findHomepageStyleById(int id);
 }

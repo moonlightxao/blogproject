@@ -30,4 +30,8 @@
      <delete id="deleteBlogById">
          delete from blog where id=#{id}
      </delete>
+
+     <select id="findAllBlogByUsrId" resultMap="blogMap">
+        select * from blog where id in (select blogid from own where usrid=#{id})
+     </select>
 </mapper>

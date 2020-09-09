@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.blog.dao.HomepageDao">
+    <resultMap id="pageMap" type="homepage">
+        <id property="id" column="id"></id>
+        <result property="pageName" column="pagename"></result>
+        <result property="description" column="description"></result>
+        <result property="creator" column="creator"></result>
+        <result property="releaseTime" column="releasetime"></result>
+    </resultMap>
+
+    <select id="findAllPage" resultMap="pageMap">
+        select * from homepage
+    </select>
+
+    <select id="findPageById" resultMap="pageMap">
+        select * from homepage where id=#{id}
+    </select>
+
+    <select id="findPageByName" resultMap="pageMap">
+        select * from homepage where pagename=#{pagename}
+    </select>
+
+    <insert id="addHomepage" parameterType="homepage">
+        insert into homepage (pagename, description, creator, releasetime) values (#{pageName},#{description},#{creator},#{releaseTime})
+    </insert>
+
+    <update id="updateHomepage" parameterType="homepage">
+        update homepage set pagename=#{pageName}, description=#{description}, creator=#{creator}, releasetime=#{releaseTime} where id=#{id}
+    </update>
+
+    <delete id="deleteHomepageById">
+        delete from homepage where id=#{id}
+    </delete>
+
+</mapper>
