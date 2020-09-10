@@ -11,6 +11,8 @@
     <title>$Title$</title>
   </head>
   <body>
-  $END$
+  <h1>首页</h1>
+  <a href="/toLogin">点击进入登录页面</a>
+  <a href="/toChangePwd">点击进入修改账号页面</a>
   </body>
 </html>

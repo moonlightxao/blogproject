@@ -28,7 +28,7 @@
 
 </head>
 <body>
-<form name="login"  action="LoginController" onsubmit="return validateForm()" method = "get">
+<form name="login"  action="${pageContext.request.contextPath}/login" onsubmit="return validateForm()" method = "get">
     <table>
         <tr>  <td> 用户名：</td><td><input  type = "text" name = "username"> </td> </tr>
         <tr>  <td> 密码：</td><td><input  type = "password" name = "password"></td> </tr>
