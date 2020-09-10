@@ -49,9 +49,8 @@
     </script>
 </head>
 <body>
-
+<div align="center">
 <div style="margin:20px 0;"></div>
-
 <form name="createAccount" class="easyui-panel center" title="注册" style="width:100%;max-width:400px;padding:30px 60px;" onsubmit="return validateForm()" method="get">
     <tr style="margin-bottom:20px">
         <input name="username" class="easyui-textbox" label="用户名:" labelPosition="top"  style="width:100%;">
@@ -72,5 +71,6 @@
         <td>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</td><input  value="注册" class="easyui-linkbutton"  style="width:30%;height:32px" type="submit" >
     </tr>
 </form>
+</div>
 </body>
 </html>

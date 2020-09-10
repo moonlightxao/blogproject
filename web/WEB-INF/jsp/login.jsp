@@ -34,7 +34,8 @@
     </script>
 </head>
 <body>
-<form  name="login" class="easyui-panel " title="登录" style="width:100%;max-width:400px;padding:30px 60px;" onsubmit="return validateForm()" method = "get">
+<div align="center">
+<form  name="login" class="easyui-panel " title="登录" style="width:100%;max-width:400px;padding:30px 60px;" onsubmit="return validateForm()" method = "post">
     <tr style="margin-bottom:20px">
         <td> <input name="username" class="easyui-textbox" label="用户名:" labelPosition="top" data-options="prompt:''" style="width:100%;"> </td>
     </tr>
