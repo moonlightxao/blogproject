@@ -9,7 +9,9 @@
         <package name="com.blog.entity"/>
     </typeAliases>
     <mappers>
-        <mapper resource="com/blog/dao/BlogMapper.xml"></mapper>
+        <mapper resource="com/blog/dao/BlogDao.xml"></mapper>
+        <mapper resource="com/blog/dao/BloggerDao.xml"></mapper>
+        <mapper resource="com/blog/dao/HomepageDao.xml"></mapper>
     </mappers>
 
 </configuration>

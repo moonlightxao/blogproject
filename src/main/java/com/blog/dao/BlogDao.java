@@ -24,4 +24,10 @@ public interface BlogDao {
 
     /*根据博客编号删除相关的博客*/
     boolean deleteBlogById(int id);
+
+    /*根据博客编号查看博客的访问权限*/
+    int findAuthorityById(int id);
+
+    /*根据博客编号查看其拥有者的用户编号*/
+    int findOwnerById(int id);
 }

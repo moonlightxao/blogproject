@@ -1,7 +1,10 @@
 package com.blog.entity;
 
+import org.springframework.stereotype.Component;
+
 import java.util.Date;
 
+@Component
 public class Homepage {
     private Integer id;
     private String pageName;
