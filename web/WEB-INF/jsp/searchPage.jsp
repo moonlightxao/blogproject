@@ -18,48 +18,44 @@
     <script type="text/javascript" src="../../jquery-easyui-1.8.6/jquery.min.js"></script>
     <script type="text/javascript" src="../../jquery-easyui-1.8.6/jquery.easyui.min.js"></script>
     <style>
-        #back {
-
-            background-image: url("../../jquery-easyui-1.8.6/themes/icons/background.jpg");
+        body {
+            background-image: url("../../jquery-easyui-1.8.6/themes/icons/background1.jpg");
             background-position: right bottom, left top;
-            background-repeat: no-repeat, repeat;
+            background-repeat: no-repeat;
+            background-size: 100%;
+            background-attachment: fixed;
+            height: 1080px;
             padding: 15px;
             margin: 0;
-            border: #eb9316;
-            width: 100%;
-            height: 1000px;
         }
-        #home {
-            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-            font-size: 50px;
-            color: #eb9316;
-            text-align: right;
-
+        .top {
+            overflow: hidden;
         }
-        #mine {
-            font-family: cursive;
-            font-size: 30px;
-            color:dodgerblue;
-            text-align: right;
+        .user {
+            float: left;
+        }
+        .logo {
+            float: right;
         }
     </style>
 </head>
 <body >
-<div id="back" >
-    用户照片 用户昵称
-    <div id="home" >
-        <a href="#">博客HOME </a>
+<div class="top">
+    <div class="user">
+        <input  value="name"><input value=头像>
     </div>
-    <div  id="mine" >
-        <a href="#">我的博客</a>
+    <div  class="logo" >
+        <a href="#">
+            <img   src="../../jquery-easyui-1.8.6/themes/icons/logo.png" alt="logo" width="260px"  >
+        </a>
     </div>
-    <div align="center">
-        <div style="margin:20px 0;"></div>
-        <input  name="result" class="easyui-searchbox" data-options="prompt:'搜索',menu:'#mm'" style="width:300px" >
-        <div id="mm">
-            <div data-options="name:'bolg'">博客</div>
-            <div data-options="name:'username'">用户名</div>
-        </div>
+</div>
+<div align="center">
+    <div style="margin:20px 0;"></div>
+    <input  name="result" class="easyui-searchbox" data-options="prompt:'搜索',menu:'#mm'" style="width:300px" >
+    <div id="mm">
+        <div data-options="name:'bolg'">博客</div>
+        <div data-options="name:'username'">用户名</div>
     </div>
 </div>
 </body>

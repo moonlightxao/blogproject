@@ -11,24 +11,58 @@
 "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <title>完整demo</title>
-    <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
-    <script type="text/javascript" charset="utf-8" src="../../ueditor-dev-1.5.0/ueditor.config.js"></script>
-    <script type="text/javascript" charset="utf-8" src="../../ueditor-dev-1.5.0/_examples/editor_api.js"> </script>
+    <title>createBlog</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=gbk"/>
+    <link rel="stylesheet" type="text/css" href="../../jquery-easyui-1.8.6/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="../../jquery-easyui-1.8.6/themes/icon.css">
+    <link rel="stylesheet" type="text/css" href="../../jquery-easyui-1.8.6/demo/demo.css">
+    <script type="text/javascript" src="../../jquery-easyui-1.8.6/jquery.min.js"></script>
+    <script type="text/javascript" src="../../jquery-easyui-1.8.6/jquery.easyui.min.js"></script>
+    <script type="text/javascript" charset="gbk" src="../../gbk-jsp/ueditor.config.js"></script>
+    <script type="text/javascript" charset="gbk" src="../../gbk-jsp/ueditor.all.min.js"> </script>
     <!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
     <!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
-    <script type="text/javascript" charset="utf-8" src="../../ueditor-dev-1.5.0/lang/zh-cn/zh-cn.js"></script>
+    <script type="text/javascript" charset="gbk" src="../../gbk-jsp/lang/zh-cn/zh-cn.js"></script>
 
     <style type="text/css">
-        div{
-            width:100%;
+        body {
+            background-image: url("../../jquery-easyui-1.8.6/themes/icons/background1.jpg");
+            background-repeat: no-repeat;
+            background-size: 100%;
+            background-attachment: fixed;
+        }
+        /*顶部*/
+        #top {
+            overflow: hidden;
+        }
+        /*用户名格式*/
+        #user {
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-weight: bolder;
+            text-shadow: 5px 6px 6px rgba(0,0,0,.5);
+            font-size: 30px;
+            color: green;
+            float: left;
+        }
+        .logo {
+            float: right;
         }
     </style>
 </head>
 <body>
+<div id="top">
+    <div id="user">
+        username
+    </div>
+    <div  class="logo" align="right">
+        <a href="#">
+            <img   src="jquery-easyui-1.8.6/themes/icons/logo.png" alt="logo" width="260px"  >
+        </a>
+    </div>
+</div>
 <div>
-    <h1>完整demo</h1>
-    <script id="editor" type="text/plain" style="width:1024px;height:500px;"></script>
+    <h1>新随笔</h1>
+    <script id="editor" type="text/plain" style="width:100%;height:500px;"></script>
 </div>
 <div id="btns">
     <div>
@@ -66,7 +100,6 @@
     <button onclick="deleteEditor()">
         删除编辑器</button>
 </div>
-
 <script type="text/javascript">
 
     //实例化编辑器
@@ -122,7 +155,6 @@
         UE.getEditor('editor').setEnabled();
         enableBtn();
     }
-
     function getText() {
         //当你点击按钮时编辑区域已经失去了焦点，如果直接用getText将不会得到内容，所以要在选回来，然后取得内容
         var range = UE.getEditor('editor').selection.getRange();
@@ -180,5 +212,17 @@
         alert("已清空草稿箱")
     }
 </script>
+<a>访问权限</a>
+<form id="ff">
+    <div style="margin-bottom:20px">
+        <input class="easyui-radiobutton" name="fruit" value="all" label="公开:">
+    </div>
+    <div style="margin-bottom:20px">
+        <input class="easyui-radiobutton" name="fruit" value="login" label="登录用户:">
+    </div>
+    <div style="margin-bottom:20px">
+        <input class="easyui-radiobutton" name="fruit" value="self" label="仅自己:">
+    </div>
+</form>
 </body>
 </html>

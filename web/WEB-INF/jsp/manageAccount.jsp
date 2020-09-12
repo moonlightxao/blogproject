@@ -19,13 +19,13 @@
     <script type="text/javascript" src="../../jquery-easyui-1.8.6/jquery.easyui.min.js"></script>
     <script type="text/javascript" >
         function validateForm(){
-            var username = document.forms["createAccount"]["username"].value;
-            var nickname =document.forms["createAccount"]["nickname"].value;
-            var password1 = document.forms["createAccount"]["password1"].value;
-            var password2 = document.forms["createAccount"]["password2"].value;
-            var realname = document.forms["createAccount"]["realname"].value;
-            var phone = document.forms["createAccount"]["phone"].value;
-            var birthday = document.forms["createAccount"]["birthday"].value;
+            var username = document.forms["manageAccount"]["username"].value;
+            var nickname =document.forms["manageAccount"]["nickname"].value;
+            var password1 = document.forms["manageAccount"]["password1"].value;
+            var password2 = document.forms["manageAccount"]["password2"].value;
+            var realname = document.forms["manageAccount"]["realname"].value;
+            var phone = document.forms["manageAccount"]["phone"].value;
+            var birthday = document.forms["manageAccount"]["birthday"].value;
             if (username ==null || username =="")
             {
                 alert("用户名必须填写！");
@@ -62,30 +62,45 @@
         }
     </script>
 </head>
+<style>
+    body {
+        background-image: url("../../jquery-easyui-1.8.6/themes/icons/background2.jpg");
+        background-repeat: no-repeat;
+        background-size: 100%;
+    }
+    .easyui-panel {
+        background-image: url("../../jquery-easyui-1.8.6/themes/icons/background1.jpg");
+    }
+</style>
 <body>
+<div  align="right">
+    <a href="#">
+        <img   src="../../jquery-easyui-1.8.6/themes/icons/logo.png" alt="logo" width="260px"  >
+    </a>
+</div>
 <div align="center">
     <div style="margin:20px 0;"></div>
-    <form name="createAccount" class="easyui-panel center" title="信息修改" style="width:100%;max-width:400px;padding:30px 60px;" onsubmit="return validateForm()" method="get">
+    <form name="manageAccount" class="easyui-panel center" title="信息修改" style="width:100%;max-width:400px;padding:30px 60px;" onsubmit="return validateForm()" method="get">
         <tr style="margin-bottom:20px">
-            <input name="username" class="easyui-textbox" label="用户名:" labelPosition="top"  style="width:100%;">
+            <input name="username" class="easyui-textbox" label="用户名:" labelPosition="top"  style="width:100%;"value="username">
         </tr>
         <tr style="margin-bottom:20px">
-            <input name="nickname" class="easyui-textbox" label="昵称:" labelPosition="top"  style="width:100%;">
+            <input name="nickname" class="easyui-textbox" label="昵称:" labelPosition="top"  style="width:100%;" value="nickname">
         </tr>
         <tr style="margin-bottom:20px">
-            <input name="password1" class="easyui-textbox" label="密码:" labelPosition="top" data-options="prompt:'请输入6-12位密码'" style="width:100%;"type="password">
+            <input name="password1" class="easyui-textbox" label="新密码:" labelPosition="top" data-options="prompt:'请输入6-12位密码'" style="width:100%;"type="password" >
         </tr>
         <tr style="margin-bottom:20px">
             <input name="password2" class="easyui-textbox" label="再次输入密码:" labelPosition="top"  style="width:100%;"type="password">
         </tr>
         <tr style="margin-bottom:20px">
-            <input name="realname" class="easyui-textbox" label="真实姓名:" labelPosition="top" style="width:100%;">
+            <input name="realname" class="easyui-textbox" label="真实姓名:" labelPosition="top" style="width:100%;" value="realname">
         </tr>
         <tr style="margin-bottom:20px">
-            <input name="phone" class="easyui-textbox" label="电话号码:" labelPosition="top" style="width:100%;">
+            <input name="phone" class="easyui-textbox" label="电话号码:" labelPosition="top" style="width:100%;" value="phone">
         </tr>
         <tr style="margin-bottom:20px">
-            <input name="birthday" class="easyui-textbox" label="生日:" labelPosition="top" style="width:100%;"type="date">
+            <input name="birthday" class="easyui-textbox" label="生日:" labelPosition="top" style="width:100%;"type="date" value="birthday">
         </tr>
         <tr>
             <td>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</td><input  value="注册" class="easyui-linkbutton"  style="width:30%;height:32px" type="submit" >

@@ -47,30 +47,44 @@
             }
         }
     </script>
+    <style>
+        body {
+            background-image: url("../../jquery-easyui-1.8.6/themes/icons/background2.jpg");
+            background-repeat: no-repeat;
+            background-size: 100%;
+        }
+        .easyui-panel {
+            background-image: url("../../jquery-easyui-1.8.6/themes/icons/background1.jpg");
+        }
+    </style>
 </head>
 <body>
+<div  align="right">
+    <a href="#">
+        <img   src="../../jquery-easyui-1.8.6/themes/icons/logo.png" alt="logo" width="260px"  >
+    </a>
+</div>
 <div align="center">
-<div style="margin:20px 0;"></div>
-<form name="createAccount" class="easyui-panel center" title="注册" style="width:100%;max-width:400px;padding:30px 60px;" onsubmit="return validateForm()" method="get">
-    <tr style="margin-bottom:20px">
-        <input name="username" class="easyui-textbox" label="用户名:" labelPosition="top"  style="width:100%;">
-    </tr>
-    <tr style="margin-bottom:20px">
-        <input name="password" class="easyui-textbox" label="密码:" labelPosition="top" data-options="prompt:'请输入6-12位密码'" style="width:100%;"type="password">
-    </tr>
-    <tr style="margin-bottom:20px">
-        <input name="realname" class="easyui-textbox" label="真实姓名:" labelPosition="top" style="width:100%;">
-    </tr>
-    <tr style="margin-bottom:20px">
-        <input name="phone" class="easyui-textbox" label="电话号码:" labelPosition="top" style="width:100%;">
-    </tr>
-    <tr style="margin-bottom:20px">
-        <input name="birthday" class="easyui-textbox" label="生日:" labelPosition="top" style="width:100%;"type="date">
-    </tr>
-    <tr>
-        <td>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</td><input  value="注册" class="easyui-linkbutton"  style="width:30%;height:32px" type="submit" >
-    </tr>
-</form>
+    <form name="createAccount" class="easyui-panel center" title="注册" style="width:100%;max-width:400px;padding:30px 60px;" onsubmit="return validateForm()" method="get">
+        <tr style="margin-bottom:20px">
+            <input name="username" class="easyui-textbox" label="用户名:" labelPosition="top"  style="width:100%;">
+        </tr>
+        <tr style="margin-bottom:20px">
+            <input name="password" class="easyui-textbox" label="密码:" labelPosition="top" data-options="prompt:'请输入6-12位密码'" style="width:100%;"type="password">
+        </tr>
+        <tr style="margin-bottom:20px">
+            <input name="realname" class="easyui-textbox" label="真实姓名:" labelPosition="top" style="width:100%;">
+        </tr>
+        <tr style="margin-bottom:20px">
+            <input name="phone" class="easyui-textbox" label="电话号码:" labelPosition="top" style="width:100%;">
+        </tr>
+        <tr style="margin-bottom:20px">
+            <input name="birthday" class="easyui-textbox" label="生日:" labelPosition="top" style="width:100%;"type="date">
+        </tr>
+        <tr>
+            <td>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</td><input  value="注册" class="easyui-linkbutton"  style="width:30%;height:32px" type="submit" >
+        </tr>
+    </form>
 </div>
 </body>
 </html>

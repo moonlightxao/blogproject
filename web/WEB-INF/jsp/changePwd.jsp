@@ -11,7 +11,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>login</title>
+    <title>changePwd</title>
     <link rel="stylesheet" type="text/css" href="../../jquery-easyui-1.8.6/themes/default/easyui.css">
     <link rel="stylesheet" type="text/css" href="../../jquery-easyui-1.8.6/themes/icon.css">
     <link rel="stylesheet" type="text/css" href="../../jquery-easyui-1.8.6/demo/demo.css">
@@ -35,22 +35,35 @@
             }
         }
     </script>
+    <style>
+        body {
+            background-image: url("../../jquery-easyui-1.8.6/themes/icons/background2.jpg");
+            background-repeat: no-repeat;
+            background-size: 100%;
+        }
+        .easyui-panel {
+            background-image: url("../../jquery-easyui-1.8.6/themes/icons/background1.jpg");
+        }
+    </style>
 </head>
 <body>
+<div  align="right">
+    <a href="#">
+        <img   src="../../jquery-easyui-1.8.6/themes/icons/logo.png" alt="logo" width="260px"  >
+    </a>
+</div>
 <div align="center">
-<div style="margin:20px 0;"></div>
-
-<form name="changePwd" class="easyui-panel center" title="修改密码" style="width:100%;max-width:400px;padding:30px 60px;" onsubmit="return validateForm()" method="get">
-    <tr style="margin-bottom:20px">
-        <input name="newpwd" class="easyui-textbox" label="新密码:" labelPosition="top" data-options="prompt:'请输入6-12位密码'" style="width:100%;" type="password">
-    </tr>
-    <tr style="margin-bottom:20px">
-        <input name="newpwd2" class="easyui-textbox" label="请再次输入:" labelPosition="top"  style="width:100%;"type="password">
-    </tr>
-    <tr>
-        <td>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</td><input  value="提交" class="easyui-linkbutton"  style="width:30%;height:32px" type="submit" >
-    </tr>
-</form>
+    <form name="changePwd" class="easyui-panel center" title="修改密码" style="width:100%;max-width:400px;padding:30px 60px;" onsubmit="return validateForm()" method="get">
+        <tr style="margin-bottom:20px">
+            <input name="newpwd" class="easyui-textbox" label="输入新密码:" labelPosition="top" data-options="prompt:'请输入6-12位密码'" style="width:100%;" type="password">
+        </tr>
+        <tr style="margin-bottom:20px">
+            <input name="newpwd2" class="easyui-textbox" label="请再次输入:" labelPosition="top"  style="width:100%;"type="password">
+        </tr>
+        <tr>
+            <td>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</td><input  value="提交" class="easyui-linkbutton"  style="width:30%;height:32px" type="submit" >
+        </tr>
+    </form>
 </div>
 </body>
 </html>
