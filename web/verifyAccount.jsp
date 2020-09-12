@@ -39,7 +39,7 @@
     </script>
 </head>
 <body>
-
+<div align="center">
 <div style="margin:20px 0;"></div>
 
 <form name="verifyAccount" action="${pageContext.request.contextPath}/verify" class="easyui-panel center" title="验证" style="width:100%;max-width:400px;padding:30px 60px;" onsubmit="return validateForm()" method="post">
@@ -59,5 +59,6 @@
         <td>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</td><input  value="验证" class="easyui-linkbutton"  style="width:30%;height:32px" type="submit" >
     </tr>
 </form>
+</div>
 </body>
 </html>
