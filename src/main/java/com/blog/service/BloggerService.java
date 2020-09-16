@@ -27,9 +27,19 @@ public class BloggerService {
         return bloggerDao.findHomepageStyleById(usrId);
     }
 
+    /*更新博主信息*/
+    public boolean updateBlogger(Blogger blogger){
+        return bloggerDao.updateBlogger(blogger);
+    }
 
     /*添加一个博主*/
     public boolean addBlogger(Blogger blogger){
-        return bloggerDao.addBlogger(blogger);
+        boolean flag = bloggerDao.addBlogger(blogger);
+        int usrId = bloggerDao.findBloggerByUsrName(blogger.getUsername()).getUserId();
+        if(flag == false){
+            return false;
+        }
+        flag = bloggerDao.addUseStyle(usrId,1);
+        return flag;
     }
 }

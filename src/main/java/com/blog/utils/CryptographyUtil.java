@@ -12,7 +12,7 @@ public class CryptographyUtil {
     }
 
     public static void main(String[] args) {
-        System.out.println(md5("admin2","njust"));
+        System.out.println(md5("123456","njust"));
     }
 
 }

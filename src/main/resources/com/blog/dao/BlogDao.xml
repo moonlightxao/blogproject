@@ -12,12 +12,20 @@
          <result property="visited" column="visited"></result>
      </resultMap>
      <select id="findAllBlog" resultMap="blogMap">
-         select * from blog
+         select * from blog order by blog.time desc
      </select>
 
      <select id="findBlogById" resultMap="blogMap">
          select * from blog where id=#{id};
      </select>
+
+    <select id="findAllBlogByName" resultMap="blogMap">
+        select * from blog where title like "%"#{name}"%" order by blog.time desc
+    </select>
+
+    <select id="findBlogByTitle" resultMap="blogMap">
+        select * from blog where title=#{title};
+    </select>
 
      <insert id="addBlog" parameterType="com.blog.entity.Blog">
          insert into blog (title, abstract, visited, content, time) values (#{b.title},#{b.blogAbstract},#{b.visited},#{b.content},#{b.time})
@@ -32,7 +40,7 @@
      </delete>
 
      <select id="findAllBlogByUsrId" resultMap="blogMap">
-        select * from blog where id in (select blogid from own where usrid=#{id})
+        select * from blog where id in (select blogid from own where usrid=#{id}) order by blog.time desc
      </select>
 
     <select id="findAuthorityById" resultType="java.lang.Integer">
@@ -42,4 +50,16 @@
     <select id="findOwnerById" resultType="java.lang.Integer">
         select usrid from own where blogid=#{id}
     </select>
+
+    <insert id="addOwnerShip">
+        insert into own(blogid, usrid, authority) values (#{bid},#{uid},#{au})
+    </insert>
+
+    <update id="updateOwnerShip">
+        update own set authority=#{au} where blogid=#{bid}
+    </update>
+
+    <delete id="deleteOwnerShip">
+        delete from own where blogid=#{bid}
+    </delete>
 </mapper>

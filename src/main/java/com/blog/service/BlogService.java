@@ -35,8 +35,15 @@ public class BlogService {
     }
 
     /*添加一个博客*/
-    public boolean addBlog(Blog blog){
-        return blogDao.addBlog(blog);
+    public boolean addBlog(Blog blog,int usrId,int authority){
+        boolean flag = blogDao.addBlog(blog);
+        Blog tmp = blogDao.findBlogByTitle(blog.getTitle());
+        if(flag == false){
+            return false;
+        }
+        /*添加own表记录，其中authority = 1 表示所有人可见，0表示仅自己可见*/
+        flag = blogDao.addOwnerShip(usrId,tmp.getBlogId(),authority);
+        return flag;
     }
 
     /*更新博客内容*/
@@ -51,7 +58,12 @@ public class BlogService {
 
     /*根据博客编号删除指定博客*/
     public boolean deleteBlogById(int id){
-        return blogDao.deleteBlogById(id);
+        boolean flag = blogDao.deleteBlogById(id);
+        if(flag == false){
+            return false;
+        }
+        flag = blogDao.deleteOwnerShip(id);
+        return flag;
     }
 
     /*根据博客编号查询其访问权限*/
@@ -65,10 +77,5 @@ public class BlogService {
         return bloggerDao.findBloggerById(usrId);
     }
 
-    /*根据博客编号查询其展示页面模板*/
-    public int showHomepageStyle(int id){
-        int usrId = blogDao.findOwnerById(id);
-        return bloggerDao.findHomepageStyleById(usrId);
-    }
 
 }

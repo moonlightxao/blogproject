@@ -3,6 +3,7 @@ package com.blog.controller;
 import com.blog.entity.Blogger;
 import com.blog.service.BloggerService;
 import com.blog.utils.CryptographyUtil;
+import com.blog.utils.CurrentDateUtil;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.authc.UsernamePasswordToken;
@@ -40,7 +41,7 @@ public class LoginController {
         String userName = blogger.getUsername();
         String password = blogger.getPassword();
 
-        System.out.println(blogger);
+        //System.out.println(blogger);
         /*对密码进行转化*/
         String pwd = CryptographyUtil.md5(password,"njust");
 
@@ -48,13 +49,13 @@ public class LoginController {
         UsernamePasswordToken token = new UsernamePasswordToken(userName,pwd);
         try{
         subject.login(token);
-        return "redirect:/homepage.jsp";
+        return "redirect:/Homepage/toHomepage";
         }catch(Exception e){
             e.printStackTrace();
             request.setAttribute("blogger",blogger);
 /*            request.setAttribute("info","用户名或者密码错误");*/
+            return "login";
         }
-        return "login";
     }
 
     /*将请求转发到创建账号页面*/
@@ -71,14 +72,11 @@ public class LoginController {
         if(imageLink.isEmpty()){
             return "createAccount";
         }
-        String filePath = request.getServletContext().getRealPath("/userImageLink");
-        File realPath = new File(filePath);
-        if(!realPath.exists()){
-            realPath.mkdir();
-        }
-        System.out.println("上传文件保存地址" + realPath);
-        String res = realPath+"/"+imageLink.getOriginalFilename();
-        imageLink.transferTo(new File(res));
+        String filePath = request.getServletContext().getRealPath("/");
+        System.out.println("filePath = "+filePath);
+        String res = CurrentDateUtil.getCurrentDate()+"."+imageLink.getOriginalFilename().split("\\.")[1];
+        System.out.println("上传文件保存地址" + filePath+"userImageLink/"+res);
+        imageLink.transferTo(new File(filePath+"userImageLink/"+res));
         System.out.println(username+"," + password+"," + realName+","+phone+","+day+","+nickname+","+sign+","+res);
         String pwd = CryptographyUtil.md5(password,"njust");
         Blogger blogger = new Blogger(username,pwd,nickname,realName,phone,new SimpleDateFormat("yyyy-MM-dd").parse(day),sign,res);
@@ -97,7 +95,7 @@ public class LoginController {
         return "redirect:/admin/changePwd.jsp";
     }
 
-    /*处理修改账户请求*/
+    /*处理修改账户之前验证账号信息的请求*/
     @RequestMapping("/verify")
     public String verifyInfo(String username,String realname,String phone,String birthday,HttpServletRequest request) throws ParseException {
         System.out.println(username+"+" + realname+" + " + phone +" + " + birthday );
@@ -115,6 +113,20 @@ public class LoginController {
             request.setAttribute("erro","生日日期不正确，请重新输入！");
             return "verifyAccount";
         }
+        request.setAttribute("userName",username);
         return "admin/changePwd";
+    }
+
+    /*处理在登录时忘记密码要修改账号信息的请求*/
+    @RequestMapping("/changePwd")
+    public String changePwd(Blogger blogger){
+        Blogger res = bloggerService.getBloggerByName(blogger.getUsername());
+        String pwd = CryptographyUtil.md5(blogger.getPassword(),"njust");
+        res.setPassword(pwd);
+        boolean flag = bloggerService.updateBlogger(res);
+        if(flag == false){
+            return "admin/changePwd";
+        }
+        return "redirect:/login.jsp";
     }
 }
