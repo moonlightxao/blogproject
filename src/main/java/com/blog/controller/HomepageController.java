@@ -29,7 +29,7 @@ public class HomepageController {
         request.setAttribute("imageLink",maps.get("imageLink"));
         System.out.println("in toHomepage");
 
-        System.out.println(maps);
+        //System.out.println(maps);
         return "homepage";
     }
 }
