@@ -1,14 +1,19 @@
 package com.blog.entity;
 
+import org.springframework.context.annotation.Bean;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.stereotype.Component;
+
 import java.util.Date;
 
+@Component
 public class Blogger {
     private Integer userId;
     private String username;
     private String password;
     private String nickname;
     private String realName;
-    private Integer phone;
+    private String phone;
     private Date birthday;
     private String sign;
     private String imageLink;
@@ -16,7 +21,7 @@ public class Blogger {
 
     }
 
-    public Blogger(String username, String password, String nickname, String realName, Integer phone, Date birthday, String sign, String imageLink) {
+    public Blogger(String username, String password, String nickname, String realName, String  phone, Date birthday, String sign, String imageLink) {
         this.username = username;
         this.password = password;
         this.nickname = nickname;
@@ -27,7 +32,7 @@ public class Blogger {
         this.imageLink = imageLink;
     }
 
-    public Blogger(Integer userId, String username, String password, String nickname, String realName, Integer phone, Date birthday, String sign, String imageLink) {
+    public Blogger(Integer userId, String username, String password, String nickname, String realName, String phone, Date birthday, String sign, String imageLink) {
         this.userId = userId;
         this.username = username;
         this.password = password;
@@ -79,11 +84,11 @@ public class Blogger {
         this.realName = realName;
     }
 
-    public Integer getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(Integer phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 

@@ -57,4 +57,16 @@
     <select id="findHomepageStyleById" resultType="java.lang.Integer">
         select pageid from use_style where usrid=#{id}
     </select>
+
+    <update id="updateUseStyleByBlogger">
+        update use_style set pageid=#{pid} where usrid=#{uid}
+    </update>
+
+    <insert id="addUseStyle">
+        insert into use_style(usrid, pageid) values (#{uid},#{pid})
+    </insert>
+
+    <delete id="deleteUseStyle">
+        delete from use_style where usrid=#{uid}
+    </delete>
 </mapper>

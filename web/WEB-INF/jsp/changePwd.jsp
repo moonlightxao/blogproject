@@ -12,7 +12,7 @@
 <head>
     <meta charset="UTF-8">
     <title>changePwd</title>
-    <link rel="stylesheet" type="text/css" href="../../jquery-easyui-1.8.6/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jquery-easyui-1.8.6/themes/default/easyui.css">
     <link rel="stylesheet" type="text/css" href="../../jquery-easyui-1.8.6/themes/icon.css">
     <link rel="stylesheet" type="text/css" href="../../jquery-easyui-1.8.6/demo/demo.css">
     <script type="text/javascript" src="../../jquery-easyui-1.8.6/jquery.min.js"></script>
