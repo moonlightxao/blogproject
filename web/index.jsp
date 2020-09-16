@@ -17,6 +17,22 @@
   <link rel="stylesheet" type="text/css" href="jquery-easyui-1.8.6/demo/demo.css">
   <script type="text/javascript" src="jquery-easyui-1.8.6/jquery.min.js"></script>
   <script type="text/javascript" src="jquery-easyui-1.8.6/jquery.easyui.min.js"></script>
+  <script type="text/javascript" >
+    function inValidateSession(){
+      session.invalidate();
+    }
+
+    function delConfirm(){
+      if(confirm("确定删除吗？")){
+        return true;
+      }
+      else{
+        return false;
+      }
+
+    }
+
+  </script>
   <style>
     body {
       padding: 0;
@@ -47,7 +63,6 @@
       border: 10px;
       width: 80%;
       height: 300px;
-      background-color: pink;
     }
     .bottom {
       overflow: hidden;
@@ -76,6 +91,36 @@
       float: left;
       width: 50%;
     }
+    /*表单*/
+    #customers
+    {
+      font-family:"Trebuchet MS", Arial, Helvetica, sans-serif;
+      width:100%;
+      border-collapse:collapse;
+    }
+    #customers td, #customers th
+    {
+      font-size:1em;
+      border:1px solid #98bf21;
+      padding:3px 7px 2px 7px;
+    }
+    #customers th
+    {
+      font-size:1.1em;
+      text-align:left;
+      padding-top:5px;
+      padding-bottom:4px;
+      background-color:#A7C942;
+      color:#ffffff;
+    }
+    #customers tr.alt td
+    {
+      color:#000000;
+      background-color:#EAF2D3;
+    }
+    #customers>tr>td:hover {
+      background-color: #00ee00;
+    }
   </style>
 </head>
 <body>
@@ -100,7 +145,85 @@
     </div>
   </div>
   <div class="blog" >
-    博客主题内容
+    <table id="customers">
+      <tr>
+        <th>标题</th>
+        <th>发布时间</th>
+        <th>访问数</th>
+        <th>编辑</th>
+        <th>删除</th>
+      </tr>
+      <tr class="alt">
+        <td>Alfreds Futterkiste</td>
+        <td>Maria Anders</td>
+        <td>Germany</td>
+        <td>编辑</td>
+        <td>删除</td>
+      </tr>
+      <tr class="alt">
+        <td>Berglunds snabbköp</td>
+        <td>Christina Berglund</td>
+        <td>Sweden</td>
+        <td>编辑</td>
+        <td>删除</td>
+      </tr>
+      <tr class="alt">
+        <td>Centro comercial Moctezuma</td>
+        <td>Francisco Chang</td>
+        <td>Mexico</td>
+        <td>编辑</td>
+        <td>删除</td>
+      </tr>
+      <tr class="alt">
+        <td>Ernst Handel</td>
+        <td>Roland Mendel</td>
+        <td>Austria</td>
+        <td>编辑</td>
+        <td>删除</td>
+      </tr >
+      <tr class="alt">
+        <td>Island Trading</td>
+        <td>Helen Bennett</td>
+        <td>UK</td>
+        <td>编辑</td>
+        <td>删除</td>
+      </tr>
+      <tr class="alt">
+        <td>Königlich Essen</td>
+        <td>Philip Cramer</td>
+        <td>Germany</td>
+        <td>编辑</td>
+        <td>删除</td>
+      </tr>
+      <tr class="alt">
+        <td>Laughing Bacchus Winecellars</td>
+        <td>Yoshi Tannamuri</td>
+        <td>Canada</td>
+        <td>编辑</td>
+        <td>删除</td>
+      </tr>
+      <tr class="alt">
+        <td>Magazzini Alimentari Riuniti</td>
+        <td>Giovanni Rovelli</td>
+        <td>Italy</td>
+        <td>编辑</td>
+        <td>删除</td>
+      </tr>
+      <tr class="alt">
+        <td>North/South</td>
+        <td>Simon Crowther</td>
+        <td>UK</td>
+        <td>编辑</td>
+        <td>删除</td>
+      </tr>
+      <tr class="alt">
+        <td>Paris spécialités</td>
+        <td>Marie Bertrand</td>
+        <td>France</td>
+        <td>编辑</td>
+        <td>删除</td>
+      </tr>
+    </table>
   </div>
 </div>
 <div class="bottom">
