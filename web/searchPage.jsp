@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: 柳智添
@@ -54,9 +55,23 @@
     <div style="margin:20px 0;"></div>
     <input  name="result" class="easyui-searchbox" data-options="prompt:'搜索',menu:'#mm'" style="width:300px" >
     <div id="mm">
-        <div data-options="name:'bolg'">博客</div>
+        <div data-options="name:'blog'">博客</div>
         <div data-options="name:'username'">用户名</div>
     </div>
+</div>
+<div>
+    <table>
+        <tr>
+            <th>搜索结果</th>
+        </tr>
+        <c:forEach var="blog" items="${blogs}">
+            <tr>
+                <td>
+                    <a href="${pageContext.request.contextPath}/Blog/toShowBlog?bid=${blog.blogId}">${blog.title}</a>
+                </td>
+            </tr>
+        </c:forEach>
+    </table>
 </div>
 </body>
 </html>

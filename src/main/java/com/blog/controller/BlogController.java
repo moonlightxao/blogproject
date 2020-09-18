@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -30,7 +31,9 @@ public class BlogController {
     @RequestMapping("/toCreateBlog")
     public String toCreateBlog(HttpServletRequest request) {
         String tmp = request.getParameter("id");
+        Blogger curUser = (Blogger) SecurityUtils.getSubject().getSession().getAttribute("currentUser");
         if(tmp == null){
+            request.setAttribute("user",curUser);
             return "admin/createBlog";
         }else{
             int bid = Integer.valueOf(tmp);
@@ -126,6 +129,19 @@ public class BlogController {
 
         //if(pageId == 1)
         return "showBlog";
+    }
+
+    @RequestMapping("/index")
+    public String showIndex(HttpServletRequest request){
+        /*接收到异步请求之后返回所有博客结果*/
+        List<Blog> blogs = blogService.findAllBlog();
+        Map<String,Blog> map = new HashMap<String,Blog>();
+        for(Blog blog : blogs){
+            Blogger owner = blogService.findOwnById(blog.getBlogId());
+            map.put(owner.getNickname(),blog);
+        }
+        request.setAttribute("map",map);
+        return "index";
     }
 
 }

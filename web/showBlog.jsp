@@ -9,9 +9,9 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>${blog.title}</title>
 </head>
 <body>
-
+<i>${ownerName}</i>
 </body>
 </html>

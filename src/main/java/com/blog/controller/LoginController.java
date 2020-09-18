@@ -129,4 +129,10 @@ public class LoginController {
         }
         return "redirect:/login.jsp";
     }
+
+
+    @RequestMapping("/")
+    public String toIndex(){
+        return "redirect:/Blog/index";
+    }
 }
