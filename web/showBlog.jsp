@@ -16,169 +16,9 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jquery-easyui-1.8.6/themes/default/easyui.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jquery-easyui-1.8.6/themes/icon.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jquery-easyui-1.8.6/demo/demo.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/mycss/showblog.css">
     <script type="text/javascript" src="${pageContext.request.contextPath}/jquery-easyui-1.8.6/jquery.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/jquery-easyui-1.8.6/jquery.easyui.min.js"></script>
-    <style>
-        body {
-            padding: 0;
-        }
-        .back {
-            min-height: 700px;
-            background-color: lightblue;
-            background-size: 100% 100%;
-            padding: 15px;
-            margin: 0;
-        }
-        .top {
-            overflow: hidden;
-            height: 100px;
-        }
-        #user {
-            float: right;
-        }
-        /*用户昵称*/
-        #user >a {
-            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-            font-weight: bolder;
-            color: black;
-            text-shadow: 5px 5px 6px rgba(0,0,0,.3);
-
-        }
-        #user >a:hover {
-            text-decoration: none;
-            color: #0c7cd5;
-        }
-        .main a:link {
-            color: #00a0e9;
-        }
-        .main a:visited {
-            color: #00a0e9;
-        }
-        a {
-            text-decoration: none;
-        }
-        .main a:hover{
-            color: #0c7cd5;
-            text-decoration: none;
-        }
-        #user>img {
-            width: 50px;
-            height: 50px;
-        }
-        #logo {
-            float: left;
-        }
-        #logo>a>img {
-            width: 100px;
-        }
-        .line {
-            height: 2px;
-            width: 100%;
-            background-color: dimgrey;
-            padding: 2px;
-        }
-        .child_line {
-            height: 1px;
-            width: 100%;
-            border-radius:10%;
-            background-color:darkseagreen;
-            padding: 1px;
-        }
-        .nav {
-            list-style-type: none;
-            margin: 0;
-            padding: 0;
-            overflow: hidden;
-            border: 1px solid #e7e7e7;
-            background-color: #f3f3f3;
-        }
-        .nav>li {
-            font-size: 15px;
-            float: left;
-        }
-
-        .nav>li>a {
-            display: block;
-            color: #666;
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
-        }
-        .nav>li>a:hover {
-            color:white;
-            background-color: darkseagreen;
-        }
-        #center {
-            overflow: hidden;
-        }
-        #myblog {
-            float: left;
-            width: 80%;
-
-        }
-        #info {
-            float: left;
-            background-color: white;
-            width: 15%;
-            padding: 10px;
-            margin: 10px;
-            border-style: solid;
-            border-color: grey;
-            border-width: 2px;
-        }
-        #info>h3 {
-            text-align: center;
-        }
-        .main {
-            border-style: solid;
-            width: 80%;
-            padding: 10px;
-            margin: 10px;
-            border-bottom-width: 3px;
-            border-right-width: 3px;
-            border-left-width: 1px;
-            border-top-width: 1px;
-            border-right-color: grey;
-            border-bottom-color: grey;
-            background-color: lightgoldenrodyellow;
-        }
-        #title >h4>a {
-            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-            font-weight: bolder;
-            font-style: inherit;
-        }
-        #time_nick {
-            color:dimgrey;
-        }
-        .bottom {
-            overflow: hidden;
-            background-color: whitesmoke;
-            color: grey;
-        }
-        #friend_link {
-            float: left;
-            padding: 15px;
-            width: 50%;
-        }
-        #friend_link>a:link {
-            color: grey;
-            text-decoration: none;
-        }
-        #friend_link>a:visited {
-            color: grey;
-        }
-        #friend_link>a:hover {
-            color: grey;
-        }
-        #friend_link>a:active {
-            color: grey;
-        }
-        #communication {
-            float: left;
-            padding: 15px;
-            width: 50%;
-        }
-    </style>
 </head>
 <body>
 <div class="back" >
@@ -205,11 +45,9 @@
         <div align="center" id="myblog">
             <div class="main">
                 <div id="title" align="left">
-                    <h4><a href="#"><span style="margin: 0">${blog.title}</span></a></h4>
+                    <h4><a href="#"><span>${blog.title}</span></a></h4>
                 </div>
-                <div class="child_line">
-
-                </div>
+                <div class="child_line"></div>
                 <div align="left">
                     <span>${blog.content}</span>
                 </div>
@@ -227,8 +65,17 @@
             </div>
         </div>
     </div>
-
-
+</div>
+<div class="bottom">
+    <div id="friend_link" >
+        <h5> 友情链接:</h5> <a href="#">百度云</a> &nbsp; <a href="#">阿里云</a> &nbsp; <a href="#">华为云</a>
+        &nbsp; <a href="#">腾讯云</a> &nbsp; <a href="#">菜鸟教程</a> &nbsp; <a href="#">Bootstrap</a> &nbsp; <a href="#">jQuery</a> &nbsp; <a href="#">网易云</a>
+    </div>
+    <div id="communication">
+        <h5>联系我们:</h5>
+        <li>电话:13251266359</li>
+        <li>邮箱:2675935418@qq.com</li>
+    </div>
 </div>
 </body>
 </html>

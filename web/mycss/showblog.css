@@ -1,0 +1,162 @@
+body {
+    padding: 0;
+}
+.back {
+    min-height: 700px;
+    background-color: lightblue;
+    background-size: 100% 100%;
+    padding: 15px;
+    margin: 0;
+}
+.top {
+    overflow: hidden;
+    height: 100px;
+}
+#user {
+    float: right;
+}
+/*用户昵称*/
+#user >a {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: bolder;
+    color: black;
+    text-shadow: 5px 5px 6px rgba(0,0,0,.3);
+
+}
+#user >a:hover {
+    text-decoration: none;
+    color: #0c7cd5;
+}
+.main a:link {
+    color: #00a0e9;
+}
+.main a:visited {
+    color: #00a0e9;
+}
+a {
+    text-decoration: none;
+}
+.main a:hover{
+    color: #0c7cd5;
+    text-decoration: none;
+}
+#user>img {
+    width: 50px;
+    height: 50px;
+}
+#logo {
+    float: left;
+}
+#logo>a>img {
+    width: 100px;
+}
+.line {
+    height: 2px;
+    width: 100%;
+    background-color: dimgrey;
+    padding: 2px;
+}
+.child_line {
+    height: 1px;
+    width: 100%;
+    border-radius:10%;
+    background-color:darkseagreen;
+    padding: 1px;
+}
+.nav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 1px solid #e7e7e7;
+    background-color: #f3f3f3;
+}
+.nav>li {
+    font-size: 15px;
+    float: left;
+}
+
+.nav>li>a {
+    display: block;
+    color: #666;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+.nav>li>a:hover {
+    color:white;
+    background-color: darkseagreen;
+}
+#center {
+    overflow: hidden;
+}
+#myblog {
+    float: left;
+    width: 80%;
+
+}
+#info {
+    float: left;
+    background-color: white;
+    width: 15%;
+    padding: 10px;
+    margin: 10px;
+    border-style: solid;
+    border-color: grey;
+    border-width: 2px;
+}
+#info>h3 {
+    text-align: center;
+}
+.main {
+    border-style: solid;
+    width: 80%;
+    padding: 10px;
+    margin: 10px;
+    border-bottom-width: 3px;
+    border-right-width: 3px;
+    border-left-width: 1px;
+    border-top-width: 1px;
+    border-right-color: grey;
+    border-bottom-color: grey;
+    background-color: lightgoldenrodyellow;
+}
+#title >h4>a {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: bolder;
+    font-style: inherit;
+}
+#time_nick {
+    color:dimgrey;
+}
+.bottom {
+    overflow: hidden;
+    background-color: whitesmoke;
+    color: grey;
+}
+#friend_link {
+    float: left;
+    padding: 15px;
+    width: 50%;
+}
+#friend_link>a:link {
+    color: grey;
+    text-decoration: none;
+}
+#friend_link>a:visited {
+    color: grey;
+}
+#friend_link>a:hover {
+    color: grey;
+}
+#friend_link>a:active {
+    color: grey;
+}
+#communication {
+    float: left;
+    padding: 15px;
+    width: 50%;
+}
+li {
+    list-style: none;
+}

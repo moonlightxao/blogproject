@@ -18,10 +18,10 @@
     <div id="user">
       <c:if test="${rememberMe == false}">
           <a id="login" href="${pageContext.request.contextPath}/toLogin" class="easyui-linkbutton "  iconCls="icon-ok" > 登录</a>
-          <a id="create" href="${pageContext.request.contextPath}/toCreateAccount" class="easyui-linkbutton" iconCls="icon-man"> 注册</a>
+          <a id="create" href="${pageContext.request.contextPath}/toCreateAccount" class="easyui-linkbutton" iconCls="icon-man" > 注册</a>
       </c:if>
         <c:if test="${rememberMe == true}">
-            <a id="username" href="javascript:void(0)" class="easyui-tooltip" data-options="
+            <a id="nickname" href="javascript:void(0)" class="easyui-tooltip" data-options="
                     hideEvent: 'none',
                     content: function(){
                         return $('#toolbar');
@@ -32,17 +32,16 @@
                             t.tooltip('hide');
                         });
                     }
-                ">这里要昵称</a>
-            <img src=这里要头像>
+                ">这里需要用户名</a>
+            <img src="/userImageLink/${imageLink}">
+            <div id="tool">
+                <div id="toolbar">
+                    <li><a href="${pageContext.request.contextPath}/toManageAccount?usrId=${usrId}" class="easyui-linkbutton"  data-options="iconCls:'icon-edit',plain:true">账号设置</a></li>
+                    <li><a href="${pageContext.request.contextPath}/logout" class="easyui-linkbutton"  data-options="iconCls:'icon-no',plain:true">退出登录</a></li>
+                </div>
+            </div>
         </c:if>
     </div >
-      <div  id="tool">
-          <div id="toolbar">
-              <li><a herf="个人主页" class="easyui-linkbutton"  data-options="iconCls:'icon-man',plain:true">个人主页</a></li>
-              <li><a href="${pageContext.request.contextPath}/toManageAccount?usrId=${usrId}" class="easyui-linkbutton"  data-options="iconCls:'icon-edit',plain:true">账号设置</a></li>
-              <li><a href="#" class="easyui-linkbutton"  data-options="iconCls:'icon-no',plain:true">退出登录</a></li>
-          </div>
-      </div>
     <div id="logo">
       <a href="${pageContext.request.contextPath}/?page=1" >
         <img src="${pageContext.request.contextPath}/jquery-easyui-1.8.6/themes/icons/logo.png" alt="logo"   />
@@ -50,8 +49,7 @@
     </div>
 
   </div>
-  <div align="center">
-    <div  id="layout1"></div>
+  <div align="center" id="search">
     <input class="easyui-searchbox" data-options="labelPosition:'left',prompt:'搜索',searcher:doSearch" >
   </div>
   <script>
@@ -64,10 +62,10 @@
     <c:forEach var="iMap" items="${map}">
       <div class="main">
         <div id="title" align="left">
-          <h4><a href="${pageContext.request.contextPath}/Blog/toShowBlog?bid=${iMap.key.blogId}"><span>${iMap.key.title}</span></a></h4>
+          <h4><a href="${pageContext.request.contextPath}/Blog/toShowBlog?bid=${iMap.key.blogId}"><span >${iMap.key.title}</span></a></h4>
         </div>
         <div align="left" >
-          <span >${iMap.key.blogAbstract}</span> <a href="${pageContext.request.contextPath}/Blog/toShowBlog?bid=${iMap.key.blogId}" id="all">阅读全文</a>
+          <span>${iMap.key.blogAbstract}</span> <a href="${pageContext.request.contextPath}/Blog/toShowBlog?bid=${iMap.key.blogId}" id="all">阅读全文</a>
         </div>
         <div align="right">
           <span id="time_nick"> 创建时间:${iMap.key.time} &nbsp;&nbsp;&nbsp;用户昵称:${iMap.value}</span>

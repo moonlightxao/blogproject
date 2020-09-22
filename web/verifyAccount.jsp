@@ -15,6 +15,7 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jquery-easyui-1.8.6/themes/default/easyui.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jquery-easyui-1.8.6/themes/icon.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jquery-easyui-1.8.6/demo/demo.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/mycss/aboutaccount.css">
     <script type="text/javascript" src="${pageContext.request.contextPath}/jquery-easyui-1.8.6/jquery.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/jquery-easyui-1.8.6/jquery.easyui.min.js"></script>
     <script type="text/javascript" >
@@ -54,25 +55,26 @@
 <body>
 <div id="logo" align="left">
     <a href="#">
-        <img   src="${pageContext.request.contextPath}/jquery-easyui-1.8.6/themes/icons/logo.png" alt="logo" width="260px"  >
+        <img   src="${pageContext.request.contextPath}/jquery-easyui-1.8.6/themes/icons/logo.png" alt="logo" >
     </a>
 </div>
 <div align="center">
+    <div id="layout1"></div>
     <form name="verifyAccount"action="${pageContext.request.contextPath}/verify" class="easyui-panel center" title="验证" style="width:100%;max-width:400px;padding:30px 60px;" onsubmit="return validateForm()" method="post">
-        <tr style="margin-bottom:20px">
-            <input name="username" class="easyui-textbox" label="用户名:" labelPosition="top" style="width:100%;">
-        </tr>
-        <tr style="margin-bottom:20px">
-            <input name="realname" class="easyui-textbox" label="真实姓名:" labelPosition="top" style="width:100%;">
-        </tr>
-        <tr style="margin-bottom:20px">
-            <input name="phone" class="easyui-textbox" label="电话号码:" labelPosition="top" style="width:100%;">
-        </tr>
-        <tr style="margin-bottom:20px">
-            <input name="birthday" class="easyui-textbox" label="生日:" labelPosition="top" style="width:100%;"type="date">
+        <tr>
+            <input name="username" class="easyui-textbox boxwidth" label="用户名:" labelPosition="top" >
         </tr>
         <tr>
-            <td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="${pageContext.request.contextPath}/toLogin" class="easyui-linkbutton"  style="width:30%;height:32px">退出验证</a> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</td><input  value="提交" class="easyui-linkbutton"  style="width:30%;height:32px" type="submit" >
+            <input name="realname" class="easyui-textbox boxwidth" label="真实姓名:" labelPosition="top">
+        </tr>
+        <tr>
+            <input name="phone" class="easyui-textbox boxwidth" label="电话号码:" labelPosition="top">
+        </tr>
+        <tr>
+            <input name="birthday" class="easyui-textbox boxwidth" label="生日:" labelPosition="top" type="date">
+        </tr>
+        <tr>
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="${pageContext.request.contextPath}/toLogin" class="easyui-linkbutton button" >退出验证</a></td><input  value="提交" class="easyui-linkbutton button"  type="submit" >
         </tr>
     </form>
 </div>

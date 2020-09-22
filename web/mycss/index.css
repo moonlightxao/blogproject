@@ -20,28 +20,11 @@ body {
 #user {
     float: right;
 }
-#user >#username {
+#user>#nickname {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: bolder;
     color: black;
     text-shadow: 5px 5px 6px rgba(0,0,0,.3);
-}
-#user>#login,#create {
-    width:70px;
-    height:32px;
-}
-#tool {
-    display:none;
-}
-#layout1 {
-    margin:20px 0;
-}
-.easyui-searchbox {
-    width: 300px;
-}
-#user >a:hover {
-    text-decoration: none;
-    color: #0c7cd5;
 }
 .blog {
     overflow: hidden;
@@ -122,6 +105,7 @@ ul.pagination li a:hover:not(.active) {
     overflow: hidden;
     background-color: whitesmoke;
     color: grey;
+    padding: 0;
 }
 li {
     list-style-type: none;
@@ -148,4 +132,18 @@ li {
     float: left;
     padding: 15px;
     width: 50%;
+}
+#user>#login,#create {
+    width:70px;
+    height:32px;
+}
+#tool {
+    display:none;
+}
+#search {
+    margin:20px 0;
+
+}
+.easyui-searchbox {
+    width:300px;
 }

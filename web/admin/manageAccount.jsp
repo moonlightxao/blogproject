@@ -12,11 +12,12 @@
 <head>
     <meta charset="UTF-8">
     <title>账号设置</title>
-    <link rel="stylesheet" type="text/css" href="../../jquery-easyui-1.8.6/themes/default/easyui.css">
-    <link rel="stylesheet" type="text/css" href="../../jquery-easyui-1.8.6/themes/icon.css">
-    <link rel="stylesheet" type="text/css" href="../../jquery-easyui-1.8.6/demo/demo.css">
-    <script type="text/javascript" src="../../jquery-easyui-1.8.6/jquery.min.js"></script>
-    <script type="text/javascript" src="../../jquery-easyui-1.8.6/jquery.easyui.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jquery-easyui-1.8.6/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jquery-easyui-1.8.6/themes/icon.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jquery-easyui-1.8.6/demo/demo.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/mycss/aboutaccount.css">
+    <script type="text/javascript" src="${pageContext.request.contextPath}/jquery-easyui-1.8.6/jquery.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/jquery-easyui-1.8.6/jquery.easyui.min.js"></script>
     <script type="text/javascript" >
         function validateForm(){
             var username = document.forms["manageAccount"]["username"].value;
@@ -62,54 +63,44 @@
         }
     </script>
 </head>
-<style>
-    body {
-        background-image: url("../../jquery-easyui-1.8.6/themes/icons/background2.jpg");
-        background-repeat: no-repeat;
-        background-size: 100%;
-    }
-    .easyui-panel {
-        background-image: url("../../jquery-easyui-1.8.6/themes/icons/background1.jpg");
-    }
-</style>
 <body>
-<div  align="right">
+<div  align="left" id="logo">
     <a href="${pageContext.request.contextPath}/">
-        <img   src="${pageContext.request.contextPath}/jquery-easyui-1.8.6/themes/icons/logo.png" alt="logo" width="260px"  >
+        <img   src="${pageContext.request.contextPath}/jquery-easyui-1.8.6/themes/icons/logo.png" alt="logo"   >
     </a>
 </div>
 <div align="center">
-    <div style="margin:20px 0;"></div>
+    <div id="layout1"></div>
     <form name="manageAccount" action="${pageContext.request.contextPath}/manageAccount" class="easyui-panel center" title="信息修改" style="width:100%;max-width:400px;padding:30px 60px;" onsubmit="return validateForm()" enctype="multipart/form-data" method="post">
-        <tr style="margin-bottom:20px">
-            <input name="username" readonly="readonly" class="easyui-textbox" label="用户名:" labelPosition="top"  style="width:100%;"value="${userName}">
+        <tr >
+            <input name="username" readonly="readonly" class="easyui-textbox boxwidth" label="用户名:" labelPosition="top"  value="${userName}">
         </tr>
-        <tr style="margin-bottom:20px">
-            <input name="nickname" type="text" class="easyui-textbox" label="昵称:" labelPosition="top"  style="width:100%;" >
+        <tr >
+            <input name="nickname" type="text" class="easyui-textbox boxwidth" label="昵称:" labelPosition="top"  >
         </tr>
-        <tr style="margin-bottom:20px">
-            <input name="password" class="easyui-textbox" label="新密码:" labelPosition="top" data-options="prompt:'请输入6-12位密码'" style="width:100%;"type="password" >
+        <tr >
+            <input name="password" class="easyui-textbox boxwidth" label="新密码:" labelPosition="top" data-options="prompt:'请输入6-12位密码'" type="password" >
         </tr>
-        <tr style="margin-bottom:20px">
-            <input name="password2" class="easyui-textbox" label="再次输入密码:" labelPosition="top"  style="width:100%;"type="password">
+        <tr >
+            <input name="password2" class="easyui-textbox boxwidth" label="再次输入密码:" labelPosition="top"  type="password">
         </tr>
-        <tr style="margin-bottom:20px">
-            <input name="realname" class="easyui-textbox" label="真实姓名:" labelPosition="top" style="width:100%;" type="text">
+        <tr >
+            <input name="realname" class="easyui-textbox boxwidth" label="真实姓名:" labelPosition="top"  type="text">
         </tr>
-        <tr style="margin-bottom:20px">
-            <input name="phone" class="easyui-textbox" label="电话号码:" labelPosition="top" style="width:100%;" type="text">
+        <tr >
+            <input name="phone" class="easyui-textbox boxwidth" label="电话号码:" labelPosition="top"  type="text">
         </tr>
-        <tr style="margin-bottom:20px">
-            <input name="birthday" class="easyui-textbox" label="生日:" labelPosition="top" style="width:100%;"type="date" >
+        <tr >
+            <input name="birthday" class="easyui-textbox boxwidth" label="生日:" labelPosition="top" type="date" >
         </tr>
-        <tr style="margin-bottom:20px">
-            <input name="sign" class="easyui-textbox" label="个性签名:" labelPosition="top" style="width:100%;">
+        <tr >
+            <input name="sign" class="easyui-textbox boxwidth" label="个性签名:" labelPosition="top" >
         </tr>
-        <tr style="margin-bottom:20px">
-            <input name="imageLink" required="required" type="file"  label="选择头像" labelPosition="top" style="width:100%;">
+        <tr >
+            <td>选择头像:</td><input name="imageLink" class="boxwidth" label="选择头像" labelPosition="top" type="file">
         </tr>
         <tr>
-            <td>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</td><input  value="确认修改" class="easyui-linkbutton"  style="width:30%;height:32px" type="submit" >
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="返回到来到的地方最好，不行的话，个人主页面吧"class="easyui-linkbutton button"  >退出</a> </td><input  value="确认修改" class="easyui-linkbutton button"  type="submit" >
         </tr>
     </form>
 </div>

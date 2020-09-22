@@ -130,16 +130,45 @@ public class BlogController {
     }
 
     @RequestMapping("/searchBlog")
-    public String searchBlog(String value,HttpServletRequest request) throws UnsupportedEncodingException {
+    public String searchBlog(String value,String page,HttpServletRequest request) throws UnsupportedEncodingException {
         /*如果是搜索用户名，就返回该用户的所有可见的博客。如果搜索的是博客就返回博客(都是模糊搜索)*/
         String title = new String(value.getBytes("iso-8859-1"),"utf-8");
         Map<Blog,String> map = new HashMap<Blog, String>();
         List<Blog> blogs = blogService.findAllBlogByTitle(title);
+        if(page == null || page == ""){
+            page = "1";
+        }
+        PageBean pageBean = new PageBean();
+        pageBean.setPageSize(5);
+        pageBean.setPage(Integer.valueOf(page));
+        pageBean.setTotalRecord(blogs.size());
+        int tp = pageBean.getTotalRecord()/5;
+        if(pageBean.getTotalRecord()%5 != 0 ){
+            tp +=1;
+        }
+        pageBean.setTotalPage(tp);
 
-        for(Blog blog : blogs){
+
+        List<Blog> pagingBlog = PagingUtil.pagingFromList(blogs,pageBean);
+        for(Blog blog : pagingBlog){
             Blogger owner = blogService.findOwnById(blog.getBlogId());
             map.put(blog,owner.getNickname());
         }
+        /*获取所有得cookies*/
+        Cookie[] c = request.getCookies();
+        boolean rem = false;
+        if(c != null)
+        {
+            for(Cookie cookie:c){
+                //System.out.println(cookie.getName());
+                if(cookie.getName().equals("rememberMe")){
+                    rem = true;
+                }
+            }
+        }
+        request.setAttribute("keyword",title);
+        request.setAttribute("pageBean",pageBean);
+        request.setAttribute("rememberMe",rem);
         request.setAttribute("map",map);
         return "searchPage";
     }
@@ -180,10 +209,13 @@ public class BlogController {
         /*获取所有得cookies*/
         Cookie[] c = request.getCookies();
         boolean rem = false;
-        for(Cookie cookie:c){
-            //System.out.println(cookie.getName());
-            if(cookie.getName().equals("rememberMe")){
-                rem = true;
+        if(c != null)
+        {
+            for(Cookie cookie:c){
+                //System.out.println(cookie.getName());
+                if(cookie.getName().equals("rememberMe")){
+                    rem = true;
+                }
             }
         }
         request.setAttribute("rememberMe",rem);
