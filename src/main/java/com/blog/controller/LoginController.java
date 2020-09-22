@@ -5,8 +5,12 @@ import com.blog.entity.Blogger;
 import com.blog.service.BloggerService;
 import com.blog.utils.CryptographyUtil;
 import com.blog.utils.CurrentDateUtil;
+import com.blog.utils.ResponseWrite;
+import net.sf.json.JSONObject;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationToken;
+import org.apache.shiro.authc.IncorrectCredentialsException;
+import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +21,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartResolver;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
@@ -40,12 +46,10 @@ public class LoginController {
 
     /*处理登录请求*/
     @RequestMapping("/login")
-    public String login(Blogger blogger,String remember, HttpServletRequest request){
+    public String login(Blogger blogger, String remember, HttpServletRequest request , RedirectAttributes redirectAttributes) throws IOException {
         String userName = blogger.getUsername();
         String password = blogger.getPassword();
 
-        //System.out.println(blogger+" + " +remember);
-        //System.out.println(blogger);
         /*对密码进行转化*/
         String pwd = CryptographyUtil.md5(password,"njust");
 
@@ -55,16 +59,36 @@ public class LoginController {
             token.setRememberMe(true);
         }
         try{
-        subject.login(token);
-        Blogger user = bloggerService.getBloggerByName(blogger.getUsername());
-        return "redirect:/Homepage/toHomepage?usrId="+user.getUserId();
+            subject.login(token);
+            Blogger user = bloggerService.getBloggerByName(blogger.getUsername());
+            return "redirect:/Homepage/toHomepage?usrId="+user.getUserId();
+        }catch(UnknownAccountException e){
+            redirectAttributes.addFlashAttribute("message","用户名错误！");
+        }catch(IncorrectCredentialsException e){
+            redirectAttributes.addFlashAttribute("message","密码错误！");
         }catch(Exception e){
-            e.printStackTrace();
-            request.setAttribute("blogger",blogger);
-/*            request.setAttribute("info","用户名或者密码错误");*/
-            return "login";
+            redirectAttributes.addFlashAttribute("message","未知错误，联系管理员");
         }
+        return "redirect:/againLogin";
     }
+
+    @RequestMapping("/againLogin")
+    public  String againLogin(){
+        return "login";
+    }
+
+    /*实现退出登录的操作*/
+    @RequestMapping("/logout")
+    public String logout(){
+        Blogger curUser = (Blogger) SecurityUtils.getSubject().getSession().getAttribute("currentUser");
+        if(curUser != null){
+            SecurityUtils.getSubject().logout();
+        }
+        return "login";
+    }
+
+
+
     /*将请求转发到创建账号页面*/
     @RequestMapping("/toCreateAccount")
     public String toCreateAccount(){

@@ -113,7 +113,7 @@
           <a  href="${pageContext.request.contextPath}/toCreateAccount" class="easyui-linkbutton" iconCls="icon-man" style="width:70px;height:32px" > 注册</a>
       </c:if>
         <c:if test="${rememberMe == true}">
-            <a href="${pageContext.request.contextPath}/" class="easyui-linkbutton "  iconCls="icon-ok" style="width:70px;height:32px">欢迎您！</a>
+            <a href="${pageContext.request.contextPath}/"   style="width:70px;height:32px">欢迎您！</a>
         </c:if>
     </div >
     <div id="logo">

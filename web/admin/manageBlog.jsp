@@ -200,7 +200,7 @@
     <div>
         <ul class="nav">
             <li><a href="${pageContext.request.contextPath}/Homepage/toHomepage?usrId=${curUser.userId}">返回个人主页</a></li>
-            <li><a href="${pageContext.request.contextPath}/Blog/toCreateBlog">修改个人信息</a></li>
+            <li><a href="${pageContext.request.contextPath}/toManageAccount?usrId=${curUser.userId}">修改个人信息</a></li>
             <li><a href="${pageContext.request.contextPath}/Blog/toManageBlog">更改主页模板</a></li>
         </ul>
     </div>

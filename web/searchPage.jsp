@@ -75,8 +75,13 @@
 <body class="back" >
 <div class="top">
     <div id="user">
+        <c:if test="${rememberMe == false}">
         <a  href="${pageContext.request.contextPath}/toLogin" class="easyui-linkbutton "  iconCls="icon-ok" style="width:70px;height:32px" > 登录</a>
         <a  href="${pageContext.request.contextPath}/toCreateAccount" class="easyui-linkbutton" iconCls="icon-man" style="width:70px;height:32px" > 注册</a>
+        </c:if>
+        <c:if test="${rememberMe == true}">
+            <a href="${pageContext.request.contextPath}/"  style="width:70px;height:32px">欢迎您！</a>
+        </c:if>
     </div >
     <div id="logo">
         <a href="${pageContext.request.contextPath}/" >
@@ -89,7 +94,7 @@
     <input class="easyui-searchbox" data-options="labelPosition:'left',prompt:'搜索',searcher:doSearch"  style="width:300px">
 </div>
 <script>
-    function doSearch(value,name){
+    function doSearch(value){
         var url = "${pageContext.request.contextPath}/Blog/searchBlog?value="+value;
         window.location.href= url;
     }
@@ -110,6 +115,60 @@
                 </div>
             </div>
         </c:forEach>
+        <div id=pagenav align="left">
+            <nav aria-label="Page navigation">
+                <ul class="pagination" >
+                    <c:set var="exitId" value="0"></c:set>
+                    <c:forEach var="i" begin="0" end="${pageBean.totalPage + 1}">
+                        <c:if test="${pageBean.totalPage == 1 && exitId == 0}">
+                            <li>
+                                <a href="${pageContext.request.contextPath}/Blog/searchBlog?value=${keyword}&page=1" aria-label="First">
+                                    <span aria-hidden="true">首页</span>
+                                </a>
+                            </li>
+                            <c:set var="exitId" value="1"></c:set>
+                        </c:if>
+                        <c:if test="${pageBean.totalPage != 1}">
+                            <c:if test="${pageBean.page == 1 && i == 0}">
+                                <li>
+                                    <a href="${pageContext.request.contextPath}/Blog/searchBlog?value=${keyword}&page=1" aria-label="First">
+                                        <span aria-hidden="true">首页</span>
+                                    </a>
+                                </li>
+                            </c:if>
+                            <c:if test="${pageBean.page != 1 && i == 0}">
+                                <li>
+                                    <a href="${pageContext.request.contextPath}/Blog/searchBlog?value=${keyword}&page=${pageBean.page-1}" aria-label="Previous">
+                                        <span aria-hidden="true">上一页</span>
+                                    </a>
+                                </li>
+                            </c:if>
+                            <c:if test="${i != 0 && i != pageBean.totalPage + 1}">
+                                <li>
+                                    <a href="${pageContext.request.contextPath}/Blog/searchBlog?value=${keyword}&page=${i}">
+                                        <span aria-hidden="true">第${i}页</span>
+                                    </a>
+                                </li>
+                            </c:if>
+                            <c:if test="${i == pageBean.totalPage + 1 && pageBean.page == pageBean.totalPage}">
+                                <li>
+                                    <a href="${pageContext.request.contextPath}/Blog/searchBlog?value=${keyword}&page=${pageBean.page}" aria-label="Last">
+                                        <span aria-hidden="true">尾页</span>
+                                    </a>
+                                </li>
+                            </c:if>
+                            <c:if test="${i == pageBean.totalPage + 1 && pageBean.page != pageBean.totalPage}">
+                                <li>
+                                    <a href="${pageContext.request.contextPath}/Blog/searchBlog?value=${keyword}&page=${pageBean.page + 1}" aria-label="Next">
+                                        <span aria-hidden="true">下一页</span>
+                                    </a>
+                                </li>
+                            </c:if>
+                        </c:if>
+                    </c:forEach>
+                </ul>
+            </nav>
+        </div>
     </div>
 </div>
 </body>

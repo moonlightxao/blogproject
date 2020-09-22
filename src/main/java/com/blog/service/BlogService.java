@@ -105,6 +105,12 @@ public class BlogService {
         if(blog == null){
             return null;
         }
+        /*更新博客访问量*/
+        int oldVis = blog.getVisited();
+        boolean flag = blogDao.updateVisited(oldVis+1,blogId);
+        if(flag == false){
+            return null;
+        }
         Blogger owner = bloggerDao.findBloggerById(blogDao.findOwnerById(blog.getBlogId()));
         int pageId = bloggerDao.findHomepageStyleById(owner.getUserId());
         /*将结果封装的map里*/
@@ -115,5 +121,6 @@ public class BlogService {
 
         return map;
     }
+
 
 }

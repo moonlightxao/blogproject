@@ -230,7 +230,7 @@
         <div style="display:none">
             <div id="toolbar">
                 <li><a href="${pageContext.request.contextPath}/toManageAccount?usrId=${usrId}" class="easyui-linkbutton"  data-options="iconCls:'icon-edit',plain:true">账号设置</a></li>
-                <li><a href="#" class="easyui-linkbutton"  data-options="iconCls:'icon-no',plain:true">退出登录</a></li>
+                <li><a href="${pageContext.request.contextPath}/logout" class="easyui-linkbutton"  data-options="iconCls:'icon-no',plain:true">退出登录</a></li>
             </div>
         </div>
         <div  id="logo" >

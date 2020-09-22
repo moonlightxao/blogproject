@@ -59,6 +59,10 @@
         update own set authority=#{au} where blogid=#{bid}
     </update>
 
+    <update id="updateVisited">
+        update blog set visited=#{vis} where blog.id=#{bid}
+    </update>
+
     <delete id="deleteOwnerShip">
         delete from own where blogid=#{bid}
     </delete>

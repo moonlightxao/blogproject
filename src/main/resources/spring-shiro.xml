@@ -23,13 +23,22 @@
     <bean id="rememberMeManager" class="org.apache.shiro.web.mgt.CookieRememberMeManager">
         <property name="cookie" ref="rememberMeCookie"></property>
     </bean>
+    <bean id="logoutFilter" class="org.apache.shiro.web.filter.authc.LogoutFilter">
+        <property name="redirectUrl" value="/toLogin"></property>
+    </bean>
 
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
         <property name="securityManager" ref="securityManager"></property>
         <property name="loginUrl" value="/toLogin"></property>
+        <property name="filters">
+            <map>
+                <entry key="logout" value-ref="logoutFilter"></entry>
+            </map>
+        </property>
         <property name="filterChainDefinitions">
             <value>
                 /login=anon
+                /logout=logout
                 /admin/**=authc
                 /Blog/toCreateBlog=authc
                 /Blog/toManageBlog=authc

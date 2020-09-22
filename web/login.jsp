@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: 柳智添
@@ -19,17 +20,25 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/jquery-easyui-1.8.6/jquery.easyui.min.js"></script>
     <script type="text/javascript" >
         function validateForm(){
-            var uname =document.forms["login"]["username"].value;
+            var name =document.forms["login"]["username"].value;
             var pwd =document.forms["login"]["password"].value;
-            if (uname ==null || uname =="")
+            if (name ==null || name =="")
             {
                 alert("用户名必须填写！");
-                return false;
+                return;
             }else if (pwd ==null || pwd =="")
             {
                 alert("密码不能为空！");
-                return false;
+                return;
             }
+        }
+
+        function showError() {
+            var buf = document.getElementById("error").value;
+            if(buf != null && buf != ""){
+                alert("用户名密码错误！请重新输入");
+            }
+
         }
     </script>
     <style>
@@ -48,12 +57,16 @@
 </head>
 <body>
 <div id="logo" align="left">
-    <a href="#">
+    <a href="${pageContext.request.contextPath}/">
         <img   src="${pageContext.request.contextPath}/jquery-easyui-1.8.6/themes/icons/logo.png" alt="logo" width="260px"  >
     </a>
 </div>
+<c:if test="${errorBuff != null}">
+    <input type="hidden" value="${errorBuff}" id="error">
+</c:if>
 <div align="center">
-    <form  name="login" action="${pageContext.request.contextPath}/login" class="easyui-panel " title="登录" style="width:100%;max-width:400px;padding:30px 60px;" onsubmit="return validateForm()" method = "post">
+    <form  name="login" class="easyui-panel " action="${pageContext.request.contextPath}/login" title="登录" onsubmit="validateForm()" style="width:100%;max-width:400px;padding:30px 60px;" method="post">
+        <i>${message}</i>
         <tr style="margin-bottom:20px">
             <td> <input name="username" class="easyui-textbox" label="用户名:" labelPosition="top" data-options="prompt:''" style="width:100%;"> </td>
         </tr>
@@ -61,7 +74,7 @@
         <td > <input name="password" class="easyui-textbox" label="密码:" labelPosition="top" style="width:100%;"type="password"></td>
         </tr>
 
-        <input id="remember" name="remember" value="on"  type="hidden">
+        <input name="remember" value="on"  type="hidden">
         <tr>
             <td> <input value="登录"  class="easyui-linkbutton"  style="width:25%;height:32px" type="submit" ></td>
             <td> <a href="${pageContext.request.contextPath}/toCreateAccount" class="easyui-linkbutton" iconCls="icon-man" style="width:25%;height:32px" >注册</a></td>
