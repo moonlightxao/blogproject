@@ -11,7 +11,7 @@
 "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <title>编写博客</title>
+    <title>编辑博客</title>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
     <script type="text/javascript" src="${pageContext.request.contextPath}/utf8-jsp/ueditor.config.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/utf8-jsp/ueditor.all.min.js"></script>
@@ -36,13 +36,13 @@
             }
             $.post("${pageContext.request.contextPath}/Blog/createBlog",{'title':title,'content':content,'blogAbstract':UE.getEditor("editor").getContent().substr(0,100)+"......",'authority':se},
                 function(data){
-                  if(data.success){
-                      $.messager.alert("系统提示","博客编写成功！");
-                  }else{
-                      $.messager.alert("系统提示","博客编写失败！");
-                  }
+                    if(data.success){
+                        $.messager.alert("系统提示","博客编写成功！");
+                    }else{
+                        $.messager.alert("系统提示","博客编写失败！");
+                    }
                 },"json"
-               );
+            );
         }
     </script>
     <script type="text/javascript"></script>
@@ -64,6 +64,10 @@
     }
     #user>a {
         text-decoration: none;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-weight: bolder;
+        color: black;
+        text-shadow: 5px 5px 6px rgba(0,0,0,.3);
     }
     #user>img {
         width: 50px;
@@ -114,7 +118,7 @@
     }
     #right {
         float: left;
-        font-weight: 650;
+        font-weight: 600;
     }
     #select {
         float: left;
@@ -132,7 +136,7 @@
 <body>
 <div class="top">
     <div id="user">
-        <a href="${pageContext.request.contextPath}/Homepage/toHomepage" title="返回个人主页" class="easyui-tooltip">这里需要用户的昵称来跳转</a>
+        <a href="${pageContext.request.contextPath}/Homepage/toHomepage" title="返回个人主页" class="easyui-tooltip">${user.nickname}</a>
     </div>
     <div  id="logo" align="right">
         <a href="index.jsp">
@@ -141,26 +145,26 @@
     </div>
 </div>
 <div id="content">
-        <input id="con" type="hidden" value="${blogContent}">
-            <div id="blog_title" >
-                <span id="lead">博客标题:</span>
-                <span id="title_box"><input type="text" id="title" name="title"  value="${blogTitle}"></span>
-            </div>
-            <div>
-                <script id="editor" type="text/plain" style="width: 1024px;height: 500px;"></script>
-            </div>
-        <div id="bottom">
-                <div id="right">访问权限:</div>
-                <div id="select">
-                    <select  id="auth"  >
-                        <option value="1">所有人可见</option>
-                        <option value="0">仅自己可见</option>
-                    </select>
-                </div>
-                    <div id="output">
-                        <a href="javascript:submitData()" class="easyui-linkbutton" iconCls="icon-ok">发布博客</a>
-                    </div>
+    <input id="con" type="hidden" value='${blogContent}'>
+    <div id="blog_title" >
+        <span id="lead">博客标题:</span>
+        <span id="title_box"><input type="text" id="title" name="title"  value="${blogTitle}"></span>
+    </div>
+    <div>
+        <script id="editor" type="text/plain" style="width: 1024px;height: 500px;"></script>
+    </div>
+    <div id="bottom">
+        <div id="right">访问权限:</div>
+        <div id="select">
+            <select  id="auth"  >
+                <option value="1">所有人可见</option>
+                <option value="0">仅自己可见</option>
+            </select>
         </div>
+        <div id="output">
+            <a href="javascript:submitData()" class="easyui-linkbutton" iconCls="icon-save">保存修改</a>
+        </div>
+    </div>
 </div>
 </body>
 

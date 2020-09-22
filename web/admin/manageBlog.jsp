@@ -14,7 +14,6 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jquery-easyui-1.8.6/themes/default/easyui.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jquery-easyui-1.8.6/themes/icon.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jquery-easyui-1.8.6/demo/demo.css">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/bootstraps/css/bootstrap.min.css">
     <script type="text/javascript" src="${pageContext.request.contextPath}/jquery-easyui-1.8.6/jquery.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/jquery-easyui-1.8.6/jquery.easyui.min.js"></script>
     <script type="text/javascript">
@@ -50,7 +49,7 @@
             height: 800px;
             background-image: url("${pageContext.request.contextPath}/jquery-easyui-1.8.6/themes/icons/background1.jpg") ;
             background-repeat: no-repeat;
-            background-size: 100%;
+            background-size: 100% 100%;
             padding: 15px;
             margin: 0;
             background-attachment: fixed;
@@ -81,24 +80,31 @@
             background-color: dimgrey;
             padding: 2px;
         }
-        div>ul>li {
-            font-size: 20px;
-            background-color: #00ee00 ;
-            margin: 0px;
-        }
-        div>ul>li>a {
-            color: black;
-        }
-        div>ul>li>a:hover {
-            color:dodgerblue;
-        }
-        ul {
+
+        .headnav {
             list-style-type: none;
             margin: 0;
             padding: 0;
             overflow: hidden;
             border: 1px solid #e7e7e7;
             background-color: #f3f3f3;
+        }
+
+        .headnav>li {
+            font-size: 15px;
+            float: left;
+        }
+
+        .headnav>li>a {
+            display: block;
+            color: #666;
+            text-align: center;
+            padding: 14px 16px;
+            text-decoration: none;
+        }
+        .headnav>li>a:hover {
+            color:white;
+            background-color: darkseagreen;
         }
         #user >a {
             font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -144,6 +150,45 @@
         a:hover {
             text-decoration: none;
         }
+        #pagenav {
+            width: 60%;
+            padding: 10px;
+            margin: 10px;
+        }
+        ul.pagination {
+            display: inline-block;
+            padding: 0;
+            margin: 0;
+        }
+
+        ul.pagination li {display: inline;}
+
+        ul.pagination li a {
+            color: black;
+            float: left;
+            padding: 8px 16px;
+            text-decoration: none;
+            transition: background-color .3s;
+            border: 1px solid #ddd;
+        }
+
+        .pagination li:first-child a {
+            border-top-left-radius: 5px;
+            border-bottom-left-radius: 5px;
+        }
+
+        .pagination li:last-child a {
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 5px;
+        }
+
+        ul.pagination li a.active {
+            background-color: #4CAF50;
+            color: white;
+            border: 1px solid #4CAF50;
+
+        }
+        ul.pagination li a:hover:not(.active) {background-color: #ddd;}
         .bottom {
             overflow: hidden;
             background-color: whitesmoke;
@@ -172,14 +217,33 @@
             padding: 15px;
             width: 50%;
         }
+        li {
+            list-style-type:none;
+        }
     </style>
 </head>
 <body>
 <div class="back" >
 <div class="top">
     <div id="user">
-        <a href="#">${curUser.nickname}</a>
+        <a id="dd" href="javascript:void(0)" class="easyui-tooltip" data-options="
+                    hideEvent: 'none',
+                    content: function(){
+                        return $('#toolbar');
+                    },
+                    onShow: function(){
+                        var t = $(this);
+                        t.tooltip('tip').focus().unbind().bind('blur',function(){
+                            t.tooltip('hide');
+                        });
+                    }
+                ">${curUser.nickname}</a>
         <img src="/userImageLink/${curUser.imageLink}">
+    </div>
+    <div style="display:none">
+        <div id="toolbar">
+            <li><a href="#" class="easyui-linkbutton"  data-options="iconCls:'icon-no',plain:true">退出登录</a></li>
+        </div>
     </div>
     <div  id="logo" align="right">
         <a href="index.jsp">
@@ -189,10 +253,10 @@
 </div>
 <div align="center" class="line"></div>
         <div>
-            <ul class="nav nav-pills color">
-                <li role="presentation" ><a href="index.jsp">返回个人主页</a></li>
-                <li role="presentation"><a href="${pageContext.request.contextPath}/Blog/toCreateBlog">修改个人信息</a></li>
-                <li role="presentation"><a href="${pageContext.request.contextPath}/Blog/toManageBlog">更改主页模板</a></li>
+            <ul class="headnav">
+                <li><a href="index.jsp">返回个人主页</a></li>
+                <li><a href="${pageContext.request.contextPath}/Blog/toCreateBlog">修改个人信息</a></li>
+                <li><a href="${pageContext.request.contextPath}/Blog/toManageBlog">更改主页模板</a></li>
             </ul>
         </div>
 <div class="bodyContent" align="center">
@@ -207,13 +271,39 @@
         <c:forEach var="blog" items="${allBlog}">
             <tr class="alt">
                 <td>${blog.title}</td>
-                <td  val JavaScript:return showingExpirationDate(${blog.time})> </td>
+                <td >${blog.time}</td>
                 <td>${blog.visited}</td>
                 <td id="verify"><a href="${pageContext.request.contextPath}/Blog/toCreateBlog?id=${blog.blogId}">编辑</a></td>
                 <td id="del"><a onclick=" return delConfirm()" href="javascript:deleteSelectBlog(${blog.blogId})" >删除</a></td>
             </tr>
         </c:forEach>
     </table>
+    <div id=pagenav align="left">
+        <nav aria-label="Page navigation" >
+            <ul class="pagination">
+                <li>
+                    <a href="#" aria-label="First">
+                        <span aria-hidden="true">首页</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" aria-label="Previous">
+                        <span aria-hidden="true">上一页</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" aria-label="Next">
+                        <span aria-hidden="true">下一页</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#" aria-label="Last">
+                        <span aria-hidden="true">尾页</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </div>
 </div>
 </div>
 <div class="bottom">

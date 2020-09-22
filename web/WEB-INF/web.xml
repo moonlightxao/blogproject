@@ -54,5 +54,9 @@
     <listener>
         <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
     </listener>
+    <!--取消欢迎页-->
+    <welcome-file-list>
+        <welcome-file></welcome-file>
+    </welcome-file-list>
 
 </web-app>
