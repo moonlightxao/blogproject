@@ -11,36 +11,51 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/mycss/index.css">
   <script type="text/javascript" src="${pageContext.request.contextPath}/jquery-easyui-1.8.6/jquery.min.js"></script>
   <script type="text/javascript" src="${pageContext.request.contextPath}/jquery-easyui-1.8.6/jquery.easyui.min.js"></script>
-  <style>
-  #user>a {
-    /*width:70px;height:32px;*/
-  }
-  </style>
 </head>
 <body>
 <div class="back" >
   <div class="top">
     <div id="user">
-      <c:if test="true">
-        <a id="login" href="${pageContext.request.contextPath}/toLogin" class="easyui-linkbutton "  iconCls="icon-ok"  > 登录</a>
-        <a  id="create" href="${pageContext.request.contextPath}/toCreateAccount" class="easyui-linkbutton" iconCls="icon-man" > 注册</a>
+      <c:if test="${rememberMe == false}">
+          <a id="login" href="${pageContext.request.contextPath}/toLogin" class="easyui-linkbutton "  iconCls="icon-ok" > 登录</a>
+          <a id="create" href="${pageContext.request.contextPath}/toCreateAccount" class="easyui-linkbutton" iconCls="icon-man"> 注册</a>
       </c:if>
-      <c:if test="${rememberMe == true}">
-        <a id="username" href="${pageContext.request.contextPath}/" class="easyui-linkbutton "  iconCls="icon-ok" >欢迎您！</a>
-      </c:if>
+        <c:if test="${rememberMe == true}">
+            <a id="username" href="javascript:void(0)" class="easyui-tooltip" data-options="
+                    hideEvent: 'none',
+                    content: function(){
+                        return $('#toolbar');
+                    },
+                    onShow: function(){
+                        var t = $(this);
+                        t.tooltip('tip').focus().unbind().bind('blur',function(){
+                            t.tooltip('hide');
+                        });
+                    }
+                ">这里要昵称</a>
+            <img src=这里要头像>
+        </c:if>
     </div >
+      <div  id="tool">
+          <div id="toolbar">
+              <li><a herf="个人主页" class="easyui-linkbutton"  data-options="iconCls:'icon-man',plain:true">个人主页</a></li>
+              <li><a href="${pageContext.request.contextPath}/toManageAccount?usrId=${usrId}" class="easyui-linkbutton"  data-options="iconCls:'icon-edit',plain:true">账号设置</a></li>
+              <li><a href="#" class="easyui-linkbutton"  data-options="iconCls:'icon-no',plain:true">退出登录</a></li>
+          </div>
+      </div>
     <div id="logo">
-      <a href="index.jsp" >
+      <a href="${pageContext.request.contextPath}/?page=1" >
         <img src="${pageContext.request.contextPath}/jquery-easyui-1.8.6/themes/icons/logo.png" alt="logo"   />
       </a>
     </div>
+
   </div>
   <div align="center">
-    <div id="layout"></div>
+    <div  id="layout1"></div>
     <input class="easyui-searchbox" data-options="labelPosition:'left',prompt:'搜索',searcher:doSearch" >
   </div>
   <script>
-    function doSearch(value,name){
+    function doSearch(value){
       var url = "${pageContext.request.contextPath}/Blog/searchBlog?value="+value;
       window.location.href= url;
     }
@@ -48,42 +63,70 @@
   <div class="blog" align="center">
     <c:forEach var="iMap" items="${map}">
       <div class="main">
-        <div id="title" align="left" >
-          <h4><a href="${pageContext.request.contextPath}/Blog/toShowBlog?bid=${iMap.value.blogId}">${iMap.value.title}</a></h4>
+        <div id="title" align="left">
+          <h4><a href="${pageContext.request.contextPath}/Blog/toShowBlog?bid=${iMap.key.blogId}"><span>${iMap.key.title}</span></a></h4>
         </div>
-        <div align="left" style="margin: 0">
-          <span style="margin: 0">${iMap.value.blogAbstract}</span> <a href="${pageContext.request.contextPath}/Blog/toShowBlog?bid=${iMap.value.blogId}" id="all">阅读全文</a>
+        <div align="left" >
+          <span >${iMap.key.blogAbstract}</span> <a href="${pageContext.request.contextPath}/Blog/toShowBlog?bid=${iMap.key.blogId}" id="all">阅读全文</a>
         </div>
         <div align="right">
-          <span id="time_nick"> 创建时间:${iMap.value.time} &nbsp;&nbsp;&nbsp;用户昵称:${iMap.key}</span>
+          <span id="time_nick"> 创建时间:${iMap.key.time} &nbsp;&nbsp;&nbsp;用户昵称:${iMap.value}</span>
         </div>
       </div>
     </c:forEach>
     <div id=pagenav align="left">
-    <nav aria-label="Page navigation" >
-      <ul class="pagination">
-        <li>
-          <a href="#" aria-label="First">
-            <span aria-hidden="true">首页</span>
-          </a>
-        </li>
-        <li>
-          <a href="#" aria-label="Previous">
-            <span aria-hidden="true">上一页</span>
-          </a>
-        </li>
-        <li>
-          <a href="#" aria-label="Next">
-            <span aria-hidden="true">下一页</span>
-          </a>
-        </li>
-        <li>
-          <a href="#" aria-label="Last">
-            <span aria-hidden="true">尾页</span>
-          </a>
-        </li>
-      </ul>
-    </nav>
+      <nav aria-label="Page navigation" >
+        <ul class="pagination" >
+            <c:set var="exitId" value="0"></c:set>
+           <c:forEach var="i" begin="0" end="${pageBean.totalPage + 1}">
+               <c:if test="${pageBean.totalPage == 1 && exitId == 0}">
+                   <li>
+                       <a href="${pageContext.request.contextPath}/" aria-label="First">
+                           <span aria-hidden="true">首页</span>
+                       </a>
+                   </li>
+                   <c:set var="exitId" value="1"></c:set>
+               </c:if>
+               <c:if test="${pageBean.totalPage != 1}">
+                   <c:if test="${pageBean.page == 1 && i == 0}">
+                       <li>
+                           <a href="${pageContext.request.contextPath}/" aria-label="First">
+                               <span aria-hidden="true">首页</span>
+                           </a>
+                       </li>
+                   </c:if>
+                   <c:if test="${pageBean.page != 1 && i == 0}">
+                       <li>
+                           <a href="${pageContext.request.contextPath}/?page=${pageBean.page-1}" aria-label="Previous">
+                               <span aria-hidden="true">上一页</span>
+                           </a>
+                       </li>
+                   </c:if>
+                   <c:if test="${i != 0 && i != pageBean.totalPage + 1}">
+                       <li>
+                           <a href="${pageContext.request.contextPath}/?page=${i}">
+                               <span aria-hidden="true">第${i}页</span>
+                           </a>
+                       </li>
+                   </c:if>
+                   <c:if test="${i == pageBean.totalPage + 1 && pageBean.page == pageBean.totalPage}">
+                       <li>
+                           <a href="${pageContext.request.contextPath}/?page=${pageBean.page}" aria-label="Last">
+                               <span aria-hidden="true">尾页</span>
+                           </a>
+                       </li>
+                   </c:if>
+                   <c:if test="${i == pageBean.totalPage + 1 && pageBean.page != pageBean.totalPage}">
+                       <li>
+                           <a href="${pageContext.request.contextPath}/?page=${pageBean.page + 1}" aria-label="Next">
+                               <span aria-hidden="true">下一页</span>
+                           </a>
+                       </li>
+                   </c:if>
+               </c:if>
+           </c:forEach>
+        </ul>
+      </nav>
     </div>
   </div>
 </div>

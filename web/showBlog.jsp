@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: 柳智添
@@ -183,8 +184,8 @@
 <div class="back" >
     <div class="top">
         <div id="user">
-            <a href="该博主的个人主页">${ownerName}</a>
-            <img src="博客拥有者的用户头像">
+            <a href="${pageContext.request.contextPath}/Homepage/toHomepage?usrId=${owner.userId}">${owner.nickname}</a>
+            <img src="/userImageLink/${owner.imageLink}">
         </div>
         <div  id="logo" >
             <a href="${pageContext.request.contextPath}/">
@@ -195,17 +196,16 @@
     <div align="center" class="line"></div>
     <div>
         <ul class="nav">
-            <li><a href="index.jsp">首页</a></li>
-            <li><a href="${pageContext.request.contextPath}/Blog/toCreateBlog">新随笔</a></li>
-            <li><a href="${pageContext.request.contextPath}/Blog/toManageBlog">管理</a></li>
+            <li role="presentation" ><a href="${pageContext.request.contextPath}/">首页</a></li>
+            <li role="presentation"><a href="${pageContext.request.contextPath}/Blog/toCreateBlog">新随笔</a></li>
+            <li role="presentation"><a href="${pageContext.request.contextPath}/Blog/toManageBlog">管理</a></li>
         </ul>
     </div>
     <div id="center">
-    <div align="center" id="myblog">
-        <c:forEach var="blog" items="${blogs}">
+        <div align="center" id="myblog">
             <div class="main">
                 <div id="title" align="left">
-                    <h4><a href="">${blog.title}</a></h4>
+                    <h4><a href="#"><span style="margin: 0">${blog.title}</span></a></h4>
                 </div>
                 <div class="child_line">
 
@@ -214,20 +214,19 @@
                     <span>${blog.content}</span>
                 </div>
                 <div align="right">
-                    <span id="time_nick"> ${blog.time} &nbsp;${ownerName}</span>
+                    <span id="time_nick"> ${blog.time} &nbsp;${owner.nickname}</span>
                 </div>
             </div>
-        </c:forEach>
-    </div>
+        </div>
         <div id="info">
-           <h3>public notice </h3>
+            <h3>public notice </h3>
             <div>
-                <li>昵称:“作者昵称”</li>
-                <li>个性签名:"作者签名"</li>
-                <li>访问量:访问量</li>
+                <li>昵称:${owner.nickname}</li>
+                <li>个性签名:${owner.sign}</li>
+                <li>访问量:${blog.visited}</li>
             </div>
         </div>
-</div>
+    </div>
 
 
 </div>

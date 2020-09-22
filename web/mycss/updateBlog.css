@@ -1,0 +1,83 @@
+body {
+    width:95%;
+    height:100% ;
+    overflow:auto;
+    background: #f0f4ff;
+}
+.top {
+    overflow: hidden;
+    height: 100px;
+}
+#user {
+    float: right;
+}
+#user>a {
+    text-decoration: none;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: bolder;
+    color: black;
+    text-shadow: 5px 5px 6px rgba(0,0,0,.3);
+}
+#user>img {
+    width: 50px;
+    height: 50px;
+}
+#logo {
+    float: left;
+}
+#logo>a>img {
+    width: 100px;
+}
+#content {
+    padding:10px 10px 20px 10px ;
+    width: 1024px;
+    margin: 0 auto;
+}
+#blog_title {
+    overflow: hidden;
+    border-style: solid;
+    border-color: gainsboro;
+    border-width: 1px;
+    width: 1024px;
+}
+#lead {
+    font-weight: 700;
+    padding: 5px;
+    float: left;
+    width: 10%;
+    background-color: white;
+    border-right-color: #00a0e9;
+    border-right-width: 1px;
+    border-right-style: solid;
+}
+#title {
+    padding: 5px;
+    float: right;
+    border:0;
+    outline: none;
+    width: 90%;
+}
+#bottom {
+    overflow: hidden;
+    width: 1024px;
+    border-style: solid;
+    border-color: gainsboro;
+    border-width: 1px;
+    background-color: white;
+}
+#right {
+    float: left;
+    font-weight: 600;
+}
+#select {
+    float: left;
+}
+#output {
+    float: right;
+    align-content: center;
+}
+#output>a {
+    align-content: center;
+    height: 25px;
+    width: 100%;
+}

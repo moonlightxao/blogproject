@@ -11,7 +11,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>verifyAccount</title>
+    <title>信息验证</title>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jquery-easyui-1.8.6/themes/default/easyui.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jquery-easyui-1.8.6/themes/icon.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jquery-easyui-1.8.6/demo/demo.css">
@@ -60,6 +60,9 @@
 <div align="center">
     <form name="verifyAccount"action="${pageContext.request.contextPath}/verify" class="easyui-panel center" title="验证" style="width:100%;max-width:400px;padding:30px 60px;" onsubmit="return validateForm()" method="post">
         <tr style="margin-bottom:20px">
+            <input name="username" class="easyui-textbox" label="用户名:" labelPosition="top" style="width:100%;">
+        </tr>
+        <tr style="margin-bottom:20px">
             <input name="realname" class="easyui-textbox" label="真实姓名:" labelPosition="top" style="width:100%;">
         </tr>
         <tr style="margin-bottom:20px">
@@ -69,7 +72,7 @@
             <input name="birthday" class="easyui-textbox" label="生日:" labelPosition="top" style="width:100%;"type="date">
         </tr>
         <tr>
-            <td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="#" class="easyui-linkbutton"  style="width:30%;height:32px">退出验证</a> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</td><input  value="提交" class="easyui-linkbutton"  style="width:30%;height:32px" type="submit" >
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;<a href="${pageContext.request.contextPath}/toLogin" class="easyui-linkbutton"  style="width:30%;height:32px">退出验证</a> &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</td><input  value="提交" class="easyui-linkbutton"  style="width:30%;height:32px" type="submit" >
         </tr>
     </form>
 </div>

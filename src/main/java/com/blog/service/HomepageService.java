@@ -64,6 +64,22 @@ public class HomepageService {
         return map;
     }
 
+    /*根据用户名查询页面模板编号*/
+    public Map<String,Object> showHomepageById(int usrId){
+        /*获取用户昵称以及用户头像地址以及页面编号,所有博客*/
+        int pageNum = bloggerDao.findHomepageStyleById(usrId);
+        List<Blog> blogs = blogDao.findAllBlogByUsrId(usrId);
+        Blogger blogger = bloggerDao.findBloggerById(usrId);
+
+        Map<String,Object> map = new HashMap<String, Object>();
+        map.put("usrId",blogger.getUserId());
+        map.put("pageNum",pageNum);
+        map.put("nickName",blogger.getNickname());
+        map.put("blogs",blogs);
+        map.put("imageLink",blogger.getImageLink());
+        return map;
+    }
+
     /*根据页面编号删除页面*/
     public boolean deletePageById(int id){
         return homepageDao.deleteHomepageById(id);

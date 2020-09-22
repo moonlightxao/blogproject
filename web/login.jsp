@@ -57,9 +57,11 @@
         <tr style="margin-bottom:20px">
             <td> <input name="username" class="easyui-textbox" label="用户名:" labelPosition="top" data-options="prompt:''" style="width:100%;"> </td>
         </tr>
-        <br style="margin-bottom:20px">
+        <tr style="margin-bottom:20px">
         <td > <input name="password" class="easyui-textbox" label="密码:" labelPosition="top" style="width:100%;"type="password"></td>
         </tr>
+
+        <input id="remember" name="remember" value="on"  type="hidden">
         <tr>
             <td> <input value="登录"  class="easyui-linkbutton"  style="width:25%;height:32px" type="submit" ></td>
             <td> <a href="${pageContext.request.contextPath}/toCreateAccount" class="easyui-linkbutton" iconCls="icon-man" style="width:25%;height:32px" >注册</a></td>

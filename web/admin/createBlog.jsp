@@ -11,13 +11,14 @@
 "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <title>编辑博客</title>
+    <title>编写博客</title>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
     <script type="text/javascript" src="${pageContext.request.contextPath}/utf8-jsp/ueditor.config.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/utf8-jsp/ueditor.all.min.js"></script>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jquery-easyui-1.8.6/themes/default/easyui.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jquery-easyui-1.8.6/themes/icon.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jquery-easyui-1.8.6/demo/demo.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/mycss/createBlog.css">
     <script type="text/javascript" src="${pageContext.request.contextPath}/jquery-easyui-1.8.6/jquery.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/jquery-easyui-1.8.6/jquery.easyui.min.js"></script>
     <script type="text/javascript">
@@ -26,10 +27,12 @@
             var content = UE.getEditor('editor').getContent();
             var se = $("#auth").val();
             if(title == null || title == ''){
-                alert("标题不能为空");
+                $.messager.alert("系统提示","博客标题不能为空");
+                return;
             }
             else if(content == null || content == ''){
-                alert("内容不能为空");
+                $.messager.alert("系统提示","博客内容不能为空");
+                return;
             }
             if(se == null){
                 se = 1;
@@ -47,99 +50,13 @@
     </script>
     <script type="text/javascript"></script>
 </head>
-
-<style>
-    body {
-        width:95%;
-        height:100% ;
-        overflow:auto;
-        background: #f0f4ff;
-    }
-    .top {
-        overflow: hidden;
-        height: 100px;
-    }
-    #user {
-        float: right;
-    }
-    #user>a {
-        text-decoration: none;
-        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-        font-weight: bolder;
-        color: black;
-        text-shadow: 5px 5px 6px rgba(0,0,0,.3);
-    }
-    #user>img {
-        width: 50px;
-        height: 50px;
-    }
-    #logo {
-        float: left;
-    }
-    #logo>a>img {
-        width: 100px;
-    }
-    #content {
-        padding:10px 10px 20px 10px ;
-        width: 1024px;
-        margin: 0 auto;
-    }
-    #blog_title {
-        overflow: hidden;
-        border-style: solid;
-        border-color: gainsboro;
-        border-width: 1px;
-        width: 1024px;
-    }
-    #lead {
-        font-weight: 700;
-        padding: 5px;
-        float: left;
-        width: 10%;
-        background-color: white;
-        border-right-color: #00a0e9;
-        border-right-width: 1px;
-        border-right-style: solid;
-    }
-    #title {
-        padding: 5px;
-        float: right;
-        border:0;
-        outline: none;
-        width: 90%;
-    }
-    #bottom {
-        overflow: hidden;
-        width: 1024px;
-        border-style: solid;
-        border-color: gainsboro;
-        border-width: 1px;
-        background-color: white;
-    }
-    #right {
-        float: left;
-        font-weight: 600;
-    }
-    #select {
-        float: left;
-    }
-    #output {
-        float: right;
-        align-content: center;
-    }
-    #output>a {
-        align-content: center;
-        height: 25px;
-        width: 100%;
-    }
-</style>
 <body>
 <div class="top">
     <div id="user">
-        <a href="${pageContext.request.contextPath}/Homepage/toHomepage" title="返回个人主页" class="easyui-tooltip">${user.nickname}</a>
+        <a href="${pageContext.request.contextPath}/Homepage/toHomepage?usrId=${user.userId}" title="返回个人主页" class="easyui-tooltip">${user.nickname}</a>
     </div>
     <div  id="logo" align="right">
-        <a href="index.jsp">
+        <a href="${pageContext.request.contextPath}/">
             <img   src="${pageContext.request.contextPath}/jquery-easyui-1.8.6/themes/icons/logo.png" alt="logo" width="260px"  >
         </a>
     </div>
@@ -162,7 +79,7 @@
             </select>
         </div>
         <div id="output">
-            <a href="javascript:submitData()" class="easyui-linkbutton" iconCls="icon-save">保存修改</a>
+            <a href="javascript:submitData()" class="easyui-linkbutton" iconCls="icon-ok">发布博客</a>
         </div>
     </div>
 </div>
