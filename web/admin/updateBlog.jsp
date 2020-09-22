@@ -11,10 +11,10 @@
 "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <title>修改博客</title>
+    <title>编辑博客</title>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/ueditor-jsp-utf8/ueditor.config.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/ueditor-jsp-utf8/ueditor.all.min.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/utf8-jsp/ueditor.config.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/utf8-jsp/ueditor.all.min.js"></script>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jquery-easyui-1.8.6/themes/default/easyui.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jquery-easyui-1.8.6/themes/icon.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jquery-easyui-1.8.6/demo/demo.css">
@@ -49,42 +49,125 @@
     </script>
     <script type="text/javascript"></script>
 </head>
-
 <style>
     body {
+        width:95%;
+        height:100% ;
+        overflow:auto;
         background: #f0f4ff;
     }
+    .top {
+        overflow: hidden;
+        height: 100px;
+    }
+    #user {
+        float: right;
+    }
+    #user>a {
+        text-decoration: none;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-weight: bolder;
+        color: black;
+        text-shadow: 5px 5px 6px rgba(0,0,0,.3);
+    }
+    #user>img {
+        width: 50px;
+        height: 50px;
+    }
+    #logo {
+        float: left;
+    }
+    #logo>a>img {
+        width: 100px;
+    }
+    #content {
+        padding:10px 10px 20px 10px ;
+        width: 1024px;
+        margin: 0 auto;
+    }
+    #blog_title {
+        overflow: hidden;
+        border-style: solid;
+        border-color: gainsboro;
+        border-width: 1px;
+        width: 1024px;
+    }
+    #lead {
+        font-weight: 700;
+        padding: 5px;
+        float: left;
+        width: 10%;
+        background-color: white;
+        border-right-color: #00a0e9;
+        border-right-width: 1px;
+        border-right-style: solid;
+    }
+    #title {
+        padding: 5px;
+        float: right;
+        border:0;
+        outline: none;
+        width: 90%;
+    }
+    #bottom {
+        overflow: hidden;
+        width: 1024px;
+        border-style: solid;
+        border-color: gainsboro;
+        border-width: 1px;
+        background-color: white;
+    }
+    #right {
+        float: left;
+        font-weight: 600;
+    }
+    #select {
+        float: left;
+    }
+    #output {
+        float: right;
+        align-content: center;
+    }
+    #output>a {
+        align-content: center;
+        height: 25px;
+        width: 100%;
+    }
 </style>
-
-<body style="width:95%;height:100% ;overflow:auto">
-<div style="padding:10px 10px 20px 10px">
-
+<body>
+<div class="top">
+    <div id="user">
+        <a href="${pageContext.request.contextPath}/Homepage/toHomepage?usrId=${user.userId}" title="返回个人主页" class="easyui-tooltip">${user.nickname}</a>
+    </div>
+    <div  id="logo" align="right">
+        <a href="index.jsp">
+            <img   src="${pageContext.request.contextPath}/jquery-easyui-1.8.6/themes/icons/logo.png" alt="logo" width="260px"  >
+        </a>
+    </div>
+</div>
+<div id="content">
     <input id="vi" type="hidden" value="${vis}">
     <input id="bd" type="hidden" value="${blogNum}">
     <input id="con" type="hidden" value='${blogContent}'>
-    <table cellpadding="5"  style="font-size: 14px">
-        <tr>
-            <td>博客标题:</td>
-            <td><input type="text" id="title" name="title" value='${blogTitle}'></td>
-        </tr>
-        <tr>
-            <td>博客内容:</td>
-            <td><script id="editor" type="text/plain" style="width: 100%;height: 500px;"></script></td>
-        </tr>
-        <tr>
-            <td>访问权限</td>
-            <td>
-                <select id="auth">
-                    <option value="1">所有人可见</option>
-                    <option value="0">仅自己可见</option>
-                </select>
-            </td>
-        </tr>
-        <tr>
-            <td><a href="${pageContext.request.contextPath}/Homepage/toHomepage">返回个人主页面</a></td>
-            <td><a href="javascript:submitData()" >保存修改</a></td>
-        </tr>
-    </table>
+    <div id="blog_title" >
+        <span id="lead">博客标题:</span>
+        <span id="title_box"><input type="text" id="title" name="title"  value='${blogTitle}'></span>
+    </div>
+    <div>
+        <script id="editor" type="text/plain" style="width: 1024px;height: 500px;"></script>
+    </div>
+    <div id="bottom">
+        <div id="right">访问权限:</div>
+        <div id="select">
+            <select  id="auth"  >
+                <option value="1">所有人可见</option>
+                <option value="0">仅自己可见</option>
+            </select>
+        </div>
+        <div id="output">
+            <a href="javascript:submitData()" class="easyui-linkbutton" iconCls="icon-save">保存修改</a>
+        </div>
+    </div>
 </div>
 </body>
 

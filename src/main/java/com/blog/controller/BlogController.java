@@ -3,7 +3,9 @@ package com.blog.controller;
 
 import com.blog.entity.Blog;
 import com.blog.entity.Blogger;
+import com.blog.entity.PageBean;
 import com.blog.service.BlogService;
+import com.blog.utils.PagingUtil;
 import com.blog.utils.ResponseWrite;
 import com.sun.deploy.net.HttpResponse;
 import net.sf.json.JSON;
@@ -13,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -38,6 +41,7 @@ public class BlogController {
         }else{
             int bid = Integer.valueOf(tmp);
             /*System.out.println(bid);*/
+            request.setAttribute("user",curUser);
             Blog blog = blogService.findBlogById(bid);
             request.setAttribute("blogTitle",blog.getTitle());
             request.setAttribute("blogContent",blog.getContent());
@@ -69,6 +73,7 @@ public class BlogController {
     @RequestMapping("/updateBlog")
     public String updateBlog(Blog blog,int au,HttpServletResponse response) throws IOException {
         blog.setTime(new Date());
+        System.out.println(blog);
         boolean flag = blogService.updateBlog(blog,au);
         JSONObject jsonObject = new JSONObject();
         if(flag == true){
@@ -81,12 +86,27 @@ public class BlogController {
     }
 
     @RequestMapping("/toManageBlog")
-    public String toManageBlog(HttpServletRequest request){
+    public String toManageBlog(String page,HttpServletRequest request){
         /*获取当前用户对象以及用户的所有博客*/
         Blogger curUser = (Blogger) SecurityUtils.getSubject().getSession().getAttribute("currentUser");
         List<Blog> blogs = blogService.findAllBlogByUsrId(curUser.getUserId());
+        PageBean pageBean = new PageBean();
+        if(page == null || page.equals("")){
+            page= "1";
+        }
+        pageBean.setPageSize(5);
+        pageBean.setPage(Integer.valueOf(page));
+        pageBean.setTotalRecord(blogs.size());
+        int tp = pageBean.getTotalRecord()/5;
+        if(pageBean.getTotalRecord()%5 != 0 ){
+            tp +=1;
+        }
+        pageBean.setTotalPage(tp);
+        //System.out.println("ManageBlog show pageBean = "+pageBean);
 
-        request.setAttribute("allBlog",blogs);
+        List<Blog> pagingBlog = PagingUtil.pagingFromList(blogs,pageBean);
+        request.setAttribute("pageBean",pageBean);
+        request.setAttribute("allBlog",pagingBlog);
         request.setAttribute("curUser",curUser);
         return "admin/manageBlog";
     }
@@ -113,8 +133,14 @@ public class BlogController {
     public String searchBlog(String value,HttpServletRequest request) throws UnsupportedEncodingException {
         /*如果是搜索用户名，就返回该用户的所有可见的博客。如果搜索的是博客就返回博客(都是模糊搜索)*/
         String title = new String(value.getBytes("iso-8859-1"),"utf-8");
+        Map<Blog,String> map = new HashMap<Blog, String>();
         List<Blog> blogs = blogService.findAllBlogByTitle(title);
-        request.setAttribute("blogs",blogs);
+
+        for(Blog blog : blogs){
+            Blogger owner = blogService.findOwnById(blog.getBlogId());
+            map.put(blog,owner.getNickname());
+        }
+        request.setAttribute("map",map);
         return "searchPage";
     }
 
@@ -124,7 +150,7 @@ public class BlogController {
         Map<String,Object> map = blogService.showBlog(blogId);
         int pageId = (Integer) map.get("pageId");
         /*这里根据页面模板编号选择跳转，目前只有一个就直接跳*/
-        request.setAttribute("ownerName",map.get("ownerName"));
+        request.setAttribute("owner",map.get("owner"));
         request.setAttribute("blog",map.get("blog"));
 
         //if(pageId == 1)
@@ -132,16 +158,40 @@ public class BlogController {
     }
 
     @RequestMapping("/index")
-    public String showIndex(HttpServletRequest request){
+    public String showIndex(String page, HttpServletRequest request){
+        PageBean pageBean = new PageBean();
+        pageBean.setPageSize(5);
+        pageBean.setPage(Integer.valueOf(page));
+        pageBean.setTotalRecord(blogService.findAllBlog().size());
+        int tp = pageBean.getTotalRecord()/5;
+        if(pageBean.getTotalRecord()%5 != 0 ){
+            tp +=1;
+        }
+        pageBean.setTotalPage(tp);
+        //System.out.println(pageBean);
+        //System.out.println(pageBean.getPage()+ " + " + pageBean.getPageSize());
         /*接收到异步请求之后返回所有博客结果*/
-        List<Blog> blogs = blogService.findAllBlog();
-        Map<String,Blog> map = new HashMap<String,Blog>();
+        List<Blog> blogs = PagingUtil.pagingFromList(blogService.findAllBlog(),pageBean);
+        Map<Blog,String> map = new HashMap<Blog,String>();
         for(Blog blog : blogs){
             Blogger owner = blogService.findOwnById(blog.getBlogId());
-            map.put(owner.getNickname(),blog);
+            map.put(blog,owner.getNickname());
         }
+        /*获取所有得cookies*/
+        Cookie[] c = request.getCookies();
+        boolean rem = false;
+        for(Cookie cookie:c){
+            //System.out.println(cookie.getName());
+            if(cookie.getName().equals("rememberMe")){
+                rem = true;
+            }
+        }
+        request.setAttribute("rememberMe",rem);
         request.setAttribute("map",map);
+        request.setAttribute("pageBean",pageBean);
         return "index";
     }
+
+
 
 }

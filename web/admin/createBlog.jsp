@@ -26,10 +26,12 @@
             var content = UE.getEditor('editor').getContent();
             var se = $("#auth").val();
             if(title == null || title == ''){
-                alert("标题不能为空");
+                $.messager.alert("系统提示","博客标题不能为空");
+                return;
             }
             else if(content == null || content == ''){
-                alert("内容不能为空");
+                $.messager.alert("系统提示","博客内容不能为空");
+                return;
             }
             if(se == null){
                 se = 1;
@@ -132,10 +134,10 @@
 <body>
 <div class="top">
     <div id="user">
-        <a href="${pageContext.request.contextPath}/Homepage/toHomepage" title="返回个人主页" class="easyui-tooltip">${user.nickname}</a>
+        <a href="${pageContext.request.contextPath}/Homepage/toHomepage?usrId=${user.userId}" title="返回个人主页" class="easyui-tooltip">${user.nickname}</a>
     </div>
     <div  id="logo" align="right">
-        <a href="index.jsp">
+        <a href="${pageContext.request.contextPath}/">
             <img   src="${pageContext.request.contextPath}/jquery-easyui-1.8.6/themes/icons/logo.png" alt="logo" width="260px"  >
         </a>
     </div>

@@ -13,15 +13,27 @@
 
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
         <property name="realm" ref="userRealm"></property>
+        <property name="rememberMeManager" ref="rememberMeManager"></property>
+    </bean>
+    <bean id="rememberMeCookie" class="org.apache.shiro.web.servlet.SimpleCookie">
+        <constructor-arg value="rememberMe"></constructor-arg>
+        <property name="httpOnly" value="true"></property>
+        <property name="maxAge" value="2592000"></property>
+    </bean>
+    <bean id="rememberMeManager" class="org.apache.shiro.web.mgt.CookieRememberMeManager">
+        <property name="cookie" ref="rememberMeCookie"></property>
     </bean>
 
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
         <property name="securityManager" ref="securityManager"></property>
-        <property name="loginUrl" value="/login.jsp"></property>
+        <property name="loginUrl" value="/toLogin"></property>
         <property name="filterChainDefinitions">
             <value>
                 /login=anon
                 /admin/**=authc
+                /Blog/toCreateBlog=authc
+                /Blog/toManageBlog=authc
+                /Blog/updateBlog=authc
             </value>
         </property>
     </bean>

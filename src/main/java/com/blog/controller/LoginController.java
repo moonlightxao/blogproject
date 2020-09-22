@@ -1,5 +1,6 @@
 package com.blog.controller;
 
+import com.blog.entity.Blog;
 import com.blog.entity.Blogger;
 import com.blog.service.BloggerService;
 import com.blog.utils.CryptographyUtil;
@@ -23,6 +24,8 @@ import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 @Controller
 public class LoginController {
@@ -37,19 +40,24 @@ public class LoginController {
 
     /*处理登录请求*/
     @RequestMapping("/login")
-    public String login(Blogger blogger, HttpServletRequest request){
+    public String login(Blogger blogger,String remember, HttpServletRequest request){
         String userName = blogger.getUsername();
         String password = blogger.getPassword();
 
+        //System.out.println(blogger+" + " +remember);
         //System.out.println(blogger);
         /*对密码进行转化*/
         String pwd = CryptographyUtil.md5(password,"njust");
 
         Subject subject = SecurityUtils.getSubject();
         UsernamePasswordToken token = new UsernamePasswordToken(userName,pwd);
+        if("on".equals(remember)){
+            token.setRememberMe(true);
+        }
         try{
         subject.login(token);
-        return "redirect:/Homepage/toHomepage";
+        Blogger user = bloggerService.getBloggerByName(blogger.getUsername());
+        return "redirect:/Homepage/toHomepage?usrId="+user.getUserId();
         }catch(Exception e){
             e.printStackTrace();
             request.setAttribute("blogger",blogger);
@@ -57,7 +65,6 @@ public class LoginController {
             return "login";
         }
     }
-
     /*将请求转发到创建账号页面*/
     @RequestMapping("/toCreateAccount")
     public String toCreateAccount(){
@@ -95,6 +102,7 @@ public class LoginController {
         return "redirect:/admin/changePwd.jsp";
     }
 
+
     /*处理修改账户之前验证账号信息的请求*/
     @RequestMapping("/verify")
     public String verifyInfo(String username,String realname,String phone,String birthday,HttpServletRequest request) throws ParseException {
@@ -130,9 +138,59 @@ public class LoginController {
         return "redirect:/login.jsp";
     }
 
+    /*处理从个人主页面到管理账号页面的请求*/
+    @RequestMapping("/toManageAccount")
+    public String toManageAccount(String usrId,HttpServletRequest request){
+        Blogger user = bloggerService.findBloggerById(Integer.valueOf(usrId));
+        if(user == null){
+            return "login";
+        }
+        request.setAttribute("userName",user.getUsername());
+        return "admin/manageAccount";
+    }
+
+    /*处理管理账号信息的请求*/
+    @RequestMapping("/manageAccount")
+    public String manageAccount(@RequestParam("imageLink") MultipartFile imageLink,String username,String nickname,String password,String realname,String phone,String birthday,String sign,HttpServletRequest request) throws ParseException, IOException {
+        Map<String,String> map = new HashMap<String, String>();
+        Blogger user = bloggerService.getBloggerByName(username);
+        if(imageLink.isEmpty()){
+            return "admin/manageAccount";
+        }
+        String filePath = request.getServletContext().getRealPath("/");
+        System.out.println("filePath = "+filePath);
+        String res = CurrentDateUtil.getCurrentDate()+"."+imageLink.getOriginalFilename().split("\\.")[1];
+        //System.out.println("上传文件保存地址" + filePath+"userImageLink/"+res);
+        imageLink.transferTo(new File(filePath+"userImageLink/"+res));
+        map.put("sign",sign);
+        map.put("image",res);
+        map.put("username",username);
+        map.put("nickname",nickname);
+        map.put("password",CryptographyUtil.md5(password,"njust"));
+        map.put("realname",realname);
+        map.put("phone",phone);
+        map.put("birthday",birthday);
+        boolean flag = bloggerService.manageAccount(map);
+
+        if(flag == false){
+            return null;
+        }
+        return "redirect:/Homepage/toHomepage?usrId="+user.getUserId();
+    }
+
+
+
 
     @RequestMapping("/")
-    public String toIndex(){
-        return "redirect:/Blog/index";
+    public String toIndex(String page){
+        //System.out.println(page);
+        String red = "redirect:/Blog/index?page=";
+        if(page == null){
+            red = red + "1";
+            return red;
+        }
+        red = red + page;
+        System.out.println(red);
+        return red;
     }
 }

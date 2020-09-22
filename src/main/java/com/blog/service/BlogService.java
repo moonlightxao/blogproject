@@ -110,7 +110,7 @@ public class BlogService {
         /*将结果封装的map里*/
         Map<String,Object> map = new HashMap<String, Object>();
         map.put("pageId",pageId); //封装这个博主的页面模板编号
-        map.put("ownerName",owner.getNickname()); // 封装这个博主的昵称
+        map.put("owner",owner); // 封装这个博主
         map.put("blog",blog);  //封装这个查到的博客
 
         return map;
