@@ -14,7 +14,7 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jquery-easyui-1.8.6/themes/default/easyui.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jquery-easyui-1.8.6/themes/icon.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jquery-easyui-1.8.6/demo/demo.css">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/mycss/manageBlog.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/mycss/manageblog.css">
     <script type="text/javascript" src="${pageContext.request.contextPath}/jquery-easyui-1.8.6/jquery.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/jquery-easyui-1.8.6/jquery.easyui.min.js"></script>
     <script type="text/javascript">
@@ -73,7 +73,7 @@
     <div>
         <ul class="nav">
             <li><a href="${pageContext.request.contextPath}/Homepage/toHomepage?usrId=${curUser.userId}">返回个人主页</a></li>
-            <li><a href="${pageContext.request.contextPath}/Blog/toCreateBlog">修改个人信息</a></li>
+            <li><a href="${pageContext.request.contextPath}/toManageAccount?usrId=${curUser.userId}">修改个人信息</a></li>
             <li><a href="${pageContext.request.contextPath}/Blog/toManageBlog">更改主页模板</a></li>
         </ul>
     </div>

@@ -45,4 +45,7 @@ public interface BlogDao {
 
     /*删除own关系表的一个记录*/
     boolean deleteOwnerShip(@Param(value = "bid")int blogId);
+
+    /*更新博客的访问量*/
+    boolean updateVisited(@Param(value = "vis") int newVisited,@Param(value = "bid") int blogId);
 }

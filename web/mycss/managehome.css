@@ -1,0 +1,112 @@
+body {
+    padding: 0;
+}
+.back {
+    background-image: url("../jquery-easyui-1.8.6/themes/icons/background1.jpg") ;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    padding: 15px;
+    min-height: 700px;
+    background-attachment: fixed;
+}
+.top {
+    overflow: hidden;
+    height: 100px;
+}
+#user {
+    float: right;
+}
+#user >#nickname {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: bolder;
+    color: black;
+    text-shadow: 5px 5px 6px rgba(0,0,0,.3);
+
+}
+#user >a:hover {
+    text-decoration: none;
+    color: #0c7cd5;
+}
+#tool {
+    display:none;
+}
+#user>img {
+    width: 50px;
+    height: 50px;
+}
+#logo {
+    float: left;
+}
+#logo>a>img {
+    width: 100px;
+}
+.box {
+    margin-bottom:20px;
+}
+h1 {
+    text-align: left;
+}
+#main {
+    width: 60%;
+    margin: 0 auto;
+}
+.model {
+    overflow: hidden;
+}
+.picture {
+    float: left;
+    width: 220px;
+    height: 150px;
+}
+.info {
+    float: left;
+    width: 220px;
+    height: 150px;
+}
+.info>li {
+    text-align: left;
+    margin: 10px;
+}
+.usemodel {
+    color: black;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: larger;
+}
+.comfirm {
+    width: 110px;
+    height: 32px;
+}
+.bottom {
+    overflow: hidden;
+    background-color: whitesmoke;
+    color: grey;
+}
+#friend_link {
+    float: left;
+    padding: 15px;
+    width: 50%;
+}
+#friend_link>a:link {
+    color: grey;
+    text-decoration: none;
+}
+#friend_link>a:visited {
+    color: grey;
+}
+#friend_link>a:hover {
+    color: grey;
+}
+#friend_link>a:active {
+    color: grey;
+}
+#communication {
+    float: left;
+    padding: 15px;
+    width: 50%;
+}
+li {
+    list-style-type:none;
+}
+a {
+    text-decoration: none;
+}

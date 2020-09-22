@@ -1,0 +1,25 @@
+body {
+    background-image: url("../jquery-easyui-1.8.6/themes/icons/background2.jpg");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    min-height: 700px;
+}
+.easyui-panel {
+    background-image: url("../jquery-easyui-1.8.6/themes/icons/background1.jpg");
+}
+#logo>a>img {
+    width: 100px;
+}
+#layout1 {
+    margin:20px 0;
+}
+tr {
+    margin-bottom:20px;
+}
+.boxwidth {
+    width: 277px;
+}
+.button {
+    width:30%;
+    height:32px;
+}
