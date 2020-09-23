@@ -223,7 +223,4 @@ public class BlogController {
         request.setAttribute("pageBean",pageBean);
         return "index";
     }
-
-
-
 }
