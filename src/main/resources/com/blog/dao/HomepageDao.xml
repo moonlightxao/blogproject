@@ -9,6 +9,7 @@
         <result property="description" column="description"></result>
         <result property="creator" column="creator"></result>
         <result property="releaseTime" column="releasetime"></result>
+        <result property="imagelink" column="imagelink"></result>
     </resultMap>
 
     <select id="findAllPage" resultMap="pageMap">
@@ -24,11 +25,11 @@
     </select>
 
     <insert id="addHomepage" parameterType="homepage">
-        insert into homepage (pagename, description, creator, releasetime) values (#{pageName},#{description},#{creator},#{releaseTime})
+        insert into homepage (pagename, description, creator, releasetime,imagelink) values (#{pageName},#{description},#{creator},#{releaseTime},#{imagelink})
     </insert>
 
     <update id="updateHomepage" parameterType="homepage">
-        update homepage set pagename=#{pageName}, description=#{description}, creator=#{creator}, releasetime=#{releaseTime} where id=#{id}
+        update homepage set pagename=#{pageName}, description=#{description}, creator=#{creator}, releasetime=#{releaseTime}, imagelink=#{imagelink} where id=#{id}
     </update>
 
     <delete id="deleteHomepageById">

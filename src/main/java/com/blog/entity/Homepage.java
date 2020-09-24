@@ -11,24 +11,27 @@ public class Homepage {
     private String description;
     private String creator;
     private Date releaseTime;
+    private String imagelink;
 
     public Homepage(){
 
     }
 
-    public Homepage(String pageName, String description, String creator, Date releaseTime) {
+    public Homepage(String pageName, String description, String creator, Date releaseTime,String imagelink) {
         this.pageName = pageName;
         this.description = description;
         this.creator = creator;
         this.releaseTime = releaseTime;
+        this.imagelink = imagelink;
     }
 
-    public Homepage(Integer id, String pageName, String description, String creator, Date releaseTime) {
+    public Homepage(Integer id, String pageName, String description, String creator, Date releaseTime,String imagelink) {
         this.id = id;
         this.pageName = pageName;
         this.description = description;
         this.creator = creator;
         this.releaseTime = releaseTime;
+        this.imagelink = imagelink;
     }
 
     public Integer getId() {
@@ -71,6 +74,14 @@ public class Homepage {
         this.releaseTime = releaseTime;
     }
 
+    public String getImagelink() {
+        return imagelink;
+    }
+
+    public void setImagelink(String imagelink) {
+        this.imagelink = imagelink;
+    }
+
     @Override
     public String toString() {
         return "Homepage{" +
@@ -79,6 +90,7 @@ public class Homepage {
                 ", description='" + description + '\'' +
                 ", creator='" + creator + '\'' +
                 ", releaseTime=" + releaseTime +
+                ", imagelink='" + imagelink + '\'' +
                 '}';
     }
 }

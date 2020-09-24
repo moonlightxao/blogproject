@@ -69,6 +69,7 @@ public class HomepageService {
         /*获取用户昵称以及用户头像地址以及页面编号,所有博客*/
         int pageNum = bloggerDao.findHomepageStyleById(usrId);
         List<Blog> blogs = blogDao.findAllBlogByUsrId(usrId);
+        //System.out.println("展示所有博客内容 = " + blogs.toString());
         Blogger blogger = bloggerDao.findBloggerById(usrId);
 
         Map<String,Object> map = new HashMap<String, Object>();
@@ -83,6 +84,11 @@ public class HomepageService {
     /*根据页面编号删除页面*/
     public boolean deletePageById(int id){
         return homepageDao.deleteHomepageById(id);
+    }
+
+    /*根据用户编号更新其use_style表*/
+    public boolean updatePageByUsrId(int usrId, int pageId){
+        return bloggerDao.updateUseStyleByBlogger(usrId,pageId);
     }
 
 

@@ -15,7 +15,7 @@ public class PagingUtil {
         int tr = list.size();
         List<Blog> res = new ArrayList<Blog>();
         for(int i = (pc - 1) * ps ; i < pc * ps ;i++){
-            if( i + 1 < tr){
+            if( i + 1 <= tr){
                 //System.out.println(list.get(i).getTitle());
                 res.add(list.get(i));
             }else break;
