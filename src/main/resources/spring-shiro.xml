@@ -40,9 +40,12 @@
                 /login=anon
                 /logout=logout
                 /admin/**=authc
+                /toManageAccount=authc
                 /Blog/toCreateBlog=authc
                 /Blog/toManageBlog=authc
                 /Blog/updateBlog=authc
+                /Homepage/toManageHomepage=authc
+
             </value>
         </property>
     </bean>

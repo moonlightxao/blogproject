@@ -1,7 +1,7 @@
 <component name="libraryTable">
   <library name="json">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/web/utf8-jsp/jsp/lib/json.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../ueditor/utf8-jsp/jsp/lib/json.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

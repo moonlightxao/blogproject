@@ -59,6 +59,9 @@
         </ul>
     </div>
     <div align="center" class="myblog">
+        <c:if test="${homepegeBlogs.size() == 0}">
+            <h3>这个人非常懒，还没有写任何博客哦！</h3>
+        </c:if>
         <c:forEach var="homepageBlog" items="${homepegeBlogs}">
             <div class="main">
                 <div id="title" align="left">

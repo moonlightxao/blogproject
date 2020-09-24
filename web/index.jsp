@@ -21,25 +21,7 @@
           <a id="create" href="${pageContext.request.contextPath}/toCreateAccount" class="easyui-linkbutton" iconCls="icon-man" > 注册</a>
       </c:if>
         <c:if test="${rememberMe == true}">
-            <a id="nickname" href="javascript:void(0)" class="easyui-tooltip" data-options="
-                    hideEvent: 'none',
-                    content: function(){
-                        return $('#toolbar');
-                    },
-                    onShow: function(){
-                        var t = $(this);
-                        t.tooltip('tip').focus().unbind().bind('blur',function(){
-                            t.tooltip('hide');
-                        });
-                    }
-                ">这里需要用户名</a>
-            <img src="/userImageLink/${imageLink}">
-            <div id="tool">
-                <div id="toolbar">
-                    <li><a href="${pageContext.request.contextPath}/toManageAccount?usrId=${usrId}" class="easyui-linkbutton"  data-options="iconCls:'icon-edit',plain:true">账号设置</a></li>
-                    <li><a href="${pageContext.request.contextPath}/logout" class="easyui-linkbutton"  data-options="iconCls:'icon-no',plain:true">退出登录</a></li>
-                </div>
-            </div>
+            <a href="${pageContext.request.contextPath}/toLogin" title="返回个人主页" class="easyui-tooltip">欢迎使用本博客系统</a>
         </c:if>
     </div >
     <div id="logo">

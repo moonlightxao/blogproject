@@ -1,7 +1,7 @@
 <component name="libraryTable">
   <library name="ueditor-1.1.2">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/web/utf8-jsp/jsp/lib/ueditor-1.1.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../ueditor/utf8-jsp/jsp/lib/ueditor-1.1.2.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

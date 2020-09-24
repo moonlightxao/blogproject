@@ -14,7 +14,7 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jquery-easyui-1.8.6/themes/default/easyui.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jquery-easyui-1.8.6/themes/icon.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jquery-easyui-1.8.6/demo/demo.css">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/mycss/manageblog.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/mycss/manageBlog.css">
     <script type="text/javascript" src="${pageContext.request.contextPath}/jquery-easyui-1.8.6/jquery.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/jquery-easyui-1.8.6/jquery.easyui.min.js"></script>
     <script type="text/javascript">
@@ -74,7 +74,7 @@
         <ul class="nav">
             <li><a href="${pageContext.request.contextPath}/Homepage/toHomepage?usrId=${curUser.userId}">返回个人主页</a></li>
             <li><a href="${pageContext.request.contextPath}/toManageAccount?usrId=${curUser.userId}">修改个人信息</a></li>
-            <li><a href="${pageContext.request.contextPath}/Blog/toManageBlog">更改主页模板</a></li>
+            <li><a href="${pageContext.request.contextPath}/Homepage/toManageHomepage">更改主页模板</a></li>
         </ul>
     </div>
     <div class="bodyContent" align="center">
@@ -86,6 +86,9 @@
                 <th>编辑</th>
                 <th>删除</th>
             </tr>
+            <c:if test="${allBlog.size() == 0}">
+                <h3>这个人非常懒，还没有写任何博客哦！</h3>
+            </c:if>
             <c:forEach var="blog" items="${allBlog}">
                 <tr class="alt">
                     <td><span >${blog.title}</span></td>

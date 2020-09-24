@@ -212,7 +212,9 @@ public class BlogController {
         if(c != null)
         {
             for(Cookie cookie:c){
-                //System.out.println(cookie.getName());
+                System.out.println("Cookie name = " + cookie.getName() +
+                                   "Cookie comment = " + cookie.getComment() +
+                                   "Cookie value = " + cookie.getValue());
                 if(cookie.getName().equals("rememberMe")){
                     rem = true;
                 }

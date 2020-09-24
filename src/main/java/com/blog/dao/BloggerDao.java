@@ -37,7 +37,7 @@ public interface BloggerDao {
     /*查找博主的个人主页编号*/
     int findHomepageStyleById(int id);
 
-    /*根据博主的选择g嗯行其对应的页面模板编号(新建博主的时候用默认的，你懂的)*/
+    /*根据博主的选择其对应的页面模板编号(新建博主的时候用默认的，你懂的)*/
     boolean updateUseStyleByBlogger(@Param( value = "uid") int usrId ,@Param( value = "pid") int pageId);
 
     /*给use_style表增加一个记录*/

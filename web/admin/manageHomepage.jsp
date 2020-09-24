@@ -1,3 +1,5 @@
+c:forEach=""
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: 柳智添
@@ -9,7 +11,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>更改个人模板</title>
+    <title>更改个人页面模板</title>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jquery-easyui-1.8.6/themes/default/easyui.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jquery-easyui-1.8.6/themes/icon.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jquery-easyui-1.8.6/demo/demo.css">
@@ -32,7 +34,7 @@
                             t.tooltip('hide');
                         });
                     }
-                ">这里需要昵称</a>
+                ">${nickName}</a>
             <img src="/userImageLink/${imageLink}">
         </div>
         <div id="tool">
@@ -44,65 +46,31 @@
         </div>
         <div  id="logo" >
             <a href="${pageContext.request.contextPath}/">
-                <img   src="${pageContext.request.contextPath}/jquery-easyui-1.8.6/themes/icons/logo.png" alt="logo"   >
+                <img src="${pageContext.request.contextPath}/jquery-easyui-1.8.6/themes/icons/logo.png" alt="logo">
             </a>
         </div>
     </div>
-    <div id="main" align="center">
-        <form name="modelNum">
+    <div id="main" align="center" >
+        <form name="modelNum" method="post" action="${pageContext.request.contextPath}/Homepage/manageHomepage">
+            <input type="hidden" name="usrId" value="${usrId}">
+            <input type="hidden" name="page" value="1">
             <h1>模板列表</h1>
-            <div  class="box" >
-                <div class="model">
-                    <div class="picture">
-                        <img src="${pageContext.request.contextPath}/jquery-easyui-1.8.6/themes/icons/background2.jpg" alt="logo" width="220px">
+            <c:forEach var="page" items="${allPages}">
+                <div class="box">
+                    <div class="model">
+                        <div class="picture">
+                            <img src="${pageContext.request.contextPath}/pageView/${page.imagelink}" alt="logo" width="220px">
+                        </div>
+                        <div class="info">
+                            <li>[名称]${page.pageName}</li>
+                            <li>[简介]${page.description}</li>
+                            <li>[创建者]${page.creator}</li>
+                            <li>[创建时间]${page.releaseTime}</li>
+                        </div>
                     </div>
-                    <div class="info">
-                        <li>[名称] red_autumnal_leaves</li>
-                        <li>[标题]红叶</li>
-                        <li>[简介]红白简约，一份暖心，一份宁静。</li>
-                    </div>
+                    <div align="left"> <input  class="easyui-radiobutton" name="model" value="${page.id}"> <span class="usemodel">选用该模板</span></div>
                 </div>
-                <div align="left"> <input  class="easyui-radiobutton" name="model" value="1"> <span class="usemodel">选用该模板</span></div>
-            </div>
-            <div class="box">
-                <div class="model">
-                    <div class="picture">
-                        <img src="${pageContext.request.contextPath}/jquery-easyui-1.8.6/themes/icons/background2.jpg" alt="logo" width="220px">
-                    </div>
-                    <div class="info">
-                        <li>[名称] red_autumnal_leaves</li>
-                        <li>[标题]红叶</li>
-                        <li>[简介]红白简约，一份暖心，一份宁静。</li>
-                    </div>
-                </div>
-                <div align="left"><input class="easyui-radiobutton " name="model" value="2"> <span class="usemodel">选用该模板</span></div>
-            </div>
-            <div class="box">
-                <div class="model">
-                    <div class="picture">
-                        <img src="${pageContext.request.contextPath}/jquery-easyui-1.8.6/themes/icons/background2.jpg" alt="logo" width="220px">
-                    </div>
-                    <div class="info">
-                        <li>[名称] red_autumnal_leaves</li>
-                        <li>[标题]红叶</li>
-                        <li>[简介]红白简约，一份暖心，一份宁静。</li>
-                    </div>
-                </div>
-                <div align="left"><input class="easyui-radiobutton" name="model" value="3">  <span class="usemodel">选用该模板</span></div>
-            </div>
-            <div class="box" >
-                <div class="model">
-                    <div class="picture">
-                        <img src="${pageContext.request.contextPath}/jquery-easyui-1.8.6/themes/icons/background2.jpg" alt="logo" width="220px">
-                    </div>
-                    <div class="info">
-                        <li>[名称] red_autumnal_leaves</li>
-                        <li>[标题]红叶</li>
-                        <li>[简介]红白简约，一份暖心，一份宁静。</li>
-                    </div>
-                </div>
-                <div align="left"><input class="easyui-radiobutton" name="model" value="4"> <span class="usemodel">选用该模板</span> </div>
-            </div>
+            </c:forEach>
             <td > <input  value="使用选定模板"   class="easyui-linkbutton comfirm"  type="submit" ></td>
         </form>
     </div>
