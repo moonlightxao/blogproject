@@ -20,20 +20,25 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/jquery-easyui-1.8.6/jquery.easyui.min.js"></script>
     <script type="text/javascript" >
         function validateForm(){
+            var username = document.forms["verifyAccount"]["username"].value;
             var realname = document.forms["verifyAccount"]["realname"].value;
             var phone = document.forms["verifyAccount"]["phone"].value;
             var birthday = document.forms["verifyAccount"]["birthday"].value;
-            if (realname ==null || realname=="")
+            if(username == null || username == ""){
+                $.messager.alert("信息验证提示","用户名必须填写！");
+                return false;
+            }
+            else if (realname ==null || realname=="")
             {
-                alert("真实姓名必须填写！");
+                $.messager.alert("信息验证提示","真实姓名必须填写！");
                 return false;
             }else if (phone ==null || phone =="")
             {
-                alert("电话号码不能为空！");
+                $.messager.alert("信息验证提示","电话号码不能为空！");
                 return false;
             }else if (birthday ==null || birthday =="")
             {
-                alert("生日不能为空！");
+                $.messager.alert("信息验证提示","生日不能为空！");
                 return false;
             }
         }
@@ -54,13 +59,14 @@
 </head>
 <body>
 <div id="logo" align="left">
-    <a href="#">
+    <a href="${pageContext.request.contextPath}/">
         <img   src="${pageContext.request.contextPath}/jquery-easyui-1.8.6/themes/icons/logo.png" alt="logo" >
     </a>
 </div>
 <div align="center">
     <div id="layout1"></div>
     <form name="verifyAccount"action="${pageContext.request.contextPath}/verify" class="easyui-panel center" title="验证" style="width:100%;max-width:400px;padding:30px 60px;" onsubmit="return validateForm()" method="post">
+        <h2>${errorBuf}</h2>
         <tr>
             <input name="username" class="easyui-textbox boxwidth" label="用户名:" labelPosition="top" >
         </tr>

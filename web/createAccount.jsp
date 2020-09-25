@@ -29,31 +29,31 @@
             var birthday = document.forms["createAccount"]["birthday"].value;
             if (username ==null || username =="")
             {
-                alert("用户名必须填写！");
+                $.messager.alert("注册账号提示","用户名必须填写！");
                 return false;
             }else if (password ==null || password =="")
             {
-                alert("密码不能为空！");
+                $.messager.alert("注册账号提示","密码不能为空！");
                 return false;
             }else if (realname ==null || realname=="")
             {
-                alert("真实姓名必须填写！");
+                $.messager.alert("注册账号提示","真实姓名必须填写！");
                 return false;
             }else if (phone ==null || phone =="")
             {
-                alert("电话不能为空！");
+                $.messager.alert("注册账号提示","电话号码不能为空！");
                 return false;
             }else if (nickname ==null || nickname =="")
             {
-                alert("昵称必须填写！");
+                $.messager.alert("注册账号提示","昵称必须填写！");
                 return false;
             }else if (sign ==null || sign =="")
             {
-                alert("请填写个性签名！");
+                $.messager.alert("注册账号提示","请填写个性签名！");
                 return false;
             }else if (birthday ==null || birthday =="")
             {
-                alert("生日不能为空！");
+                $.messager.alert("注册账号提示","生日不能为空！");
                 return false;
             }
         }
@@ -61,7 +61,7 @@
 </head>
 <body>
 <div  align="left" id="logo">
-    <a href="#">
+    <a href="${pageContext.request.contextPath}/">
         <img   src="${pageContext.request.contextPath}/jquery-easyui-1.8.6/themes/icons/logo.png" alt="logo"   >
     </a>
 </div>
@@ -93,7 +93,7 @@
             <td>选择头像:</td><input name="imageLink" required="required" class="boxwidth" type="file"  label="选择头像" labelPosition="top">
         </tr>
         <tr>
-            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="返回到登录界面"class="easyui-linkbutton button"  >取消注册</a> </td><input  value="注册" class="easyui-linkbutton button"  type="submit" >
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="${pageContext.request.contextPath}/toLogin"class="easyui-linkbutton button"  >取消注册</a> </td><input  value="注册" class="easyui-linkbutton button"  type="submit" >
         </tr>
     </form>
 </div>

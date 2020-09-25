@@ -180,8 +180,8 @@ public class BlogController {
         /*这里根据页面模板编号选择跳转，目前只有一个就直接跳*/
         request.setAttribute("owner",map.get("owner"));
         request.setAttribute("blog",map.get("blog"));
+        request.setAttribute("pageNum",pageId);
 
-        //if(pageId == 1)
         return "showBlog";
     }
 

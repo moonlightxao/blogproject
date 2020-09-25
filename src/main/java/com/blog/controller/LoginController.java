@@ -130,22 +130,12 @@ public class LoginController {
     /*处理修改账户之前验证账号信息的请求*/
     @RequestMapping("/verify")
     public String verifyInfo(String username,String realname,String phone,String birthday,HttpServletRequest request) throws ParseException {
-        System.out.println(username+"+" + realname+" + " + phone +" + " + birthday );
-        Date day = new SimpleDateFormat("yyyy-MM-dd").parse(birthday);
-        Blogger blogger = bloggerService.getBloggerByName(username);
-        if(blogger.getRealName().equals(realname) == false){
-            request.setAttribute("erro","真实姓名不正确，请重新输入！");
+        //System.out.println(username+"+" + realname+" + " + phone +" + " + birthday );
+        Map<String,Object> map = bloggerService.verifyInfo(username,realname,phone,birthday);
+        if((Boolean)map.get("flag") == false){
+            request.setAttribute("errorBuf",map.get("errorBuf"));
             return "verifyAccount";
         }
-        if(blogger.getPhone().equals(phone) == false){
-            request.setAttribute("erro","电话号码不正确，请重新输入！");
-            return "verifyAccount";
-        }
-        if(blogger.getBirthday().equals(day) == false){
-            request.setAttribute("erro","生日日期不正确，请重新输入！");
-            return "verifyAccount";
-        }
-        request.setAttribute("userName",username);
         return "admin/changePwd";
     }
 
