@@ -7,8 +7,6 @@ import com.blog.entity.PageBean;
 import com.blog.service.BlogService;
 import com.blog.utils.PagingUtil;
 import com.blog.utils.ResponseWrite;
-import com.sun.deploy.net.HttpResponse;
-import net.sf.json.JSON;
 import net.sf.json.JSONObject;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.stereotype.Controller;
@@ -20,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.text.ParseException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -73,7 +72,7 @@ public class BlogController {
     @RequestMapping("/updateBlog")
     public String updateBlog(Blog blog,int au,HttpServletResponse response) throws IOException {
         blog.setTime(new Date());
-        System.out.println(blog);
+        //System.out.println(blog);
         boolean flag = blogService.updateBlog(blog,au);
         JSONObject jsonObject = new JSONObject();
         if(flag == true){
@@ -130,7 +129,7 @@ public class BlogController {
     }
 
     @RequestMapping("/searchBlog")
-    public String searchBlog(String value,String page,HttpServletRequest request) throws UnsupportedEncodingException {
+    public String searchBlog(String value,String page,HttpServletRequest request) throws UnsupportedEncodingException, ParseException {
         /*如果是搜索用户名，就返回该用户的所有可见的博客。如果搜索的是博客就返回博客(都是模糊搜索)*/
         String title = new String(value.getBytes("iso-8859-1"),"utf-8");
         Map<Blog,String> map = new HashMap<Blog, String>();
@@ -174,7 +173,7 @@ public class BlogController {
     }
 
     @RequestMapping("/toShowBlog")
-    public String toShowBlog(String bid,HttpServletRequest request){
+    public String toShowBlog(String bid,HttpServletRequest request) throws ParseException {
         int blogId = Integer.valueOf(bid);
         Map<String,Object> map = blogService.showBlog(blogId);
         int pageId = (Integer) map.get("pageId");
@@ -187,7 +186,7 @@ public class BlogController {
     }
 
     @RequestMapping("/index")
-    public String showIndex(String page, HttpServletRequest request){
+    public String showIndex(String page, HttpServletRequest request) throws ParseException {
         PageBean pageBean = new PageBean();
         pageBean.setPageSize(5);
         pageBean.setPage(Integer.valueOf(page));
@@ -204,6 +203,7 @@ public class BlogController {
         Map<Blog,String> map = new HashMap<Blog,String>();
         for(Blog blog : blogs){
             Blogger owner = blogService.findOwnById(blog.getBlogId());
+            System.out.println("outside the util" + blog.getTime());
             map.put(blog,owner.getNickname());
         }
         /*获取所有得cookies*/
@@ -212,9 +212,9 @@ public class BlogController {
         if(c != null)
         {
             for(Cookie cookie:c){
-                System.out.println("Cookie name = " + cookie.getName() +
+                /*System.out.println("Cookie name = " + cookie.getName() +
                                    "Cookie comment = " + cookie.getComment() +
-                                   "Cookie value = " + cookie.getValue());
+                                   "Cookie value = " + cookie.getValue());*/
                 if(cookie.getName().equals("rememberMe")){
                     rem = true;
                 }

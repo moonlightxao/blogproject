@@ -100,7 +100,7 @@
             <td>选择头像:</td><input name="imageLink" class="boxwidth" label="选择头像" labelPosition="top" type="file">
         </tr>
         <tr>
-            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="返回到来到的地方最好，不行的话，个人主页面吧"class="easyui-linkbutton button"  >退出</a> </td><input  value="确认修改" class="easyui-linkbutton button"  type="submit" >
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="${pageContext.request.contextPath}/Blog/toManageBlog?page=1" class="easyui-linkbutton button"  >退出</a> </td><input  value="确认修改" class="easyui-linkbutton button"  type="submit" >
         </tr>
     </form>
 </div>

@@ -1,4 +1,3 @@
-c:forEach=""
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
@@ -39,7 +38,7 @@ c:forEach=""
         </div>
         <div id="tool">
             <div id="toolbar">
-                <li><a href="${pageContext.request.contextPath}/" class="easyui-linkbutton"  data-options="iconCls:'icon-man',plain:true">个人主页</a></li>
+                <li><a href="${pageContext.request.contextPath}/Homepage/toHomepage?usrId=${usrId}&page=1" class="easyui-linkbutton"  data-options="iconCls:'icon-man',plain:true">个人主页</a></li>
                 <li><a href="${pageContext.request.contextPath}/toManageAccount?usrId=${usrId}" class="easyui-linkbutton"  data-options="iconCls:'icon-edit',plain:true">账号设置</a></li>
                 <li><a href="${pageContext.request.contextPath}/logout" class="easyui-linkbutton"  data-options="iconCls:'icon-no',plain:true">退出登录</a></li>
             </div>
