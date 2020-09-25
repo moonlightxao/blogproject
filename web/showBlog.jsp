@@ -16,7 +16,12 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jquery-easyui-1.8.6/themes/default/easyui.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jquery-easyui-1.8.6/themes/icon.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jquery-easyui-1.8.6/demo/demo.css">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/mycss/showblog.css">
+    <c:if test=" ">
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/mycss/showblog.css">
+    </c:if>
+    <c:if test=" ">
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/mycss/showblog.css">
+    </c:if>
     <script type="text/javascript" src="${pageContext.request.contextPath}/jquery-easyui-1.8.6/jquery.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/jquery-easyui-1.8.6/jquery.easyui.min.js"></script>
 </head>

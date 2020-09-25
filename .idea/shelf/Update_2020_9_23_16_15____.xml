@@ -1,0 +1,44 @@
+<changelist name="在进行Update之前于_2020_9_23_16_15_取消提交了变更_[默认的]" date="1600848916717" recycled="true" deleted="true">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/在进行Update之前于_2020_9_23_16_15_取消提交了变更_[默认的]/shelved.patch" />
+  <option name="DESCRIPTION" value="在进行Update之前于 2020/9/23 16:15 取消提交了变更 [默认的]" />
+  <binary>
+    <option name="BEFORE_PATH" value="web/bootstraps/css/bootstrap-theme.css.map" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="web/bootstraps/fonts/glyphicons-halflings-regular.eot" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="web/bootstraps/css/bootstrap.min.css.map" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="web/bootstraps/fonts/glyphicons-halflings-regular.ttf" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="web/bootstraps/css/bootstrap.css.map" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="web/bootstraps/fonts/glyphicons-halflings-regular.woff2" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="web/bootstraps/css/bootstrap-theme.min.css.map" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="web/bootstraps/fonts/glyphicons-halflings-regular.woff" />
+    <option name="AFTER_PATH" />
+    <option name="SHELVED_PATH" />
+  </binary>
+</changelist>

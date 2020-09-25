@@ -75,7 +75,7 @@
         <tr >
             <input name="username" readonly="readonly" class="easyui-textbox boxwidth" label="用户名:" labelPosition="top"  value="${userName}">
         </tr>
-        <tr >
+        <tr>
             <input name="nickname" type="text" class="easyui-textbox boxwidth" label="昵称:" labelPosition="top"  >
         </tr>
         <tr >

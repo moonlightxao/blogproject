@@ -1,0 +1,190 @@
+body {
+    padding: 0;
+}
+.back {
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    margin: 0;
+    min-height: 700px;
+    background-attachment: fixed;
+}
+.top {
+    height: 314px;
+    padding: 0;
+    background-color: #0c7cd5;
+    background-image: url("../../image/background/codelife.png");
+}
+#user {
+    position: relative;
+    left: 100px;
+    top:62px;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: bolder;
+    font-size: 50px;
+    color: white;
+}
+#user>#nickname {
+    color: white;
+}
+#user >a:hover {
+    text-decoration: none;
+}
+#tool {
+    display:none;
+}
+.main a:link {
+}
+.main a:visited {
+}
+a {
+    text-decoration: none;
+}
+.main a:hover{
+    text-decoration: none;
+}
+#user>img {
+    width: 100px;
+    height: 100px;
+}
+#logo {
+    position:absolute;
+    left: 15px;
+    top: 15px;
+}
+#logo>a>img {
+    width: 100px;
+}
+.line {
+    height: 20px;
+    width: 100%;
+    background-color: white;
+}
+.child_line {
+    height: 1px;
+    width: 100%;
+    border-radius:10%;
+    background-color:darkseagreen;
+    padding: 1px;
+}
+.headnav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    border: 1px solid #e7e7e7;
+    background-color: deepskyblue;
+}
+.headnav>li {
+    font-size: 15px;
+    float: left;
+}
+
+.headnav>li>a {
+    display: block;
+    color: #666;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+.headnav>li>a:hover {
+    color: white;
+    background-color: deepskyblue;
+}
+.myblog {
+    overflow: hidden;
+    width: 90%;
+    margin: 0 auto;
+}
+.main {
+    border-style: solid;
+    width: 60%;
+    padding: 10px;
+    margin: 10px;
+    border-width: 1px;
+    border-rcolor: grey;
+    background-color: lightgoldenrodyellow;
+}
+.main:hover {
+    background-color: lightblue;
+}
+#title >h4>a {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: bolder;
+    font-style: inherit;
+    color: black;
+}
+#time_nick {
+    color:dimgrey;
+}
+#pagenav {
+    width: 60%;
+    padding: 10px;
+    margin: 10px;
+}
+ul.pagination {
+    display: inline-block;
+    padding: 0;
+    margin: 0;
+}
+
+ul.pagination li {display: inline;}
+
+ul.pagination li a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+    border: 1px solid #ddd;
+}
+
+.pagination li:first-child a {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.pagination li:last-child a {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+ul.pagination li a.active {
+    background-color: #4CAF50;
+    color: white;
+    border: 1px solid #4CAF50;
+}
+
+ul.pagination li a:hover:not(.active) {
+    background-color: #ddd;
+}
+.bottom {
+    overflow: hidden;
+    background-color: whitesmoke;
+    color: grey;
+}
+#friend_link {
+    float: left;
+    padding: 15px;
+    width: 50%;
+}
+#friend_link>a:link {
+    color: grey;
+    text-decoration: none;
+}
+#friend_link>a:visited {
+    color: grey;
+}
+#friend_link>a:hover {
+    color: grey;
+}
+#friend_link>a:active {
+    color: grey;
+}
+#communication {
+    float: left;
+    padding: 15px;
+    width: 50%;
+}
+li {
+    list-style-type:none;
+}
