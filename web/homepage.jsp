@@ -19,7 +19,7 @@
     <c:if test=" ">
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/mycss/homepage.css">
     </c:if>
-    <c:if test=" ">
+    <c:if test="true">
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/mycss/pagemodel/homemodel1.css">
     </c:if>
     <script type="text/javascript" src="${pageContext.request.contextPath}/jquery-easyui-1.8.6/jquery.min.js"></script>
@@ -68,7 +68,7 @@
             <h3>这个人非常懒，还没有写任何博客哦！</h3>
         </c:if>
         <c:forEach var="homepageBlog" items="${homepegeBlogs}">
-            <div class="main">
+           <div class="main" onclick="location.href='${pageContext.request.contextPath}/Blog/toShowBlog?bid=${homepageBlog.blogId}'">
                 <div id="title" align="left">
                     <h4><a href="${pageContext.request.contextPath}/Blog/toShowBlog?bid=${homepageBlog.blogId}">${homepageBlog.title}</a></h4>
                 </div>
