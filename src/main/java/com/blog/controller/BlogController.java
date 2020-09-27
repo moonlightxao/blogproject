@@ -203,7 +203,7 @@ public class BlogController {
         Map<Blog,String> map = new HashMap<Blog,String>();
         for(Blog blog : blogs){
             Blogger owner = blogService.findOwnById(blog.getBlogId());
-            System.out.println("outside the util" + blog.getTime());
+            //System.out.println("outside the util" + blog.getTime());
             map.put(blog,owner.getNickname());
         }
         /*获取所有得cookies*/

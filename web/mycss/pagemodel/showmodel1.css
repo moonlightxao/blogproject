@@ -1,13 +1,13 @@
 body {
     padding: 0;
     overflow:Scroll;
-    overflow-x:hidden;
+    overflow-x:hidden
 }
 .back {
-    margin: 0;
     min-height: 700px;
-    background-attachment: fixed;
     background-color: whitesmoke;
+    background-size: 100% 100%;
+    margin: 0;
 }
 .top {
     height: 314px;
@@ -21,26 +21,28 @@ body {
     top:62px;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: bolder;
-    font-size: 25px;
-    color: white;
+
 }
-#user>#nickname {
+/*用户昵称*/
+#user >a {
+    font-size: 25px;
     color: white;
 }
 #user >a:hover {
     text-decoration: none;
-}
-#tool {
-    display:none;
+    color: #0c7cd5;
 }
 .main a:link {
+    color: #00a0e9;
 }
 .main a:visited {
+    color: #00a0e9;
 }
 a {
     text-decoration: none;
 }
 .main a:hover{
+    color: #0c7cd5;
     text-decoration: none;
 }
 #user>img {
@@ -67,7 +69,7 @@ a {
     background-color:darkseagreen;
     padding: 1px;
 }
-.headnav {
+.nav {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -75,94 +77,63 @@ a {
     border: 1px solid #e7e7e7;
     background-color: lightskyblue;
 }
-.headnav>li {
+.nav>li {
     font-size: 15px;
     float: left;
 }
 
-.headnav>li>a {
+.nav>li>a {
     display: block;
     color: white;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
 }
-.headnav>li>a:hover {
-    color: lightskyblue;
+.nav>li>a:hover {
+    color:lightskyblue;
     background-color: white;
 }
-.myblog {
+#center {
     overflow: hidden;
-    width: 90%;
-    margin: 0 auto;
 }
-.url {
-    display: block;
-    width: 100%;
-    height: 100%;
+#myblog {
+    float: left;
+    width: 80%;
+
+}
+#info {
+    float: left;
+    background-color: white;
+    width: 15%;
+    padding: 10px;
+    margin: 10px;
+    border-style: solid;
+    border-color: grey;
+    border-width: 2px;
+}
+#info>h3 {
+    text-align: center;
 }
 .main {
     border-style: solid;
-    width: 60%;
+    width: 80%;
     padding: 10px;
     margin: 10px;
-    border-width: 1px;
-    border-color: grey;
-    background-color: white;
-}
-.main:hover {
-    background-color: #99cdff;
-    border-style: none;
+    border-bottom-width: 3px;
+    border-right-width: 3px;
+    border-left-width: 1px;
+    border-top-width: 1px;
+    border-right-color: grey;
+    border-bottom-color: grey;
+    background-color: lightgoldenrodyellow;
 }
 #title >h4>a {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: bolder;
     font-style: inherit;
-    color: black;
 }
 #time_nick {
     color:dimgrey;
-}
-#pagenav {
-    width: 60%;
-    padding: 10px;
-    margin: 10px;
-}
-ul.pagination {
-    display: inline-block;
-    padding: 0;
-    margin: 0;
-}
-
-ul.pagination li {display: inline;}
-
-ul.pagination li a {
-    color: black;
-    float: left;
-    padding: 8px 16px;
-    text-decoration: none;
-    transition: background-color .3s;
-    border: 1px solid #ddd;
-}
-
-.pagination li:first-child a {
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
-}
-
-.pagination li:last-child a {
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
-}
-
-ul.pagination li a.active {
-    background-color: #4CAF50;
-    color: white;
-    border: 1px solid #4CAF50;
-}
-
-ul.pagination li a:hover:not(.active) {
-    background-color: #ddd;
 }
 .bottom {
     overflow: hidden;
@@ -193,5 +164,5 @@ ul.pagination li a:hover:not(.active) {
     width: 50%;
 }
 li {
-    list-style-type:none;
+    list-style: none;
 }

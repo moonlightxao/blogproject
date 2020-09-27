@@ -45,7 +45,7 @@
         </div>
         <div id="tool">
             <div id="toolbar">
-                <li><a href="${pageContext.request.contextPath}/toManageAccount?usrId=${usrId}" class="easyui-linkbutton"  data-options="iconCls:'icon-edit',plain:true">账号设置</a></li>
+                <li><a href="${pageContext.request.contextPath}/toManageAccount" class="easyui-linkbutton"  data-options="iconCls:'icon-edit',plain:true">账号设置</a></li>
                 <li><a href="${pageContext.request.contextPath}/logout" class="easyui-linkbutton"  data-options="iconCls:'icon-no',plain:true">退出登录</a></li>
             </div>
         </div>
@@ -68,7 +68,7 @@
             <h3>这个人非常懒，还没有写任何博客哦！</h3>
         </c:if>
         <c:forEach var="homepageBlog" items="${homepegeBlogs}">
-            <div class="main">
+            <div class="main" onclick="location.href='${pageContext.request.contextPath}/Blog/toShowBlog?bid=${homepageBlog.blogId}'">
                 <div id="title" align="left">
                     <h4><a href="${pageContext.request.contextPath}/Blog/toShowBlog?bid=${homepageBlog.blogId}">${homepageBlog.title}</a></h4>
                 </div>

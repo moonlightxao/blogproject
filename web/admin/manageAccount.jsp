@@ -73,10 +73,10 @@
     <div id="layout1"></div>
     <form name="manageAccount" action="${pageContext.request.contextPath}/manageAccount" class="easyui-panel center" title="信息修改" style="width:100%;max-width:400px;padding:30px 60px;" onsubmit="return validateForm()" enctype="multipart/form-data" method="post">
         <tr >
-            <input name="username" readonly="readonly" class="easyui-textbox boxwidth" label="用户名:" labelPosition="top"  value="${userName}">
+            <input name="username" readonly="readonly" class="easyui-textbox boxwidth" label="用户名:" labelPosition="top"  value="${user.username}">
         </tr>
         <tr>
-            <input name="nickname" type="text" class="easyui-textbox boxwidth" label="昵称:" labelPosition="top"  >
+            <input name="nickname" type="text" class="easyui-textbox boxwidth" label="昵称:" labelPosition="top" value="${user.nickname}" >
         </tr>
         <tr >
             <input name="password" class="easyui-textbox boxwidth" label="新密码:" labelPosition="top" data-options="prompt:'请输入6-12位密码'" type="password" >
@@ -85,16 +85,16 @@
             <input name="password2" class="easyui-textbox boxwidth" label="再次输入密码:" labelPosition="top"  type="password">
         </tr>
         <tr >
-            <input name="realname" class="easyui-textbox boxwidth" label="真实姓名:" labelPosition="top"  type="text">
+            <input name="realname" class="easyui-textbox boxwidth" label="真实姓名:" labelPosition="top"  type="text" value="${user.realName}">
         </tr>
         <tr >
-            <input name="phone" class="easyui-textbox boxwidth" label="电话号码:" labelPosition="top"  type="text">
+            <input name="phone" class="easyui-textbox boxwidth" label="电话号码:" labelPosition="top"  type="text" value="${user.phone}">
         </tr>
         <tr >
-            <input name="birthday" class="easyui-textbox boxwidth" label="生日:" labelPosition="top" type="date" >
+            <input name="birthday" class="easyui-textbox boxwidth" label="生日:" labelPosition="top" type="date">
         </tr>
         <tr >
-            <input name="sign" class="easyui-textbox boxwidth" label="个性签名:" labelPosition="top" >
+            <input name="sign" class="easyui-textbox boxwidth" label="个性签名:" labelPosition="top" value="${user.sign}">
         </tr>
         <tr >
             <td>选择头像:</td><input name="imageLink" class="boxwidth" label="选择头像" labelPosition="top" type="file">

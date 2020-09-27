@@ -17,10 +17,10 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jquery-easyui-1.8.6/themes/icon.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jquery-easyui-1.8.6/demo/demo.css">
     <c:if test="${pageNum == 1}">
-        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/mycss/homepage.css">
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/mycss/showblog.css">
     </c:if>
     <c:if test="${pageNum == 2}">
-        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/mycss/pagemodel/homemodel1.css">
+        <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/mycss/pagemodel/showmodel1.css">
     </c:if>
     <script type="text/javascript" src="${pageContext.request.contextPath}/jquery-easyui-1.8.6/jquery.min.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/jquery-easyui-1.8.6/jquery.easyui.min.js"></script>
@@ -73,13 +73,15 @@
 </div>
 <div class="bottom">
     <div id="friend_link" >
-        <h5> 友情链接:</h5> <a href="#">百度云</a> &nbsp; <a href="#">阿里云</a> &nbsp; <a href="#">华为云</a>
-        &nbsp; <a href="#">腾讯云</a> &nbsp; <a href="#">菜鸟教程</a> &nbsp; <a href="#">Bootstrap</a> &nbsp; <a href="#">jQuery</a> &nbsp; <a href="#">网易云</a>
+        <h5> 友情链接:</h5> <a href="https://cloud.baidu.com/">百度云</a> &nbsp; <a href="https://www.aliyun.com/">阿里云</a> &nbsp; <a href="https://www.huaweicloud.com/">华为云</a>
+        &nbsp; <a href="https://cloud.tencent.com/">腾讯云</a> &nbsp; <a href="https://www.runoob.com/">菜鸟教程</a> &nbsp; <a href="https://www.bootcss.com/">Bootstrap</a> &nbsp; <a href="https://jquery.com/">jQuery</a> &nbsp; <a href="https://www.163yun.com">网易云</a>
     </div>
     <div id="communication">
         <h5>联系我们:</h5>
         <li>电话:13251266359</li>
         <li>邮箱:2675935418@qq.com</li>
+        <li>电话:19825001749</li>
+        <li>邮箱:1057294949@qq.com</li>
     </div>
 </div>
 </body>
