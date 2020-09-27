@@ -157,13 +157,15 @@
 </div>
 <div class="bottom">
     <div id="friend_link" >
-        <h5> 友情链接:</h5> <a href="#">百度云</a> &nbsp; <a href="#">阿里云</a> &nbsp; <a href="#">华为云</a>
-        &nbsp; <a href="#">腾讯云</a> &nbsp; <a href="#">菜鸟教程</a> &nbsp; <a href="#">Bootstrap</a> &nbsp; <a href="#">jQuery</a> &nbsp; <a href="#">网易云</a>
+        <h5> 友情链接:</h5> <a href="https://cloud.baidu.com/" target="_blank">百度云</a> &nbsp; <a href="https://www.aliyun.com/" target="_blank">阿里云</a> &nbsp; <a href="https://www.huaweicloud.com/" target="_blank">华为云</a>
+        &nbsp; <a href="https://cloud.tencent.com/" target="_blank">腾讯云</a> &nbsp; <a href="https://www.runoob.com/" target="_blank">菜鸟教程</a> &nbsp; <a href="https://www.bootcss.com/" target="_blank">Bootstrap</a> &nbsp; <a href="https://jquery.com/" target="_blank">jQuery</a> &nbsp; <a href="https://www.163yun.com" target="_blank">网易云</a>
     </div>
     <div id="communication">
         <h5>联系我们:</h5>
         <li>电话:13251266359</li>
         <li>邮箱:2675935418@qq.com</li>
+        <li>电话:19825001749</li>
+        <li>邮箱:1057294949@qq.com</li>
     </div>
 </div>
 </body>

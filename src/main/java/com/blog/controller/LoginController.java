@@ -25,6 +25,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.text.ParseException;
@@ -49,6 +50,8 @@ public class LoginController {
     public String login(Blogger blogger, String remember, HttpServletRequest request , RedirectAttributes redirectAttributes) throws IOException {
         String userName = blogger.getUsername();
         String password = blogger.getPassword();
+        /*获取session保存用户名以及用户id*/
+        HttpSession session = request.getSession(true);
 
         /*对密码进行转化*/
         String pwd = CryptographyUtil.md5(password,"njust");
@@ -61,6 +64,7 @@ public class LoginController {
         try{
             subject.login(token);
             Blogger user = bloggerService.getBloggerByName(blogger.getUsername());
+            session.setAttribute("user",user);
             return "redirect:/Homepage/toHomepage?usrId="+user.getUserId();
         }catch(UnknownAccountException e){
             redirectAttributes.addFlashAttribute("message","用户名错误！");
@@ -79,9 +83,13 @@ public class LoginController {
 
     /*实现退出登录的操作*/
     @RequestMapping("/logout")
-    public String logout(){
+    public String logout(HttpServletRequest request){
         Blogger curUser = (Blogger) SecurityUtils.getSubject().getSession().getAttribute("currentUser");
+        HttpSession session = request.getSession();
         if(curUser != null){
+            if(session != null){
+                session.removeAttribute("user");
+            }
             SecurityUtils.getSubject().logout();
         }
         return "login";
@@ -130,22 +138,12 @@ public class LoginController {
     /*处理修改账户之前验证账号信息的请求*/
     @RequestMapping("/verify")
     public String verifyInfo(String username,String realname,String phone,String birthday,HttpServletRequest request) throws ParseException {
-        System.out.println(username+"+" + realname+" + " + phone +" + " + birthday );
-        Date day = new SimpleDateFormat("yyyy-MM-dd").parse(birthday);
-        Blogger blogger = bloggerService.getBloggerByName(username);
-        if(blogger.getRealName().equals(realname) == false){
-            request.setAttribute("erro","真实姓名不正确，请重新输入！");
+        //System.out.println(username+"+" + realname+" + " + phone +" + " + birthday );
+        Map<String,Object> map = bloggerService.verifyInfo(username,realname,phone,birthday);
+        if((Boolean)map.get("flag") == false){
+            request.setAttribute("errorBuf",map.get("errorBuf"));
             return "verifyAccount";
         }
-        if(blogger.getPhone().equals(phone) == false){
-            request.setAttribute("erro","电话号码不正确，请重新输入！");
-            return "verifyAccount";
-        }
-        if(blogger.getBirthday().equals(day) == false){
-            request.setAttribute("erro","生日日期不正确，请重新输入！");
-            return "verifyAccount";
-        }
-        request.setAttribute("userName",username);
         return "admin/changePwd";
     }
 
@@ -164,12 +162,12 @@ public class LoginController {
 
     /*处理从个人主页面到管理账号页面的请求*/
     @RequestMapping("/toManageAccount")
-    public String toManageAccount(String usrId,HttpServletRequest request){
-        Blogger user = bloggerService.findBloggerById(Integer.valueOf(usrId));
+    public String toManageAccount(HttpServletRequest request){
+        Blogger user = (Blogger) SecurityUtils.getSubject().getSession().getAttribute("currentUser");
         if(user == null){
             return "login";
         }
-        request.setAttribute("userName",user.getUsername());
+        request.setAttribute("user",user);
         return "admin/manageAccount";
     }
 

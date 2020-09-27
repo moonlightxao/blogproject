@@ -91,10 +91,20 @@ a {
     color: lightskyblue;
     background-color: white;
 }
+#myblogbox {
+    overflow: hidden;
+}
+#info {
+    float: right;
+    position: fixed;
+    top:400px;
+    right: 100px;
+}
 .myblog {
     overflow: hidden;
     width: 90%;
     margin: 0 auto;
+    float: left;
 }
 .url {
     display: block;

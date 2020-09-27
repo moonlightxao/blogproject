@@ -16,12 +16,12 @@
 <div class="back" >
   <div class="top">
     <div id="user">
-      <c:if test="${rememberMe == false}">
+      <c:if test="${rememberMe == false || sessionScope.user.username == null}">
           <a id="login" href="${pageContext.request.contextPath}/toLogin" class="easyui-linkbutton "  iconCls="icon-ok" > 登录</a>
           <a id="create" href="${pageContext.request.contextPath}/toCreateAccount" class="easyui-linkbutton" iconCls="icon-man" > 注册</a>
       </c:if>
-        <c:if test="${rememberMe == true}">
-            <a href="${pageContext.request.contextPath}/toLogin" title="返回个人主页" class="easyui-tooltip">欢迎使用本博客系统</a>
+        <c:if test="${rememberMe == true && sessionScope.user.username != null}">
+            <a href="${pageContext.request.contextPath}/Homepage/toHomepage?usrId=${sessionScope.user.userId}&page=1" title="返回个人主页" class="easyui-tooltip" id="welcome">欢迎您：${sessionScope.user.nickname}</a>
         </c:if>
     </div >
     <div id="logo">
@@ -112,13 +112,15 @@
 </div>
 <div class="bottom">
   <div id="friend_link" >
-    <h5> 友情链接:</h5> <a href="#">百度云</a> &nbsp; <a href="#">阿里云</a> &nbsp; <a href="#">华为云</a>
-    &nbsp; <a href="#">腾讯云</a> &nbsp; <a href="#">菜鸟教程</a> &nbsp; <a href="#">Bootstrap</a> &nbsp; <a href="#">jQuery</a> &nbsp; <a href="#">网易云</a>
+    <h5> 友情链接:</h5> <a href="https://cloud.baidu.com/" target="_blank">百度云</a> &nbsp; <a href="https://www.aliyun.com/" target="_blank">阿里云</a> &nbsp; <a href="https://www.huaweicloud.com/" target="_blank">华为云</a>
+    &nbsp; <a href="https://cloud.tencent.com/" target="_blank">腾讯云</a> &nbsp; <a href="https://www.runoob.com/" target="_blank">菜鸟教程</a> &nbsp; <a href="https://www.bootcss.com/" target="_blank">Bootstrap</a> &nbsp; <a href="https://jquery.com/" target="_blank">jQuery</a> &nbsp; <a href="https://www.163yun.com" target="_blank">网易云</a>
   </div>
   <div id="communication">
     <h5>联系我们:</h5>
     <li>电话:13251266359</li>
     <li>邮箱:2675935418@qq.com</li>
+      <li>电话:19825001749</li>
+      <li>邮箱:1057294949@qq.com</li>
   </div>
 </div>
 </body>

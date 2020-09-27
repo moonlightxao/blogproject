@@ -93,6 +93,7 @@ a {
 }
 .myblog {
     overflow: hidden;
+    float: left;
     width: 90%;
     margin: 0 auto;
 }
@@ -158,6 +159,15 @@ ul.pagination li a.active {
 
 ul.pagination li a:hover:not(.active) {
     background-color: #ddd;
+}
+#info {
+    float: left;
+    position: fixed;
+    top:200px;
+    right: 100px;
+}
+#myblogbox {
+    overflow: hidden;
 }
 .bottom {
     overflow: hidden;

@@ -12,7 +12,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>login</title>
+    <title>个性化博客登录</title>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jquery-easyui-1.8.6/themes/default/easyui.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jquery-easyui-1.8.6/themes/icon.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jquery-easyui-1.8.6/demo/demo.css">
@@ -26,11 +26,11 @@
             var pwd =document.forms["login"]["password"].value;
             if (name ==null || name =="")
             {
-                alert("用户名必须填写！");
+                $.messager.alert("登录提示","用户名不能为空！");
                 return false;
             }else if (pwd ==null || pwd =="")
             {
-                alert("密码不能为空！");
+                $.messager.alert("登录提示","密码不能为空！");
                 return false;
             }
             return true;
@@ -43,9 +43,6 @@
         <img   src="${pageContext.request.contextPath}/jquery-easyui-1.8.6/themes/icons/logo.png" alt="logo">
     </a>
 </div>
-<c:if test="${errorBuff != null}">
-    <input type="hidden" value="${errorBuff}" id="error">
-</c:if>
 <div align="center">
     <div id="layout1"></div>
     <form  name="login" class="easyui-panel " action="${pageContext.request.contextPath}/login" title="登录" onsubmit="return validateForm()" style="width:100%;max-width:400px;padding:30px 60px;" method="post">

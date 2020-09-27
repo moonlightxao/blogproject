@@ -5,11 +5,10 @@ import com.blog.dao.BloggerDao;
 import com.blog.dao.HomepageDao;
 import com.blog.entity.Blog;
 import com.blog.entity.Blogger;
-import com.blog.entity.Homepage;
-import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.ParseException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -99,7 +98,7 @@ public class BlogService {
     }
 
     /*根据博客编号展示博客，需要根据博客编号查到其拥有者，以及拥有者的页面编号*/
-    public Map<String,Object> showBlog(int blogId){
+    public Map<String,Object> showBlog(int blogId) throws ParseException {
         Blog blog = blogDao.findBlogById(blogId);
         /*如果根据编号没有找到博客，直接返回null*/
         if(blog == null){

@@ -16,10 +16,10 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jquery-easyui-1.8.6/themes/default/easyui.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jquery-easyui-1.8.6/themes/icon.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jquery-easyui-1.8.6/demo/demo.css">
-    <c:if test="false">
+    <c:if test="${pageNum == 1}">
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/mycss/showblog.css">
     </c:if>
-    <c:if test="true">
+    <c:if test="${pageNum == 2}">
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/mycss/pagemodel/showmodel1.css">
     </c:if>
     <script type="text/javascript" src="${pageContext.request.contextPath}/jquery-easyui-1.8.6/jquery.min.js"></script>
@@ -30,7 +30,7 @@
     <div class="top">
         <div id="user">
             <a href="${pageContext.request.contextPath}/Homepage/toHomepage?usrId=${owner.userId}">${owner.nickname}</a>
-            <img src="/userImageLink/${owner.imageLink}" alt="head_picture" width="">
+            <img src="/userImageLink/${owner.imageLink}">
         </div>
         <div  id="logo" >
             <a href="${pageContext.request.contextPath}/">
@@ -73,13 +73,15 @@
 </div>
 <div class="bottom">
     <div id="friend_link" >
-        <h5> 友情链接:</h5> <a href="#">百度云</a> &nbsp; <a href="#">阿里云</a> &nbsp; <a href="#">华为云</a>
-        &nbsp; <a href="#">腾讯云</a> &nbsp; <a href="#">菜鸟教程</a> &nbsp; <a href="#">Bootstrap</a> &nbsp; <a href="#">jQuery</a> &nbsp; <a href="#">网易云</a>
+        <h5> 友情链接:</h5> <a href="https://cloud.baidu.com/" target="_blank">百度云</a> &nbsp; <a href="https://www.aliyun.com/" target="_blank">阿里云</a> &nbsp; <a href="https://www.huaweicloud.com/" target="_blank">华为云</a>
+        &nbsp; <a href="https://cloud.tencent.com/" target="_blank">腾讯云</a> &nbsp; <a href="https://www.runoob.com/" target="_blank">菜鸟教程</a> &nbsp; <a href="https://www.bootcss.com/" target="_blank">Bootstrap</a> &nbsp; <a href="https://jquery.com/" target="_blank">jQuery</a> &nbsp; <a href="https://www.163yun.com" target="_blank">网易云</a>
     </div>
     <div id="communication">
         <h5>联系我们:</h5>
         <li>电话:13251266359</li>
         <li>邮箱:2675935418@qq.com</li>
+        <li>电话:19825001749</li>
+        <li>邮箱:1057294949@qq.com</li>
     </div>
 </div>
 </body>
