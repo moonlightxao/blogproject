@@ -93,7 +93,7 @@
                 <tr class="alt">
                     <td><span >${ablog.blog.title}</span></td>
                     <td>${ablog.time}</td>
-                    <td>${ablog.blog.title}</td>
+                    <td>${ablog.blog.visited}</td>
                     <td id="verify"><a href="${pageContext.request.contextPath}/Blog/toCreateBlog?id=${ablog.blog.blogId}">编辑</a></td>
                     <td id="del"><a onclick=" return delConfirm()" href="javascript:deleteSelectBlog(${ablog.blog.blogId})" >删除</a></td>
                 </tr>
