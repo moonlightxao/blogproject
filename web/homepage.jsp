@@ -12,7 +12,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>个人主页</title>
+    <title>${owner.nickname}的个人主页</title>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jquery-easyui-1.8.6/themes/default/easyui.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jquery-easyui-1.8.6/themes/icon.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jquery-easyui-1.8.6/demo/demo.css">
@@ -40,8 +40,8 @@
                             t.tooltip('hide');
                         });
                     }
-                ">${nickName}</a>
-            <img src="/userImageLink/${imageLink}">
+                ">${owner.nickname}</a>
+            <img src="/userImageLink/${owner.imageLink}">
         </div>
         <div id="tool">
             <div id="toolbar">
@@ -69,18 +69,18 @@
             <h3>这个人非常懒，还没有写任何博客哦！</h3>
         </c:if>
         <c:forEach var="homepageBlog" items="${homepegeBlogs}">
-            <div class="main" onclick="location.href='${pageContext.request.contextPath}/Blog/toShowBlog?bid=${homepageBlog.blogId}'">
+            <div class="main" onclick="location.href='${pageContext.request.contextPath}/Blog/toShowBlog?bid=${homepageBlog.blog.blogId}'">
                 <div id="title" align="left">
-                    <h4><a href="${pageContext.request.contextPath}/Blog/toShowBlog?bid=${homepageBlog.blogId}">${homepageBlog.title}</a></h4>
+                    <h4><a href="${pageContext.request.contextPath}/Blog/toShowBlog?bid=${homepageBlog.blog.blogId}">${homepageBlog.blog.title}</a></h4>
                 </div>
                 <div class="child_line">
 
                 </div>
                 <div align="left">
-                    摘要:<span>${homepageBlog.blogAbstract}</span> <a href="${pageContext.request.contextPath}/Blog/toShowBlog?bid=${homepageBlog.blogId}" id="all">阅读全文</a>
+                    摘要:<span>${homepageBlog.blog.blogAbstract}</span> <a href="${pageContext.request.contextPath}/Blog/toShowBlog?bid=${homepageBlog.blog.blogId}" id="all">阅读全文</a>
                 </div>
                 <div align="right">
-                    <span id="time_nick"> ${homepageBlog.time}</span> &nbsp;&nbsp;&nbsp;<span>${nickName}</span>
+                    <span id="time_nick"> ${homepageBlog.time}</span> &nbsp;&nbsp;&nbsp;<span>${owner.nickname}</span>
                 </div>
             </div>
         </c:forEach>
@@ -91,7 +91,7 @@
                     <c:forEach var="i" begin="0" end="${pageBean.totalPage + 1}">
                         <c:if test="${pageBean.totalPage == 1 && exitId == 0}">
                             <li>
-                                <a href="${pageContext.request.contextPath}/Homepage/toHomepage?usrId=${usrId}" aria-label="First">
+                                <a href="${pageContext.request.contextPath}/Homepage/toHomepage?usrId=${owner.userId}" aria-label="First">
                                     <span aria-hidden="true">首页</span>
                                 </a>
                             </li>
@@ -100,35 +100,35 @@
                         <c:if test="${pageBean.totalPage != 1}">
                             <c:if test="${pageBean.page == 1 && i == 0}">
                                 <li>
-                                    <a href="${pageContext.request.contextPath}/Homepage/toHomepage?usrId=${usrId}" aria-label="First">
+                                    <a href="${pageContext.request.contextPath}/Homepage/toHomepage?usrId=${owner.userId}" aria-label="First">
                                         <span aria-hidden="true">首页</span>
                                     </a>
                                 </li>
                             </c:if>
                             <c:if test="${pageBean.page != 1 && i == 0}">
                                 <li>
-                                    <a href="${pageContext.request.contextPath}/Homepage/toHomepage?usrId=${usrId}&page=${pageBean.page-1}" aria-label="Previous">
+                                    <a href="${pageContext.request.contextPath}/Homepage/toHomepage?usrId=${owner.userId}&page=${pageBean.page-1}" aria-label="Previous">
                                         <span aria-hidden="true">上一页</span>
                                     </a>
                                 </li>
                             </c:if>
                             <c:if test="${i != 0 && i != pageBean.totalPage + 1}">
                                 <li>
-                                    <a href="${pageContext.request.contextPath}/Homepage/toHomepage?usrId=${usrId}&page=${i}">
+                                    <a href="${pageContext.request.contextPath}/Homepage/toHomepage?usrId=${owner.userId}&page=${i}">
                                         <span aria-hidden="true">第${i}页</span>
                                     </a>
                                 </li>
                             </c:if>
                             <c:if test="${i == pageBean.totalPage + 1 && pageBean.page == pageBean.totalPage}">
                                 <li>
-                                    <a href="${pageContext.request.contextPath}/Homepage/toHomepage?usrId=${usrId}&page=${pageBean.page}" aria-label="Last">
+                                    <a href="${pageContext.request.contextPath}/Homepage/toHomepage?usrId=${owner.userId}&page=${pageBean.page}" aria-label="Last">
                                         <span aria-hidden="true">尾页</span>
                                     </a>
                                 </li>
                             </c:if>
                             <c:if test="${i == pageBean.totalPage + 1 && pageBean.page != pageBean.totalPage}">
                                 <li>
-                                    <a href="${pageContext.request.contextPath}/Homepage/toHomepage?usrId=${usrId}&page=${pageBean.page + 1}" aria-label="Next">
+                                    <a href="${pageContext.request.contextPath}/Homepage/toHomepage?usrId=${owner.userId}&page=${pageBean.page + 1}" aria-label="Next">
                                         <span aria-hidden="true">下一页</span>
                                     </a>
                                 </li>
@@ -157,6 +157,8 @@
         <h5>联系我们:</h5>
         <li>电话:13251266359</li>
         <li>邮箱:2675935418@qq.com</li>
+        <li>电话:19825001749</li>
+        <li>邮箱:1057294949@qq.com</li>
     </div>
 </div>
 </body>

@@ -209,11 +209,11 @@ public class LoginController {
 
     @RequestMapping("/checkUsername")
     public String checkUsername(String username,HttpServletResponse response) throws IOException {
-        System.out.println("right here");
+        //System.out.println("right here");
         Blogger blogger = bloggerService.getBloggerByName(username);
         boolean isExit = (blogger != null) ? true : false;
         JSONObject jsonObject = new JSONObject();
-        System.out.println(username+" with " + isExit);
+        //System.out.println(username+" with " + isExit);
         jsonObject.put("isExit",isExit);
         ResponseWrite.writeJSON(response,jsonObject);
         return null;

@@ -11,7 +11,7 @@
 "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-    <title>编辑博客</title>
+    <title>gxblog--编辑博客</title>
     <meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
     <script type="text/javascript" src="${pageContext.request.contextPath}/utf8-jsp/ueditor.config.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/utf8-jsp/ueditor.all.min.js"></script>

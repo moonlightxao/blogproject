@@ -11,7 +11,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>createAccount</title>
+    <title>gxblog--创建账号</title>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jquery-easyui-1.8.6/themes/default/easyui.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jquery-easyui-1.8.6/themes/icon.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jquery-easyui-1.8.6/demo/demo.css">
@@ -20,7 +20,7 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/jquery-easyui-1.8.6/jquery.easyui.min.js"></script>
 <script type="text/javascript" >
     function validateForm(){
-        var username = document.forms["verifyAccount"]["username"].value;
+        var username = document.forms["verifyAccount"]["userName"].value;
         var nickname = document.forms["verifyAccount"]["nickname"].value;
         var password = document.forms["verifyAccount"]["password"].value;
         var password2 = document.forms["verifyAccount"]["password2"].value;
@@ -79,7 +79,28 @@
     <form name="verifyAccount"action="${pageContext.request.contextPath}/createAccount" class="easyui-panel center" title="注册" style="width:100%;max-width:400px;padding:30px 60px;" onsubmit="return validateForm()" method="post">
         <h2>${errorBuf}</h2>
         <tr>
-            <input name="username" class="easyui-textbox boxwidth" label="用户名:" labelPosition="top" >
+            <input id="username" name="userName" class="easyui-textbox boxwidth" data-options="events:{blur:fun}" label="用户名:" labelPosition="top" ><span id="usernameInfo"></span>
+            <script type="text/javascript">
+                var fun = function(){
+                    $("#username").textbox('setValue',$(this).val());
+                    var username = $("#username").textbox('getText');
+                    if(username == null){
+                        return false;
+                    }
+                    $.post("${pageContext.request.contextPath}/checkUsername",{'username':username},function(data){
+                        var usernameInfo = "";
+                        if(data.isExit){
+                            usernameInfo = "该用户名已存在，请重新输入";
+                            $("#usernameInfo").css("color","red");
+                        }else{
+                            usernameInfo = "该用户名可以使用";
+                            $("#usernameInfo").css("color","green");
+                        }
+                        $("#usernameInfo").html(usernameInfo);
+
+                    },"json");
+                }
+            </script>
         </tr>
         <tr>
             <input name="nickname" class="easyui-textbox boxwidth" label="昵称:" labelPosition="top" >

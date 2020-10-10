@@ -89,13 +89,13 @@
             <c:if test="${allBlog.size() == 0}">
                 <h3>这个人非常懒，还没有写任何博客哦！</h3>
             </c:if>
-            <c:forEach var="blog" items="${allBlog}">
+            <c:forEach var="ablog" items="${allBlog}">
                 <tr class="alt">
-                    <td><span >${blog.title}</span></td>
-                    <td>${blog.time}</td>
-                    <td>${blog.visited}</td>
-                    <td id="verify"><a href="${pageContext.request.contextPath}/Blog/toCreateBlog?id=${blog.blogId}">编辑</a></td>
-                    <td id="del"><a onclick=" return delConfirm()" href="javascript:deleteSelectBlog(${blog.blogId})" >删除</a></td>
+                    <td><span >${ablog.blog.title}</span></td>
+                    <td>${ablog.time}</td>
+                    <td>${ablog.blog.title}</td>
+                    <td id="verify"><a href="${pageContext.request.contextPath}/Blog/toCreateBlog?id=${ablog.blog.blogId}">编辑</a></td>
+                    <td id="del"><a onclick=" return delConfirm()" href="javascript:deleteSelectBlog(${ablog.blog.blogId})" >删除</a></td>
                 </tr>
             </c:forEach>
         </table>

@@ -2,9 +2,11 @@ package com.blog.controller;
 
 
 import com.blog.entity.Blog;
+import com.blog.entity.BlogWithNickname;
 import com.blog.entity.Blogger;
 import com.blog.entity.PageBean;
 import com.blog.service.BlogService;
+import com.blog.utils.DateTransferUtil;
 import com.blog.utils.PagingUtil;
 import com.blog.utils.ResponseWrite;
 import net.sf.json.JSONObject;
@@ -19,10 +21,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.text.ParseException;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Controller
 @RequestMapping("/Blog")
@@ -104,8 +103,13 @@ public class BlogController {
         //System.out.println("ManageBlog show pageBean = "+pageBean);
 
         List<Blog> pagingBlog = PagingUtil.pagingFromList(blogs,pageBean);
+        List<BlogWithNickname> blogWithNicknameList = new LinkedList<BlogWithNickname>();
+        for(Blog b:pagingBlog){
+            BlogWithNickname blogWithNickname = new BlogWithNickname(b,null,DateTransferUtil.transferTime(b.getTime()));
+            blogWithNicknameList.add(blogWithNickname);
+        }
         request.setAttribute("pageBean",pageBean);
-        request.setAttribute("allBlog",pagingBlog);
+        request.setAttribute("allBlog",blogWithNicknameList);
         request.setAttribute("curUser",curUser);
         return "admin/manageBlog";
     }
@@ -133,7 +137,6 @@ public class BlogController {
     public String searchBlog(String value,String page,HttpServletRequest request) throws UnsupportedEncodingException, ParseException {
         /*如果是搜索用户名，就返回该用户的所有可见的博客。如果搜索的是博客就返回博客(都是模糊搜索)*/
         String title = new String(value.getBytes("iso-8859-1"),"utf-8");
-        Map<Blog,String> map = new HashMap<Blog, String>();
         List<Blog> blogs = blogService.findAllBlogByTitle(title);
         if(page == null || page == ""){
             page = "1";
@@ -150,9 +153,11 @@ public class BlogController {
 
 
         List<Blog> pagingBlog = PagingUtil.pagingFromList(blogs,pageBean);
+        List<BlogWithNickname> blogWithNicknameList = new LinkedList<BlogWithNickname>();
         for(Blog blog : pagingBlog){
             Blogger owner = blogService.findOwnById(blog.getBlogId());
-            map.put(blog,owner.getNickname());
+            BlogWithNickname blogWithNickname = new BlogWithNickname(blog,owner.getNickname(), DateTransferUtil.transferTime(blog.getTime()));
+            blogWithNicknameList.add(blogWithNickname);
         }
         /*获取所有得cookies*/
         Cookie[] c = request.getCookies();
@@ -169,7 +174,7 @@ public class BlogController {
         request.setAttribute("keyword",title);
         request.setAttribute("pageBean",pageBean);
         request.setAttribute("rememberMe",rem);
-        request.setAttribute("map",map);
+        request.setAttribute("list",blogWithNicknameList);
         return "searchPage";
     }
 
@@ -178,10 +183,12 @@ public class BlogController {
         int blogId = Integer.valueOf(bid);
         Map<String,Object> map = blogService.showBlog(blogId);
         int pageId = (Integer) map.get("pageId");
-        /*这里根据页面模板编号选择跳转，目前只有一个就直接跳*/
+        Blog blog = (Blog) map.get("blog");
+        String tranTime = DateTransferUtil.transferTime(blog.getTime());
         request.setAttribute("owner",map.get("owner"));
-        request.setAttribute("blog",map.get("blog"));
+        request.setAttribute("blog",blog);
         request.setAttribute("pageNum",pageId);
+        request.setAttribute("time",tranTime);
 
         return "showBlog";
     }
@@ -197,15 +204,13 @@ public class BlogController {
             tp +=1;
         }
         pageBean.setTotalPage(tp);
-        //System.out.println(pageBean);
-        //System.out.println(pageBean.getPage()+ " + " + pageBean.getPageSize());
         /*接收到异步请求之后返回所有博客结果*/
         List<Blog> blogs = PagingUtil.pagingFromList(blogService.findAllBlog(),pageBean);
-        Map<Blog,String> map = new HashMap<Blog,String>();
+        List<BlogWithNickname> blogWithNicknameList = new LinkedList<BlogWithNickname>();
         for(Blog blog : blogs){
             Blogger owner = blogService.findOwnById(blog.getBlogId());
-            //System.out.println("outside the util" + blog.getTime());
-            map.put(blog,owner.getNickname());
+            BlogWithNickname blogWithNickname = new BlogWithNickname(blog,owner.getNickname(), DateTransferUtil.transferTime(blog.getTime()));
+            blogWithNicknameList.add(blogWithNickname);
         }
         /*获取所有得cookies*/
         Cookie[] c = request.getCookies();
@@ -213,16 +218,13 @@ public class BlogController {
         if(c != null)
         {
             for(Cookie cookie:c){
-                /*System.out.println("Cookie name = " + cookie.getName() +
-                                   "Cookie comment = " + cookie.getComment() +
-                                   "Cookie value = " + cookie.getValue());*/
                 if(cookie.getName().equals("rememberMe")){
                     rem = true;
                 }
             }
         }
         request.setAttribute("rememberMe",rem);
-        request.setAttribute("map",map);
+        request.setAttribute("list",blogWithNicknameList);
         request.setAttribute("pageBean",pageBean);
         return "index";
     }

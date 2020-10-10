@@ -1,10 +1,8 @@
 package com.blog.controller;
 
-import com.blog.entity.Blog;
-import com.blog.entity.Blogger;
-import com.blog.entity.Homepage;
-import com.blog.entity.PageBean;
+import com.blog.entity.*;
 import com.blog.service.HomepageService;
+import com.blog.utils.DateTransferUtil;
 import com.blog.utils.PagingUtil;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
@@ -13,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -46,15 +45,16 @@ public class HomepageController {
         System.out.println("Homepage show pageBean = "+pageBean);
 
         List<Blog> pagingBlog = PagingUtil.pagingFromList(blogs,pageBean);
-        request.setAttribute("usrId",maps.get("usrId"));
+        List<BlogWithNickname> blogWithNicknameList = new LinkedList<BlogWithNickname>();
+        for(Blog b:pagingBlog){
+            BlogWithNickname blogWithNickname = new BlogWithNickname(b,null, DateTransferUtil.transferTime(b.getTime()));
+            blogWithNicknameList.add(blogWithNickname);
+        }
+
+        request.setAttribute("owner",maps.get("owner"));
         request.setAttribute("pageBean",pageBean);
         request.setAttribute("pageNum",maps.get("pageNum"));
-        request.setAttribute("nickName",maps.get("nickName"));
-        request.setAttribute("homepegeBlogs",pagingBlog);
-        request.setAttribute("imageLink",maps.get("imageLink"));
-        System.out.println("in toHomepage");
-
-        //System.out.println(maps);
+        request.setAttribute("homepegeBlogs",blogWithNicknameList);
         return "homepage";
     }
 

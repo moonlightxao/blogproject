@@ -161,10 +161,17 @@ ul.pagination li a:hover:not(.active) {
     background-color: #ddd;
 }
 #info {
-    float: left;
+    float: right;
     position: fixed;
-    top:200px;
-    right: 100px;
+    width: 15%;
+    padding: 10px;
+    margin: 10px;
+    border-style: solid;
+    border-color: grey;
+    border-width: 2px;
+}
+#info>h3 {
+    text-align: center;
 }
 #myblogbox {
     overflow: hidden;

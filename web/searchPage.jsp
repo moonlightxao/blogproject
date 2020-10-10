@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Search Category - jQuery EasyUI Demo</title>
+    <title>gxblog--搜索页面</title>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jquery-easyui-1.8.6/themes/default/easyui.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jquery-easyui-1.8.6/themes/icon.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jquery-easyui-1.8.6/demo/demo.css">
@@ -61,19 +61,24 @@
     <div>
         <div class="blog" align="center">
             <h3 style="text-align: left"> 搜索结果:</h3>
-            <c:forEach var="iMap" items="${map}">
-                <div class="main">
-                    <div id="title" align="left" >
-                        <h4><a href="${pageContext.request.contextPath}/Blog/toShowBlog?bid=${iMap.key.blogId}"><span style="margin: 0">${iMap.key.title}</span></a></h4>
+            <c:if test="${list.size() == 0}">
+                <h3>没有找到您的想要的搜索结果哦，请重新输入关键词~</h3>
+            </c:if>
+            <c:if test="${list.size() != 0 }">
+                <c:forEach var="iList" items="${list}">
+                    <div class="main">
+                        <div id="title" align="left">
+                            <h4><a href="${pageContext.request.contextPath}/Blog/toShowBlog?bid=${iList.blog.blogId}"><span >${iList.blog.title}</span></a></h4>
+                        </div>
+                        <div align="left" >
+                            <span>${iList.blog.blogAbstract}</span> <a href="${pageContext.request.contextPath}/Blog/toShowBlog?bid=${iList.blog.blogId}" id="all">阅读全文</a>
+                        </div>
+                        <div align="right">
+                            <span id="time_nick"> 创建时间:${iList.time} &nbsp;&nbsp;&nbsp;用户昵称:${iList.nickname}</span>
+                        </div>
                     </div>
-                    <div align="left" style="margin: 0" >
-                        <span style="margin: 0">${iMap.key.blogAbstract}</span> <a href="${pageContext.request.contextPath}/Blog/toShowBlog?bid=${iMap.key.blogId}" id="all">阅读全文</a>
-                    </div>
-                    <div align="right">
-                        <span id="time_nick"> 创建时间: ${iMap.key.time}&nbsp;&nbsp;&nbsp;用户昵称:${iMap.value}</span>
-                    </div>
-                </div>
-            </c:forEach>
+                </c:forEach>
+            </c:if>
             <div id=pagenav align="left">
                 <nav aria-label="Page navigation">
                     <ul class="pagination" >

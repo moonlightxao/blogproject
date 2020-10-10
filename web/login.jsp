@@ -12,7 +12,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>个性化博客登录</title>
+    <title>gxblog--登录</title>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jquery-easyui-1.8.6/themes/default/easyui.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jquery-easyui-1.8.6/themes/icon.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jquery-easyui-1.8.6/demo/demo.css">
@@ -46,7 +46,7 @@
 <div align="center">
     <div id="layout1"></div>
     <form  name="login" class="easyui-panel " action="${pageContext.request.contextPath}/login" title="登录" onsubmit="return validateForm()" style="width:100%;max-width:400px;padding:30px 60px;" method="post">
-        <h2> ${message}</h2>
+        <h2 style="color: red;"> ${message}</h2>
         <tr >
             <td> <input name="username" class="easyui-textbox boxwidth" label="用户名:" labelPosition="top" data-options="prompt:''" > </td>
         </tr>

@@ -73,11 +73,8 @@ public class HomepageService {
         Blogger blogger = bloggerDao.findBloggerById(usrId);
 
         Map<String,Object> map = new HashMap<String, Object>();
-        map.put("usrId",blogger.getUserId());
-        map.put("pageNum",pageNum);
-        map.put("nickName",blogger.getNickname());
         map.put("blogs",blogs);
-        map.put("imageLink",blogger.getImageLink());
+        map.put("owner",blogger);
         return map;
     }
 

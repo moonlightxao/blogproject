@@ -4,7 +4,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>index</title>
+  <title>欢迎来到gxblog</title>
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jquery-easyui-1.8.6/themes/default/easyui.css">
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jquery-easyui-1.8.6/themes/icon.css">
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jquery-easyui-1.8.6/demo/demo.css">
@@ -41,16 +41,16 @@
     }
   </script>
   <div class="blog" align="center">
-    <c:forEach var="iMap" items="${map}">
+    <c:forEach var="iList" items="${list}">
       <div class="main">
         <div id="title" align="left">
-          <h4><a href="${pageContext.request.contextPath}/Blog/toShowBlog?bid=${iMap.key.blogId}"><span >${iMap.key.title}</span></a></h4>
+          <h4><a href="${pageContext.request.contextPath}/Blog/toShowBlog?bid=${iList.blog.blogId}"><span >${iList.blog.title}</span></a></h4>
         </div>
         <div align="left" >
-          <span>${iMap.key.blogAbstract}</span> <a href="${pageContext.request.contextPath}/Blog/toShowBlog?bid=${iMap.key.blogId}" id="all">阅读全文</a>
+          <span>${iList.blog.blogAbstract}</span> <a href="${pageContext.request.contextPath}/Blog/toShowBlog?bid=${iList.blog.blogId}" id="all">阅读全文</a>
         </div>
         <div align="right">
-          <span id="time_nick"> 创建时间:${iMap.key.time} &nbsp;&nbsp;&nbsp;用户昵称:${iMap.value}</span>
+          <span id="time_nick"> 创建时间:${iList.time} &nbsp;&nbsp;&nbsp;用户昵称:${iList.nickname}</span>
         </div>
       </div>
     </c:forEach>

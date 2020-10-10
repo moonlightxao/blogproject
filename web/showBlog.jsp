@@ -57,7 +57,7 @@
                     <span>${blog.content}</span>
                 </div>
                 <div align="right">
-                    <span id="time_nick"> ${blog.time} &nbsp;${owner.nickname}</span>
+                    <span id="time_nick"> ${time} &nbsp;${owner.nickname}</span>
                 </div>
             </div>
         </div>
