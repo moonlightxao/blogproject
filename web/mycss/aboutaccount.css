@@ -5,7 +5,7 @@ body {
     min-height: 700px;
 }
 .easyui-panel {
-    background-image: url("../jquery-easyui-1.8.6/themes/icons/background1.jpg");
+    background-image: url("../jquery-easyui-1.8.6/themes/icons/loginbc.jpg");
 }
 #logo>a>img {
     width: 100px;
