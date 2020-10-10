@@ -40,7 +40,9 @@
             $.post("${pageContext.request.contextPath}/Blog/createBlog",{'title':title,'content':content,'blogAbstract':UE.getEditor("editor").getContent().substr(0,100)+"......",'authority':se},
                 function(data){
                     if(data.success){
-                        $.messager.alert("系统提示","博客编写成功！");
+                        $.messager.alert("系统提示","博客编写成功！","info",function(){
+                            location.href="${pageContext.request.contextPath}/Homepage/toHomepage?usrId=${user.userId}";
+                        });
                     }else{
                         $.messager.alert("系统提示","博客编写失败！");
                     }

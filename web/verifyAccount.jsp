@@ -65,7 +65,7 @@
 </div>
 <div align="center">
     <div id="layout1"></div>
-    <form name="verifyAccount"action="${pageContext.request.contextPath}/verify" class="easyui-panel center" title="验证" style="width:100%;max-width:400px;padding:30px 60px;" onsubmit="return validateForm()" method="post">
+    <form name="verifyAccount" action="${pageContext.request.contextPath}/verify" class="easyui-panel center" title="验证" style="width:100%;max-width:400px;padding:30px 60px;" onsubmit="return validateForm()" method="post">
         <h2>${errorBuf}</h2>
         <tr>
             <input name="username" class="easyui-textbox boxwidth" label="用户名:" labelPosition="top" >
@@ -80,7 +80,7 @@
             <input name="birthday" class="easyui-textbox boxwidth" label="生日:" labelPosition="top" type="date">
         </tr>
         <tr>
-            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="${pageContext.request.contextPath}/toLogin" class="easyui-linkbutton button" >退出验证</a></td><input  value="提交" class="easyui-linkbutton button"  type="submit" >
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="${pageContext.request.contextPath}/toLogin" class="easyui-linkbutton button" >退出验证</a></td><input  value="提交" class="easyui-linkbutton button"  type="submit">
         </tr>
     </form>
 </div>

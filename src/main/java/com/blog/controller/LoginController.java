@@ -107,26 +107,33 @@ public class LoginController {
     * 这里假设前端已经使用ajax去判断用户名是否重复，故直接创建
     * */
     @RequestMapping("/createAccount")
-    public String createAccount(@RequestParam("imageLink") MultipartFile imageLink,String username,String password,String realName,String  phone,String day,String nickname ,String sign,HttpServletRequest request) throws ParseException, IOException {
+    public String createAccount(@RequestParam("imageLink") MultipartFile imageLink,String username,String password,String realName,String  phone,String day,String nickname ,String sign,HttpServletRequest request) throws IOException {
         if(imageLink.isEmpty()){
             return "createAccount";
         }
         String filePath = request.getServletContext().getRealPath("/");
-        System.out.println("filePath = "+filePath);
+        //System.out.println("filePath = "+filePath);
         String res = CurrentDateUtil.getCurrentDate()+"."+imageLink.getOriginalFilename().split("\\.")[1];
-        System.out.println("上传文件保存地址" + filePath+"userImageLink/"+res);
+        //System.out.println("上传文件保存地址" + filePath+"userImageLink/"+res);
         imageLink.transferTo(new File(filePath+"userImageLink/"+res));
-        System.out.println(username+"," + password+"," + realName+","+phone+","+day+","+nickname+","+sign+","+res);
+        //System.out.println(username+"," + password+"," + realName+","+phone+","+day+","+nickname+","+sign+","+res);
         String pwd = CryptographyUtil.md5(password,"njust");
-        Blogger blogger = new Blogger(username,pwd,nickname,realName,phone,new SimpleDateFormat("yyyy-MM-dd").parse(day),sign,res);
-        System.out.println(blogger);
+        try{
+            Blogger blogger = new Blogger(username,pwd,nickname,realName,phone,new SimpleDateFormat("yyyy-MM-dd").parse(day),sign,res);
+            //System.out.println(blogger);
 
-        boolean flag = bloggerService.addBlogger(blogger);
-        if(flag == false){
-            request.setAttribute("erroBuf","创建账号失败，请重新创建");
-            return "createAccount";
+            boolean flag = bloggerService.addBlogger(blogger);
+            if(flag == false){
+                request.setAttribute("erroBuf","创建账号失败，请重新创建");
+                return "createAccount";
+            }
+            return "redirect:/login.jsp";
+        }catch(ParseException e){
+            request.setAttribute("erroDate","日期输入不正确，请重新选择");
+            return "toCreateAccount";
+        }catch(Exception e){
+            return "redirect:/toCreateAccount";
         }
-        return "redirect:/login.jsp";
     }
 
     @RequestMapping("/toChangePwd")
@@ -198,6 +205,18 @@ public class LoginController {
             return null;
         }
         return "redirect:/Homepage/toHomepage?usrId="+user.getUserId();
+    }
+
+    @RequestMapping("/checkUsername")
+    public String checkUsername(String username,HttpServletResponse response) throws IOException {
+        System.out.println("right here");
+        Blogger blogger = bloggerService.getBloggerByName(username);
+        boolean isExit = (blogger != null) ? true : false;
+        JSONObject jsonObject = new JSONObject();
+        System.out.println(username+" with " + isExit);
+        jsonObject.put("isExit",isExit);
+        ResponseWrite.writeJSON(response,jsonObject);
+        return null;
     }
 
 

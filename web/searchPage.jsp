@@ -16,11 +16,11 @@
 <div class="back">
     <div class="top">
         <div id="user">
-            <c:if test="${rememberMe == false}">
-                <a id="login" href="${pageContext.request.contextPath}/toLogin" class="easyui-linkbutton "  iconCls="icon-ok"  > 登录</a>
+            <c:if test="${rememberMe == false || sessionScope.user.username == null}">
+                <a id="login" href="${pageContext.request.contextPath}/toLogin" class="easyui-linkbutton "  iconCls="icon-ok" > 登录</a>
                 <a id="create" href="${pageContext.request.contextPath}/toCreateAccount" class="easyui-linkbutton" iconCls="icon-man" > 注册</a>
             </c:if>
-            <c:if test="${rememberMe == true}">
+            <c:if test="${rememberMe == true && sessionScope.user.username != null}">
                 <a id="nickname" href="javascript:void(0)" class="easyui-tooltip" data-options="
                     hideEvent: 'none',
                     content: function(){
@@ -32,11 +32,11 @@
                             t.tooltip('hide');
                         });
                     }
-                ">这里需要用户名</a>
-                <img src="/userImageLink/${imageLink}">
+                ">${sessionScope.user.nickname}</a>
+                <img src="/userImageLink/${sessionScope.user.imageLink}" style="width: 50px;height: 50px">
                 <div id="tool">
                     <div id="toolbar">
-                        <li><a href="${pageContext.request.contextPath}/toManageAccount?usrId=${usrId}" class="easyui-linkbutton"  data-options="iconCls:'icon-edit',plain:true">账号设置</a></li>
+                        <li><a href="${pageContext.request.contextPath}/toManageAccount?usrId=${sessionScope.user.userId}" class="easyui-linkbutton"  data-options="iconCls:'icon-edit',plain:true">账号设置</a></li>
                         <li><a href="${pageContext.request.contextPath}/logout" class="easyui-linkbutton"  data-options="iconCls:'icon-no',plain:true">退出登录</a></li>
                     </div>
                 </div>
