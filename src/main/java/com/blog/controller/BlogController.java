@@ -109,6 +109,7 @@ public class BlogController {
         request.setAttribute("curUser",curUser);
         return "admin/manageBlog";
     }
+    
 
     @RequestMapping("/manageBlog")
     public String manageBlog(String blogId,HttpServletResponse response) throws IOException {

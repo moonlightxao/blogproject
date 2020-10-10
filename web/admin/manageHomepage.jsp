@@ -77,8 +77,8 @@
 </div>
 <div class="bottom">
     <div id="friend_link" >
-        <h5> 友情链接:</h5> <a href="https://cloud.baidu.com/">百度云</a> &nbsp; <a href="https://www.aliyun.com/">阿里云</a> &nbsp; <a href="https://www.huaweicloud.com/">华为云</a>
-        &nbsp; <a href="https://cloud.tencent.com/">腾讯云</a> &nbsp; <a href="https://www.runoob.com/">菜鸟教程</a> &nbsp; <a href="https://www.bootcss.com/">Bootstrap</a> &nbsp; <a href="https://jquery.com/">jQuery</a> &nbsp; <a href="https://www.163yun.com">网易云</a>
+        <h5> 友情链接:</h5> <a href="https://cloud.baidu.com/" target="_blank">百度云</a> &nbsp; <a href="https://www.aliyun.com/" target="_blank">阿里云</a> &nbsp; <a href="https://www.huaweicloud.com/" target="_blank">华为云</a>
+        &nbsp; <a href="https://cloud.tencent.com/" target="_blank">腾讯云</a> &nbsp; <a href="https://www.runoob.com/" target="_blank">菜鸟教程</a> &nbsp; <a href="https://www.bootcss.com/" target="_blank">Bootstrap</a> &nbsp; <a href="https://jquery.com/" target="_blank">jQuery</a> &nbsp; <a href="https://www.163yun.com" target="_blank">网易云</a>
     </div>
     <div id="communication">
         <h5>联系我们:</h5>

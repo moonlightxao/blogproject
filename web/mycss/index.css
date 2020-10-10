@@ -3,12 +3,11 @@ body {
 }
 .back {
     min-height: 800px;
-    background-image: url("../jquery-easyui-1.8.6/themes/icons/background1.jpg") ;
+    background-image: url("../jquery-easyui-1.8.6/themes/icons/newbackground.jpg") ;
     background-repeat: no-repeat;
     background-size: 100% 100%;
     padding: 15px;
     margin: 0;
-    background-attachment: fixed;
 }
 .top {
     overflow: hidden;
@@ -16,6 +15,12 @@ body {
 #logo>a>img {
     width: 100px;
     float: left;
+}
+#welcome {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: bolder;
+    color: black;
+    text-shadow: 5px 5px 6px rgba(0,0,0,.3);
 }
 #user {
     float: right;
@@ -35,6 +40,9 @@ body {
     width: 60%;
     padding: 10px;
     margin: 10px;
+    border-bottom-style: solid;
+    border-bottom-color: deepskyblue;
+    border-bottom-width: 2px;
 }
 .main a:link {
     color: #00a0e9;

@@ -43,19 +43,6 @@
             }
         }
     </script>
-    <style>
-        body {
-            background-image: url("${pageContext.request.contextPath}/jquery-easyui-1.8.6/themes/icons/background2.jpg");
-            background-repeat: no-repeat;
-            background-size: 100%;
-        }
-        .easyui-panel {
-            background-image: url("${pageContext.request.contextPath}/jquery-easyui-1.8.6/themes/icons/background1.jpg");
-        }
-        #logo>a>img {
-            width: 100px;
-        }
-    </style>
 </head>
 <body>
 <div id="logo" align="left">

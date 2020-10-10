@@ -16,10 +16,10 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jquery-easyui-1.8.6/themes/default/easyui.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jquery-easyui-1.8.6/themes/icon.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jquery-easyui-1.8.6/demo/demo.css">
-    <c:if test="${pageNum == 1}">
+    <c:if test="false">
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/mycss/homepage.css">
     </c:if>
-    <c:if test="${pageNum == 2}">
+    <c:if test="true">
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/mycss/pagemodel/homemodel1.css">
     </c:if>
     <script type="text/javascript" src="${pageContext.request.contextPath}/jquery-easyui-1.8.6/jquery.min.js"></script>
@@ -63,6 +63,7 @@
             <li><a href="${pageContext.request.contextPath}/Blog/toManageBlog?page=1">管理</a></li>
         </ul>
     </div>
+    <div id="myblogbox">
     <div align="center" class="myblog">
         <c:if test="${homepegeBlogs.size() == 0}">
             <h3>这个人非常懒，还没有写任何博客哦！</h3>
@@ -138,11 +139,19 @@
             </nav>
         </div>
     </div>
+    <div id="info">
+        <h3>public notice </h3>
+        <div>
+            <li>昵称:${owner.nickname}</li>
+            <li>个性签名:${owner.sign}</li>
+        </div>
+    </div>
+    </div>
 </div>
 <div class="bottom">
     <div id="friend_link" >
-        <h5> 友情链接:</h5> <a href="#">百度云</a> &nbsp; <a href="#">阿里云</a> &nbsp; <a href="#">华为云</a>
-        &nbsp; <a href="#">腾讯云</a> &nbsp; <a href="#">菜鸟教程</a> &nbsp; <a href="#">Bootstrap</a> &nbsp; <a href="#">jQuery</a> &nbsp; <a href="#">网易云</a>
+        <h5> 友情链接:</h5> <a href="https://cloud.baidu.com/" target="_blank">百度云</a> &nbsp; <a href="https://www.aliyun.com/" target="_blank">阿里云</a> &nbsp; <a href="https://www.huaweicloud.com/" target="_blank">华为云</a>
+        &nbsp; <a href="https://cloud.tencent.com/" target="_blank">腾讯云</a> &nbsp; <a href="https://www.runoob.com/" target="_blank">菜鸟教程</a> &nbsp; <a href="https://www.bootcss.com/" target="_blank">Bootstrap</a> &nbsp; <a href="https://jquery.com/" target="_blank">jQuery</a> &nbsp; <a href="https://www.163yun.com" target="_blank">网易云</a>
     </div>
     <div id="communication">
         <h5>联系我们:</h5>
