@@ -107,8 +107,9 @@ public class LoginController {
     * 这里假设前端已经使用ajax去判断用户名是否重复，故直接创建
     * */
     @RequestMapping("/createAccount")
-    public String createAccount(@RequestParam("imageLink") MultipartFile imageLink,String username,String password,String realName,String  phone,String day,String nickname ,String sign,HttpServletRequest request) throws IOException {
+    public String createAccount(@RequestParam("imageLink") MultipartFile imageLink,String userName,String password,String realname,String  phone,String birthday,String nickname ,String sign,HttpServletRequest request) throws IOException, ParseException {
         if(imageLink.isEmpty()){
+            //System.out.println("图像上传失败");
             return "createAccount";
         }
         String filePath = request.getServletContext().getRealPath("/");
@@ -116,17 +117,18 @@ public class LoginController {
         String res = CurrentDateUtil.getCurrentDate()+"."+imageLink.getOriginalFilename().split("\\.")[1];
         //System.out.println("上传文件保存地址" + filePath+"userImageLink/"+res);
         imageLink.transferTo(new File(filePath+"userImageLink/"+res));
-        //System.out.println(username+"," + password+"," + realName+","+phone+","+day+","+nickname+","+sign+","+res);
+        //System.out.println(userName+"," + password+"," + realname+","+phone+","+birthday+","+nickname+","+sign+","+res);
         String pwd = CryptographyUtil.md5(password,"njust");
+       // System.out.println("即将进入try语句块");
         try{
-            Blogger blogger = new Blogger(username,pwd,nickname,realName,phone,new SimpleDateFormat("yyyy-MM-dd").parse(day),sign,res);
+            Blogger blogger = new Blogger(userName,pwd,nickname,realname,phone,new SimpleDateFormat("yyyy-MM-dd").parse(birthday),sign,res);
             //System.out.println(blogger);
-
             boolean flag = bloggerService.addBlogger(blogger);
             if(flag == false){
                 request.setAttribute("erroBuf","创建账号失败，请重新创建");
                 return "createAccount";
             }
+           // System.out.println("准备要重定向到login");
             return "redirect:/login.jsp";
         }catch(ParseException e){
             request.setAttribute("erroDate","日期输入不正确，请重新选择");
@@ -134,6 +136,7 @@ public class LoginController {
         }catch(Exception e){
             return "redirect:/toCreateAccount";
         }
+
     }
 
     @RequestMapping("/toChangePwd")
@@ -180,14 +183,15 @@ public class LoginController {
 
     /*处理管理账号信息的请求*/
     @RequestMapping("/manageAccount")
-    public String manageAccount(@RequestParam("imageLink") MultipartFile imageLink,String username,String nickname,String password,String realname,String phone,String birthday,String sign,HttpServletRequest request) throws ParseException, IOException {
+    public String manageAccount(@RequestParam("imageLink") MultipartFile imageLink,String username,String nickname,String realname,String phone,String birthday,String sign,HttpServletRequest request) throws ParseException, IOException {
         Map<String,String> map = new HashMap<String, String>();
+        Blogger cUser = (Blogger) SecurityUtils.getSubject().getSession().getAttribute("currentUser");
         Blogger user = bloggerService.getBloggerByName(username);
         if(imageLink.isEmpty()){
             return "admin/manageAccount";
         }
         String filePath = request.getServletContext().getRealPath("/");
-        System.out.println("filePath = "+filePath);
+        //System.out.println("filePath = "+filePath);
         String res = CurrentDateUtil.getCurrentDate()+"."+imageLink.getOriginalFilename().split("\\.")[1];
         //System.out.println("上传文件保存地址" + filePath+"userImageLink/"+res);
         imageLink.transferTo(new File(filePath+"userImageLink/"+res));
@@ -195,7 +199,7 @@ public class LoginController {
         map.put("image",res);
         map.put("username",username);
         map.put("nickname",nickname);
-        map.put("password",CryptographyUtil.md5(password,"njust"));
+        map.put("password",cUser.getPassword());
         map.put("realname",realname);
         map.put("phone",phone);
         map.put("birthday",birthday);

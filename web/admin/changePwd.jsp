@@ -51,7 +51,7 @@
             <input name="password1" class="easyui-textbox boxwidth" label="再次输入密码:" labelPosition="top"  type="password">
         </tr>
         <tr>
-            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="返回到登录界面"class="easyui-linkbutton button"  >退出</a> </td><input  value="确认修改" class="easyui-linkbutton button"  type="submit" >
+            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="${pageContext.request.contextPath}/toLogin"class="easyui-linkbutton button"  >退出</a> </td><input  value="确认修改" class="easyui-linkbutton button"  type="submit" >
         </tr>
     </form>
 </div>

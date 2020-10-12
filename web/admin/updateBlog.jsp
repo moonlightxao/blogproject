@@ -56,7 +56,7 @@
         <a href="${pageContext.request.contextPath}/Homepage/toHomepage?usrId=${user.userId}" title="返回个人主页" class="easyui-tooltip">${user.nickname}</a>
     </div>
     <div  id="logo" align="right">
-        <a href="index.jsp">
+        <a href="${pageContext.request.contextPath}/">
             <img   src="${pageContext.request.contextPath}/jquery-easyui-1.8.6/themes/icons/logo.png" alt="logo" width="260px"  >
         </a>
     </div>

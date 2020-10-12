@@ -21,7 +21,7 @@
           <a id="create" href="${pageContext.request.contextPath}/toCreateAccount" class="easyui-linkbutton" iconCls="icon-man" > 注册</a>
       </c:if>
         <c:if test="${rememberMe == true && sessionScope.user.username != null}">
-            <a href="${pageContext.request.contextPath}/Homepage/toHomepage?usrId=${sessionScope.user.userId}&page=1" title="返回个人主页" class="easyui-tooltip" id="welcome">欢迎您：${sessionScope.user.nickname}</a>
+            <a href="${pageContext.request.contextPath}/Homepage/toHomepage?usrId=${sessionScope.user.userId}&page=1" title="返回个人主页" class="easyui-tooltip" id="welcome">欢迎您：${sessionScope.user.username}</a>
         </c:if>
     </div >
     <div id="logo">

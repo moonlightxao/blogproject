@@ -76,7 +76,7 @@
 </div>
 <div align="center">
     <div id="layout1"></div>
-    <form name="verifyAccount"action="${pageContext.request.contextPath}/createAccount" class="easyui-panel center" title="注册" style="width:100%;max-width:400px;padding:30px 60px;" onsubmit="return validateForm()" method="post">
+    <form name="verifyAccount"action="${pageContext.request.contextPath}/createAccount" class="easyui-panel center" enctype="multipart/form-data" title="注册" style="width:100%;max-width:400px;padding:30px 60px;" onsubmit="return validateForm()" method="post">
         <h2>${errorBuf}</h2>
         <tr>
             <input id="username" name="userName" class="easyui-textbox boxwidth" data-options="events:{blur:fun}" label="用户名:" labelPosition="top" ><span id="usernameInfo"></span>

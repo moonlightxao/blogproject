@@ -42,7 +42,7 @@ public class HomepageController {
             tp +=1;
         }
         pageBean.setTotalPage(tp);
-        System.out.println("Homepage show pageBean = "+pageBean);
+        //System.out.println("Homepage show pageBean = "+pageBean);
 
         List<Blog> pagingBlog = PagingUtil.pagingFromList(blogs,pageBean);
         List<BlogWithNickname> blogWithNicknameList = new LinkedList<BlogWithNickname>();
@@ -65,11 +65,17 @@ public class HomepageController {
     public String toManageHomepage(HttpServletRequest request){
         Blogger curUser = (Blogger) SecurityUtils.getSubject().getSession().getAttribute("currentUser");
         List<Homepage> homepages = homepageService.findAllPages();
+        List<HomepageWithTime> homepageWithTimes = new LinkedList<HomepageWithTime>();
+        for(Homepage homepage:homepages){
+            HomepageWithTime homepageWithTime = new HomepageWithTime(homepage,DateTransferUtil.transferTime(homepage.getReleaseTime()));
+            homepageWithTimes.add(homepageWithTime);
+        }
+
 
         request.setAttribute("usrId",curUser.getUserId());
         request.setAttribute("imageLink",curUser.getImageLink());
         request.setAttribute("nickName",curUser.getNickname());
-        request.setAttribute("allPages",homepages);
+        request.setAttribute("allPages",homepageWithTimes);
 
         return "admin/manageHomepage";
     }

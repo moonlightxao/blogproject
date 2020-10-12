@@ -58,16 +58,16 @@
                 <div class="box">
                     <div class="model">
                         <div class="picture">
-                            <img src="${pageContext.request.contextPath}/pageView/${page.imagelink}" alt="logo" width="220px">
+                            <img src="${pageContext.request.contextPath}/pageView/${page.homepage.imagelink}" alt="logo" width="220px">
                         </div>
                         <div class="info">
-                            <li>[名称]${page.pageName}</li>
-                            <li>[简介]${page.description}</li>
-                            <li>[创建者]${page.creator}</li>
-                            <li>[创建时间]${page.releaseTime}</li>
+                            <li>[名称]${page.homepage.pageName}</li>
+                            <li>[简介]${page.homepage.description}</li>
+                            <li>[创建者]${page.homepage.creator}</li>
+                            <li>[创建时间]${page.time}</li>
                         </div>
                     </div>
-                    <div align="left"> <input  class="easyui-radiobutton" name="model" value="${page.id}"> <span class="usemodel">选用该模板</span></div>
+                    <div align="left"> <input  class="easyui-radiobutton" name="model" value="${page.homepage.id}"> <span class="usemodel">选用该模板</span></div>
                 </div>
             </c:forEach>
             <td > <input  value="使用选定模板"   class="easyui-linkbutton comfirm"  type="submit" ></td>

@@ -6,6 +6,7 @@ import com.blog.entity.BlogWithNickname;
 import com.blog.entity.Blogger;
 import com.blog.entity.PageBean;
 import com.blog.service.BlogService;
+import com.blog.service.BloggerService;
 import com.blog.utils.DateTransferUtil;
 import com.blog.utils.PagingUtil;
 import com.blog.utils.ResponseWrite;
@@ -28,6 +29,9 @@ import java.util.*;
 public class BlogController {
     @Resource
     private BlogService blogService;
+
+    @Resource
+    private BloggerService bloggerService;
 
     @RequestMapping("/toCreateBlog")
     public String toCreateBlog(HttpServletRequest request) {
@@ -87,6 +91,7 @@ public class BlogController {
     public String toManageBlog(String page,HttpServletRequest request){
         /*获取当前用户对象以及用户的所有博客*/
         Blogger curUser = (Blogger) SecurityUtils.getSubject().getSession().getAttribute("currentUser");
+        Blogger user = bloggerService.findBloggerById(curUser.getUserId());
         List<Blog> blogs = blogService.findAllBlogByUsrId(curUser.getUserId());
         PageBean pageBean = new PageBean();
         if(page == null || page.equals("")){
@@ -110,7 +115,7 @@ public class BlogController {
         }
         request.setAttribute("pageBean",pageBean);
         request.setAttribute("allBlog",blogWithNicknameList);
-        request.setAttribute("curUser",curUser);
+        request.setAttribute("curUser",user);
         return "admin/manageBlog";
     }
     

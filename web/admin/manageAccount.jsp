@@ -22,8 +22,6 @@
         function validateForm(){
             var username = document.forms["manageAccount"]["username"].value;
             var nickname =document.forms["manageAccount"]["nickname"].value;
-            var password1 = document.forms["manageAccount"]["password"].value;
-            var password2 = document.forms["manageAccount"]["password2"].value;
             var realname = document.forms["manageAccount"]["realname"].value;
             var phone = document.forms["manageAccount"]["phone"].value;
             var birthday = document.forms["manageAccount"]["birthday"].value;
@@ -34,14 +32,6 @@
             } else if (nickname ==null || nickname =="")
             {
                 alert("请输入昵称！");
-                return false;
-            }else if (password1 ==null || password1 =="")
-            {
-                alert("密码不能为空！");
-                return false;
-            }else if (password2 ==null || password2 =="")
-            {
-                alert("需要再次输入密码！");
                 return false;
             }else if (realname ==null || realname=="")
             {
@@ -79,12 +69,6 @@
             <input name="nickname" type="text" class="easyui-textbox boxwidth" label="昵称:" labelPosition="top" value="${user.nickname}" >
         </tr>
         <tr >
-            <input name="password" class="easyui-textbox boxwidth" label="新密码:" labelPosition="top" data-options="prompt:'请输入6-12位密码'" type="password" >
-        </tr>
-        <tr >
-            <input name="password2" class="easyui-textbox boxwidth" label="再次输入密码:" labelPosition="top"  type="password">
-        </tr>
-        <tr >
             <input name="realname" class="easyui-textbox boxwidth" label="真实姓名:" labelPosition="top"  type="text" value="${user.realName}">
         </tr>
         <tr >
@@ -100,7 +84,9 @@
             <td>选择头像:</td><input name="imageLink" class="boxwidth" label="选择头像" labelPosition="top" type="file">
         </tr>
         <tr>
-            <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="${pageContext.request.contextPath}/Blog/toManageBlog?page=1" class="easyui-linkbutton button"  >退出</a> </td><input  value="确认修改" class="easyui-linkbutton button"  type="submit" >
+            <td><a href="${pageContext.request.contextPath}/Blog/toManageBlog?page=1" class="easyui-linkbutton button"  >退出</a> </td>
+            <td><a href="${pageContext.request.contextPath}/verifyAccount.jsp" class="easyui-linkbutton button"  >修改密码</a> </td>
+            <td><input  value="确认修改" class="easyui-linkbutton button"  type="submit" ></td>
         </tr>
     </form>
 </div>

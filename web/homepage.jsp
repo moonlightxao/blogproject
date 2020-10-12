@@ -60,7 +60,7 @@
         <ul class="headnav">
             <li><a href="${pageContext.request.contextPath}/">首页</a></li>
             <li><a href="${pageContext.request.contextPath}/Blog/toCreateBlog">新随笔</a></li>
-            <li><a href="${pageContext.request.contextPath}/Blog/toManageBlog?page=1">管理</a></li>
+            <li><a href="${pageContext.request.contextPath}/Blog/toManageBlog?usrId=${owner.userId}&page=1">管理</a></li>
         </ul>
     </div>
     <div id="myblogbox">
