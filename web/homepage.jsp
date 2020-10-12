@@ -16,10 +16,10 @@
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jquery-easyui-1.8.6/themes/default/easyui.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jquery-easyui-1.8.6/themes/icon.css">
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/jquery-easyui-1.8.6/demo/demo.css">
-    <c:if test="false">
+    <c:if test="${pageNum == 1}">
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/mycss/homepage.css">
     </c:if>
-    <c:if test="true">
+    <c:if test="${pageNum == 2}">
         <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/mycss/pagemodel/homemodel1.css">
     </c:if>
     <script type="text/javascript" src="${pageContext.request.contextPath}/jquery-easyui-1.8.6/jquery.min.js"></script>
